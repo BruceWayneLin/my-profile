@@ -91,6 +91,15 @@ const SKILLS = [
 const PORTFOLIO = [
   // ── Live sites ──────────────────────────────
   {
+    name: 'Portfolio v1',
+    nameEn: 'Original jQuery Portfolio',
+    icon: '🏛️',
+    tech: 'jQuery · Bootstrap · CSS3 · AniJS',
+    desc: '2016 年手刻的第一版作品集，StarCraft GIF 時光機 + 3D Cube 作品展示 + 火箭彩蛋。現在這個網站的前身。',
+    url: '/projects/portfolio-v1/',
+    tag: 'demo',
+  },
+  {
     name: 'StockChicken.tw',
     nameEn: 'Stock Prediction Platform',
     icon: '📈',
