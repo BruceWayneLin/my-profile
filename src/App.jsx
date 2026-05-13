@@ -873,11 +873,85 @@ function Footer() {
 }
 
 /* ══════════════════════════════════════════
+   BGM PLAYER
+══════════════════════════════════════════ */
+function BgmPlayer() {
+  const audioRef = useRef(null)
+  const [playing, setPlaying] = useState(false)
+  const [started, setStarted] = useState(false)
+  const [volume, setVolume] = useState(0.35)
+
+  // 第一次任何互動就自動播
+  useEffect(() => {
+    const tryPlay = () => {
+      if (started) return
+      const audio = audioRef.current
+      if (!audio) return
+      audio.volume = volume
+      audio.play().then(() => {
+        setPlaying(true)
+        setStarted(true)
+      }).catch(() => {})
+    }
+    window.addEventListener('mousemove', tryPlay, { once: true })
+    window.addEventListener('click',     tryPlay, { once: true })
+    window.addEventListener('keydown',   tryPlay, { once: true })
+    window.addEventListener('touchstart',tryPlay, { once: true })
+    return () => {
+      window.removeEventListener('mousemove', tryPlay)
+      window.removeEventListener('click',     tryPlay)
+      window.removeEventListener('keydown',   tryPlay)
+      window.removeEventListener('touchstart',tryPlay)
+    }
+  }, [started, volume])
+
+  const toggle = () => {
+    const audio = audioRef.current
+    if (!audio) return
+    if (playing) {
+      audio.pause()
+      setPlaying(false)
+    } else {
+      audio.play()
+      setPlaying(true)
+      setStarted(true)
+    }
+  }
+
+  const handleVolume = e => {
+    const v = parseFloat(e.target.value)
+    setVolume(v)
+    if (audioRef.current) audioRef.current.volume = v
+  }
+
+  return (
+    <div className={`bgm-player ${playing ? 'bgm-playing' : ''}`}>
+      <audio ref={audioRef} src="/audio/terran-bgm.mp3" loop preload="auto" />
+      <button className="bgm-btn" onClick={toggle} title={playing ? 'Pause BGM' : 'Play BGM'}>
+        {playing ? '♪' : '♩'}
+      </button>
+      <div className="bgm-info">
+        <span className={`bgm-title ${playing ? 'bgm-scroll' : ''}`}>
+          Terran BGM — StarCraft Live Concert
+        </span>
+        <input
+          className="bgm-volume"
+          type="range" min="0" max="1" step="0.05"
+          value={volume}
+          onChange={handleVolume}
+        />
+      </div>
+    </div>
+  )
+}
+
+/* ══════════════════════════════════════════
    APP
 ══════════════════════════════════════════ */
 export default function App() {
   return (
     <>
+      <BgmPlayer />
       <Navbar />
       <Hero />
       <Timeline />

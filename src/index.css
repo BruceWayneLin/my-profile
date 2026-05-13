@@ -146,6 +146,103 @@ body {
 }
 
 /* ══════════════════════════════════════════
+   BGM PLAYER
+══════════════════════════════════════════ */
+.bgm-player {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(4,5,13,0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(74,158,255,0.2);
+  border-radius: 40px;
+  padding: 6px 12px 6px 6px;
+  transition: border-color 0.3s;
+}
+
+.bgm-player.bgm-playing {
+  border-color: rgba(74,158,255,0.5);
+  box-shadow: 0 0 16px rgba(74,158,255,0.15);
+}
+
+.bgm-btn {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(74,158,255,0.4);
+  background: rgba(74,158,255,0.08);
+  color: var(--c-cyan);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s, box-shadow 0.2s;
+  flex-shrink: 0;
+}
+
+.bgm-btn:hover {
+  background: rgba(74,158,255,0.18);
+  box-shadow: var(--glow-cyan);
+}
+
+.bgm-playing .bgm-btn {
+  animation: bgm-pulse 2s ease-in-out infinite;
+}
+
+@keyframes bgm-pulse {
+  0%, 100% { box-shadow: 0 0 6px rgba(74,158,255,0.4); }
+  50%       { box-shadow: 0 0 16px rgba(74,158,255,0.8); }
+}
+
+.bgm-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  overflow: hidden;
+  max-width: 160px;
+}
+
+.bgm-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 1px;
+  color: var(--c-blue);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.bgm-scroll {
+  animation: bgm-marquee 12s linear infinite;
+}
+
+@keyframes bgm-marquee {
+  0%   { transform: translateX(0); }
+  40%  { transform: translateX(-60%); }
+  60%  { transform: translateX(-60%); }
+  100% { transform: translateX(0); }
+}
+
+.bgm-volume {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 3px;
+  background: rgba(74,158,255,0.2);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+
+.bgm-volume::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--c-cyan);
+  box-shadow: 0 0 6px var(--c-cyan);
+}
+
+/* ══════════════════════════════════════════
    NAVBAR
 ══════════════════════════════════════════ */
 .navbar {
