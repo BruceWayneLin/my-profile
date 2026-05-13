@@ -752,7 +752,6 @@ function PortfolioCard({ item, index }) {
 function Portfolio() {
   return (
     <section id="portfolio" className="portfolio-section">
-      <div className="earth-bg" />
       <SectionHeader title="作品集" sub="Portfolio" />
       <div className="portfolio-grid">
         {PORTFOLIO.map((item, i) => <PortfolioCard key={i} item={item} index={i} />)}
@@ -782,6 +781,11 @@ function Contact() {
     <section id="contact" className="contact-section">
       <LaserGrid color="#ff4af8" opacity={0.06} />
       <SectionHeader title="Contact" sub="聯絡我" />
+      <div className="planet-wrap">
+        <div className="planet">
+          <div className="texture" />
+        </div>
+      </div>
       <div className="contact-links">
         <a className="contact-link-item" href="mailto:skandawei@gmail.com">
           <span className="cli-icon">✉</span>
