@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "./static/css/main.25ffce97.chunk.css",
+    "main.js": "./static/js/main.fd530d0a.chunk.js",
+    "main.js.map": "./static/js/main.fd530d0a.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.80b015e0.js",
+    "runtime-main.js.map": "./static/js/runtime-main.80b015e0.js.map",
+    "static/js/2.6f4d62da.chunk.js": "./static/js/2.6f4d62da.chunk.js",
+    "static/js/2.6f4d62da.chunk.js.map": "./static/js/2.6f4d62da.chunk.js.map",
+    "index.html": "./index.html",
+    "precache-manifest.e588e1f2c50650acd1495b7aa3e3b88d.js": "./precache-manifest.e588e1f2c50650acd1495b7aa3e3b88d.js",
+    "service-worker.js": "./service-worker.js",
+    "static/css/main.25ffce97.chunk.css.map": "./static/css/main.25ffce97.chunk.css.map",
+    "static/js/2.6f4d62da.chunk.js.LICENSE.txt": "./static/js/2.6f4d62da.chunk.js.LICENSE.txt",
+    "static/media/allLevels.png": "./static/media/allLevels.e70bd60c.png",
+    "static/media/banner-square.jpg": "./static/media/banner-square.8a15e3ca.jpg",
+    "static/media/app.scss": "./static/media/joinUs.9256d524.jpg",
+    "static/media/games.png": "./static/media/games.abb6ccd4.png",
+    "static/media/logo.png": "./static/media/logo.c8c7c3da.png",
+    "static/media/onephone.png": "./static/media/onephone.7950c501.png",
+    "static/media/takePhone.png": "./static/media/takePhone.6bed7b2c.png",
+    "static/media/us.png": "./static/media/us.6e093052.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.80b015e0.js",
+    "static/js/2.6f4d62da.chunk.js",
+    "static/css/main.25ffce97.chunk.css",
+    "static/js/main.fd530d0a.chunk.js"
+  ]
+}
