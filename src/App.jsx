@@ -752,6 +752,7 @@ function PortfolioCard({ item, index }) {
 function Portfolio() {
   return (
     <section id="portfolio" className="portfolio-section">
+      <div className="earth-bg" />
       <SectionHeader title="作品集" sub="Portfolio" />
       <div className="portfolio-grid">
         {PORTFOLIO.map((item, i) => <PortfolioCard key={i} item={item} index={i} />)}
