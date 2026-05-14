@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dig jungwei.com.tw A +short)",
+      "Bash(dig jungwei.com.tw CNAME +short)",
+      "Bash(dig jungwei.com.tw CAA +short)",
+      "Bash(dig www.jungwei.com.tw A +short)",
+      "Bash(dig www.jungwei.com.tw CNAME +short)",
+      "Bash(npm install *)"
+    ]
+  }
+}

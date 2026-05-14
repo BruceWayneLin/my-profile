@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
+import emailjs from '@emailjs/browser'
 import './index.css'
 
 /* ══════════════════════════════════════════
@@ -775,16 +776,30 @@ function Portfolio() {
 function Contact() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' })
   const [msg, setMsg] = useState(null)
+  const [sending, setSending] = useState(false)
   const handle = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }))
-  const submit = e => {
+  const submit = async e => {
     e.preventDefault()
     if (!form.name || !form.email || !form.message) {
       setMsg({ type: 'error', text: '請填寫必填欄位 (Name, Email, Message)' })
       return
     }
-    setMsg({ type: 'success', text: '感謝來信！Message received. I\'ll respond soon.' })
-    setForm({ name: '', email: '', phone: '', message: '' })
-    setTimeout(() => setMsg(null), 4000)
+    setSending(true)
+    try {
+      await emailjs.send(
+        'service_60vwf2s',
+        'template_wfdoxkm',
+        { name: form.name, email: form.email, phone: form.phone, message: form.message, title: 'Portfolio Contact' },
+        'yg6q6FCdodgToSCVx'
+      )
+      setMsg({ type: 'success', text: '感謝來信！Message received. I\'ll respond soon.' })
+      setForm({ name: '', email: '', phone: '', message: '' })
+      setTimeout(() => setMsg(null), 4000)
+    } catch {
+      setMsg({ type: 'error', text: '傳送失敗，請稍後再試。' })
+    } finally {
+      setSending(false)
+    }
   }
   return (
     <section id="contact" className="contact-section">
@@ -831,8 +846,8 @@ function Contact() {
           <textarea name="message" value={form.message} onChange={handle} placeholder="Your message..." />
         </div>
         {msg && <div className={`form-msg ${msg.type}`}>{msg.text}</div>}
-        <button className="submit-btn" type="submit">
-          <span className="btn-text">TRANSMIT</span>
+        <button className="submit-btn" type="submit" disabled={sending}>
+          <span className="btn-text">{sending ? 'SENDING...' : 'TRANSMIT'}</span>
           <span className="btn-arrow">→</span>
         </button>
       </form>
