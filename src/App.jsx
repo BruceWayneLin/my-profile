@@ -789,7 +789,7 @@ function Contact() {
       await emailjs.send(
         'service_60vwf2s',
         'template_wfdoxkm',
-        { name: form.name, email: form.email, phone: form.phone, message: form.message, title: 'Portfolio Contact' },
+        { name: form.name, email: form.email, phone: form.phone, message: `Email: ${form.email}${form.phone ? '\nPhone: ' + form.phone : ''}\n\n${form.message}`, title: 'Portfolio Contact' },
         'yg6q6FCdodgToSCVx'
       )
       setMsg({ type: 'success', text: '感謝來信！Message received. I\'ll respond soon.' })
