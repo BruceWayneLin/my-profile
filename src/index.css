@@ -1167,7 +1167,7 @@ section {
   position: absolute;
   left: -360px;
   height: 320px;
-  content: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/184191/earth_copy.jpg');
+  content: url('/img/earth_copy.jpg');
   background-size: cover;
   animation: planet-rotate 30s linear infinite;
 }

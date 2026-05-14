@@ -10,8 +10,8 @@ const TIMELINE = [
   {
     date: '2010/3',
     gif: '/img/Thor.gif',
-    en: 'B.A. Literature — University of Oregon, USA',
-    zh: '畢業於美國奧瑞岡大學 文學系',
+    en: 'University of Oregon, USA',
+    zh: '畢業於美國奧瑞岡大學',
   },
   {
     date: '2010/11',
