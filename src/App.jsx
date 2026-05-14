@@ -108,6 +108,15 @@ const PORTFOLIO = [
     url: 'https://www.stockchicken.tw',
     tag: 'live',
   },
+  {
+    name: '量化交易平台',
+    nameEn: 'Quantitative Trading Platform',
+    icon: '🤖',
+    tech: 'Algorithmic Trading · Quant Finance',
+    desc: '量化交易策略平台，個人獨立開發',
+    url: 'https://trade.jungwei.com.tw',
+    tag: 'live',
+  },
   // ── Local demos (靜態 build) ─────────────────
   {
     name: 'TGC 官方網站',
