@@ -862,12 +862,29 @@ function Footer() {
   const [launched, setLaunched] = useState(false)
   const nuclearRef = useRef(null)
   const explosionRef = useRef(null)
+  const rafRef = useRef(null)
 
   const launch = () => {
-    if (nuclearRef.current) nuclearRef.current.play()
+    if (launched) return
+    if (nuclearRef.current) { nuclearRef.current.currentTime = 0; nuclearRef.current.play() }
     setLaunched(true)
     setTimeout(() => { if (explosionRef.current) explosionRef.current.play() }, 1800)
+
+    const startY = window.scrollY
+    const duration = 2400
+    const startTime = performance.now()
+
+    const scrollUp = now => {
+      const t = Math.min((now - startTime) / duration, 1)
+      window.scrollTo(0, startY * (1 - t * t))
+      if (t < 1) rafRef.current = requestAnimationFrame(scrollUp)
+    }
+    rafRef.current = requestAnimationFrame(scrollUp)
+
+    setTimeout(() => setLaunched(false), 2600)
   }
+
+  useEffect(() => () => { if (rafRef.current) cancelAnimationFrame(rafRef.current) }, [])
 
   return (
     <footer className="footer-section">
@@ -878,10 +895,7 @@ function Footer() {
 
       <div className="footer-inner">
         <div>
-          <button className="rocket-btn" onClick={launch}>🚀 發射火箭</button>
-          {launched && (
-            <button className="rocket-again-btn" onClick={() => setLaunched(false)}>再一次</button>
-          )}
+          <button className="rocket-btn" onClick={launch} disabled={launched}>🚀 發射火箭</button>
         </div>
         <p className="copyright">© Jung-wei, Lin 2016 – {new Date().getFullYear()}</p>
         <p className="copyright" style={{ opacity: 0.4 }}>Built with React + Vite</p>
