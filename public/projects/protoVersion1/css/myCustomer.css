@@ -1,0 +1,901 @@
+#intro {
+    display: block;
+    height: auto;
+    text-align: center;
+    color: #fff;
+    background: url(../css/images/bakballon.jpg) bottom center no-repeat #000;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+
+}
+
+button.navbar-toggle.ui-btn.ui-shadow.ui-corner-all {
+    display: none;
+}
+
+@media screen and (max-width: 767px) {
+    button.navbar-toggle.ui-btn.ui-shadow.ui-corner-all {
+        display: initial;
+        max-width: 100px;
+        margin: 5px 5px 5px 5px;
+    }
+}
+
+@media screen and (min-width: 767px) {
+    .navbar-header {
+        margin-left: 33px!important;
+    }
+}
+
+.intro-body .date-input {
+    text-align: center;
+    font-size: 16px;
+}
+
+.card .img-responsive {
+  width: 398px;
+  height: 180px;
+}
+
+.card .img-responsive h1 {
+    position: relative;
+    top: 40%;
+}
+
+div.card.col-sm-3 {
+    position: relative;
+    top: -308px;
+    margin-bottom: 40px;
+}
+
+@media screen
+    and (max-width: 992px)
+    and (min-width: 590px) {
+    div.card.col-sm-3 {
+        min-width: 350px;
+        top: -185px;
+    }
+}
+
+.productIntro {
+    position: relative;
+    top: 60px;
+}
+.productIntroFourth {
+     position: relative;
+     top: 35px;
+ }
+
+.productIntroFourth h2 {
+    position: relative;
+    top: 35px;
+}
+
+@media screen and (max-width: 1200px){
+    div.productIntro h2 {
+        font-size: 20px;
+    }
+    div.productIntro span {
+        font-size: 16px;
+    }
+    .productIntroFourth h2 {
+        font-size: 20px;
+    }
+}
+
+@media screen and (min-width: 1200px){
+    .productIntro {
+        top: 33px;
+    }
+}
+
+div.card-block {
+    margin-top: 30px;
+}
+
+@media screen and (max-width: 768px)
+              and (min-width: 570px)
+{
+    div.card-block {
+        max-width: 398px;
+        width: auto;
+    }
+    div.card.col-sm-3 {
+        min-width: 360px;
+        top: -185px;
+        /*left: 20%;*/
+    }
+}
+
+@media screen and (max-width: 480px){
+    div.card-block {
+        margin-top: 30px;
+        width: auto;
+    }
+}
+
+@media screen and (min-width: 458px){
+    div.card-block {
+        margin-top: 30px;
+        max-width: 398px;
+    }
+}
+
+@media screen and (min-width: 460px){
+    div.card.col-sm-3 {
+        top: -290px;
+    }
+}
+
+@media screen and (min-width: 1201px){
+    div.card.col-sm-3 {
+        top: -120px;
+    }
+}
+
+@media screen and (min-width: 480px)
+              and (max-width: 568px)
+{
+    div.card.col-sm-3 {
+        top: -275px;
+    }
+}
+
+@media screen and (min-width: 568px)
+and (max-width: 625px)
+{
+    div.card.col-sm-3 {
+        left: 12%;
+    }
+}
+
+@media screen and (min-width: 625px)
+and (max-width: 767px)
+{
+    div.card.col-sm-3 {
+        /*left: 20%;*/
+    }
+}
+
+.productIntro span {
+    display: block;
+}
+
+.discount {
+    text-decoration: line-through;
+}
+
+.navbar-brand.page-scroll.ui-link {
+    color: #777777;
+}
+
+.card-content {
+    min-height: 116px;
+    margin: 0px 7px;
+    background-color: #ebf2ff;
+    padding: 1px;
+    border-radius: 20px 20px 20px 20px;
+    -moz-border-radius: 20px 20px 20px 20px;
+    -webkit-border-radius: 20px 20px 20px 20px;
+    min-height: 240px;
+}
+
+#slide .card:nth-child(5) .card-content{
+    margin-bottom: 10px;
+}
+
+#slide .loginDiv {
+    padding: 10px;
+    display: inline-block;
+}
+
+#slide .registerDiv {
+    padding: 10px;
+    display: inline-block;
+}
+
+.loginDiv h1 {
+    color: #777777;
+}
+
+.card-text {
+    color: #777777;
+}
+
+#registerBtn {
+    background: rgba(0, 0, 0, 0.36);
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 18px;
+    padding: 9px 40px 18px 40px;
+    text-decoration: none;
+}
+
+#registerBtn:hover {
+    background: #ffffff;
+    text-decoration: none;
+}
+
+#registerBtn:hover h3 {
+    color: #e84566;
+    text-decoration: none;
+}
+
+#loginBtn {
+    background: #e84566;
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 18px;
+    padding: 9px 40px 18px 40px;
+    text-decoration: none;
+    border: 1px solid #777777;
+}
+
+#loginBtn:hover {
+    background: rgba(255, 255, 255, 0.81);
+    color: #e84566;
+
+}
+
+#registerFormDiv, #vehiFormDiv  {
+    margin-top: 80px;
+    margin-bottom: 40px;
+}
+
+#registerFormDiv .ui-body-a, .ui-page-theme-a .ui-body-inherit, html .ui-bar-a .ui-body-inherit, html .ui-body-a .ui-body-inherit, html body .ui-group-theme-a .ui-body-inherit, html .ui-panel-page-container-a{
+    font-size:16px;
+    border-style:solid;
+    border-width:2px;
+    text-align:left;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
+    -webkit-box-shadow: 0;
+    -moz-box-shadow: 0;
+    box-shadow: 0;
+    padding: 6px 15px;
+    border-color: #ccc !important;
+    box-shadow: none !important;
+}
+
+#registerFormDiv .ui-select {
+    font-size:16px;
+    border-style:solid;
+    border-width:2px;
+    text-align:left;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
+    -webkit-box-shadow: 0;
+    -moz-box-shadow: 0;
+    box-shadow: 0;
+    border-color: #ccc !important;
+    box-shadow: none !important;
+}
+
+#registerFormDiv .ui-page-theme-a .ui-radio-on:after, html .ui-bar-a .ui-radio-on:after, html .ui-body-a .ui-radio-on:after, html body .ui-group-theme-a .ui-radio-on:after, .ui-btn.ui-radio-on.ui-btn-a:after {
+    border-color: #e84566!important;
+}
+
+#registerFormDiv .ui-btn.ui-checkbox-off:after, .ui-btn.ui-checkbox-on:after, .ui-btn.ui-radio-off:after, .ui-btn.ui-radio-on:after {
+    width: 10px!important;
+    height: 10px!important;
+    margin: -5px 0px 18px 4px!important;
+    border-color: #ffffff!important;
+
+}
+
+#registerFormDiv .ui-btn-icon-right:after {
+
+}
+
+#registerFormDiv .ui-btn {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+
+#registerFormDiv .form-control {
+    box-shadow: none !important;
+}
+
+.divLine {
+    border-bottom: 1px solid #e84566;
+}
+
+#registerFormDiv .ui-checkbox {
+   display: inline-block;
+ }
+
+.progress-bar {
+    text-shadow: none;
+}
+
+#registerFormDiv legend, #vehiFormDiv legend {
+    color: #e84566;
+}
+
+#registerFormDiv label, #vehiFormDiv label {
+    padding-top: 18px;
+    text-align: left;
+}
+
+#registerFormDiv .row, #vehiFormDiv .row, div.loginForm.container, div#contentInfo{
+    background-color: white;
+    padding: 20px;
+}
+
+.loginForm {
+    border: 1px solid #ccc;
+}
+
+
+#registerFormDiv, #vehiFormDiv {
+    margin-top: 80px;
+    margin-bottom: 40px;
+}
+
+#registerFormDiv .ui-body-a, .ui-page-theme-a .ui-body-inherit, html .ui-bar-a .ui-body-inherit, html .ui-body-a .ui-body-inherit, html body .ui-group-theme-a .ui-body-inherit, html .ui-panel-page-container-a{
+    font-size:16px;
+    border-style:solid;
+    border-width:2px;
+    text-align:left;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
+    -webkit-box-shadow: 0;
+    -moz-box-shadow: 0;
+    box-shadow: 0;
+    padding: 6px 15px;
+    border-color: #ccc !important;
+    box-shadow: none !important;
+}
+
+#registerFormDiv .ui-select {
+    font-size:16px;
+    border-style:solid;
+    border-width:2px;
+    text-align:left;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
+    -webkit-box-shadow: 0;
+    -moz-box-shadow: 0;
+    padding: 3px 15px;
+    box-shadow: 0;
+    border-color: #ccc !important;
+    box-shadow: none !important;
+}
+
+@media screen and (max-width:1200px) and (min-width:920px) {
+    #registerFormDiv .ui-select {
+        padding: 3px 0px;
+    }
+}
+
+#registerFormDiv .ui-page-theme-a .ui-radio-on:after, html .ui-bar-a .ui-radio-on:after, html .ui-body-a .ui-radio-on:after, html body .ui-group-theme-a .ui-radio-on:after, .ui-btn.ui-radio-on.ui-btn-a:after {
+    border-color: #e84566!important;
+}
+
+#registerFormDiv .ui-btn.ui-checkbox-off:after, .ui-btn.ui-checkbox-on:after, .ui-btn.ui-radio-off:after, .ui-btn.ui-radio-on:after {
+    width: 10px!important;
+    height: 10px!important;
+    margin: -5px 0px 18px 4px!important;
+    border-color: #ffffff!important;
+
+}
+
+#registerFormDiv .ui-btn-icon-right:after {
+
+}
+
+#registerFormDiv .ui-btn {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+
+#registerFormDiv .form-control {
+    box-shadow: none !important;
+}
+
+.divLine {
+    border-bottom: 1px solid #e84566;
+}
+
+#registerFormDiv .ui-checkbox {
+    display: inline-block;
+}
+
+#vehiFormDiv .ui-body-a, .ui-page-theme-a .ui-body-inherit, html .ui-bar-a .ui-body-inherit, html .ui-body-a .ui-body-inherit, html body .ui-group-theme-a .ui-body-inherit, html .ui-panel-page-container-a{
+    font-size:16px;
+    border-style:solid;
+    border-width:2px;
+    text-align:left;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
+    -webkit-box-shadow: 0;
+    -moz-box-shadow: 0;
+    box-shadow: 0;
+    padding: 6px 15px;
+    border-color: #ccc !important;
+    box-shadow: none !important;
+}
+
+#vehiFormDiv .ui-select {
+    font-size:16px;
+    border-style:solid;
+    border-width:2px;
+    text-align:left;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
+    -webkit-box-shadow: 0;
+    -moz-box-shadow: 0;
+    padding: 3px 15px;
+    box-shadow: 0;
+    border-color: #ccc !important;
+    box-shadow: none !important;
+}
+
+#vehiFormDiv .ui-page-theme-a .ui-radio-on:after, html .ui-bar-a .ui-radio-on:after, html .ui-body-a .ui-radio-on:after, html body .ui-group-theme-a .ui-radio-on:after, .ui-btn.ui-radio-on.ui-btn-a:after {
+    border-color: #e84566!important;
+}
+
+#vehiFormDiv .ui-btn.ui-checkbox-off:after, .ui-btn.ui-checkbox-on:after, .ui-btn.ui-radio-off:after, .ui-btn.ui-radio-on:after {
+    width: 10px!important;
+    height: 10px!important;
+    margin: -5px 0px 18px 4px!important;
+    border-color: #ffffff!important;
+
+}
+
+#vehiFormDiv .ui-btn-icon-right:after {
+
+}
+
+#vehiFormDiv .ui-btn {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+
+#vehiFormDiv .form-control {
+    box-shadow: none !important;
+}
+
+.divLine {
+    border-bottom: 1px solid #e84566;
+}
+
+#vehiFormDiv .ui-checkbox {
+    display: inline-block;
+}
+
+div.man {
+    background-image: url('../css/images/man.png');
+    height: 300px;
+    width: 540px;
+    position: fixed;
+    top: 400px;
+    right: -400px;
+    background-size: 150px 150px;
+    background-repeat: no-repeat;
+    z-index: 999;
+}
+
+div.talkBubble {
+    position: relative;
+    width: 140px;
+    height: 45px;
+    text-align: center;
+    line-height: 100px;
+    background-color: #fff;
+    border: 4px solid #666;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+    -webkit-box-shadow: 2px 2px 4px #888;
+    -moz-box-shadow: 2px 2px 4px #888;
+    box-shadow: 2px 2px 4px #888;
+    top: 7px;
+    left: -100px;
+    z-index: 999;
+}
+
+#contentInfo {
+    margin-top: 75px;
+}
+
+#insuraInfo ul {
+    list-style: none;
+}
+
+.checkInfo {
+    padding: 0px 10px;
+}
+
+#ui-datepicker-div {
+    z-index: 999 !important;
+}
+
+#payCharge {
+    padding: 0px 25%;
+}
+
+.card-title {
+    color: black;
+}
+
+.card h3 {
+    margin-top: 16px;
+}
+
+.card-text {
+}
+
+.card-content p {
+    font-size: 16px;
+}
+
+.help-block {
+    font-size: 10px;
+}
+
+.appre {
+    margin-top: 70px;
+    border-radius: 25px;
+    background-color: #ddd;
+}
+
+#thanksContent {
+    padding-left: 13%;
+    padding-right: 13%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.loginForm {
+    margin-top: 70px;
+}
+
+.help-block .ui-checkbox {
+    top: 8px;
+}
+
+a.navbar-brand {
+    background-image: url('../css/images/fakelogo.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 180px;
+    height: 45px;
+    margin: 2px;
+}
+
+.navbar-default {
+    padding-top: 15px;
+    min-height: 75px;
+    background-color:transparent;
+}
+
+.fa.fa-bars {
+    color: white;
+}
+
+button.navbar-toggle.ui-btn.ui-shadow.ui-corner-all {
+    color: white;
+    background-color: transparent;
+    text-shadow: none;
+}
+
+button#toGoNext, button#toSeeInfoNext, #goingToPay, #confirmAndBak, #cancelbtn, #loginBakIndex {
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 20px;
+    background: #e84566!important;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    text-shadow: none;
+}
+
+.footer {
+    margin: 40px 30%;
+}
+
+ul.nav.navbar-nav li a {
+    color: white;
+    text-shadow: 1px 1px #e84566;
+}
+
+ul.nav.navbar-nav li a:hover{
+    color: #c71237;
+}
+
+.nav.navbar-nav {
+    margin-top: 8px;
+}
+
+.footer .text-muted {
+    color: #E84566;
+    font-size: 8px;
+    margin-left: -30px;
+}
+
+@media screen and (min-width: 700px){
+    .footer .text-muted {
+        font-size: 16px;
+        white-space: nowrap;
+    }
+}
+
+.footer-container {
+    max-height: 150px;
+}
+
+#select-4-button:after {
+    display: none;
+}
+
+.selectpicker {
+    margin-left: 30px;
+}
+
+span.selectpicker {
+    font-size: 17px;
+}
+
+.btnContainer button {
+    max-width: 25%;
+    display: inline-block;
+    min-height: 60px;
+    min-width: 155px;
+}
+
+.btnContainer button.btn-success {
+    background-color: #2c6b2c;
+    color: white;
+    text-shadow: none;
+    background-image: url('images/carPlate.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.btnContainer button.btn-warning {
+    background-color: #e0d43d;
+    text-shadow: none;
+    background-image: url('images/carPlate.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.btnContainer button.btn-danger {
+    background-color: #e21010;
+    text-shadow: none;
+    color: white;
+    background-image: url('images/carPlate.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.btnContainer button.btn-white {
+    background-color: #fff;
+    text-shadow: none;
+    background-image: url('images/carPlate.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.btnContainer button.btn-danger:hover {
+    text-shadow: none;
+    color: transparent;
+    background-color: rgba(238, 239, 238, 0);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url('images/bikeIcon/redBike.png');
+}
+
+.btnContainer button.btn-success:hover {
+    background-color: rgba(238, 239, 238, 0);
+    color: transparent;
+    text-shadow: none;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url('images/bikeIcon/greenBike.png');
+}
+
+.btnContainer button.btn-warning:hover {
+    background-color: rgba(238, 239, 238, 0);
+    color: transparent;
+    text-shadow: none;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url('images/bikeIcon/yellowBike.png');
+}
+
+.btnContainer button.btn-white:hover {
+    background-color: rgba(238, 239, 238, 0);
+    color: transparent;
+    text-shadow: none;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url('images/bikeIcon/whiteBike.png');
+}
+
+@media screen and (min-width:1200px){
+    .btnContainer button{
+        margin: 5px;
+    }
+}
+
+.intro-body .container {
+    padding-top: 170px;
+    padding-bottom: 140px;
+}
+
+.btnContainer button {
+    max-width: 120px;
+}
+
+.tlt {
+    text-shadow: 1px 1px #e84566;
+}
+
+div.btnContainer {
+    padding: 0px 26%;
+}
+
+@media screen and (max-width:1200px){
+    div.btnContainer {
+        padding: 0px 22%;
+    }
+}
+
+@media screen and (max-width:1200px){
+    div#slide.col-lg-12 {
+        padding: 0px;
+    }
+    .card.col-sm-3 {
+        margin-right:17px;
+    }
+}
+
+@media screen and (max-width:580px){
+    div.btnContainer {
+        padding: 0px 0%;
+    }
+}
+
+div.col-xs-12.text-center h4 {
+    text-shadow: none;
+}
+
+.btnContainer {
+    margin: 10px 0px;
+    height: 50px;
+}
+
+#selectedCardCc {
+    padding-bottom: 35px;
+    margin: auto;
+}
+
+#selectedCardCc input.date-input {
+    text-shadow: none;
+    color: white;
+    border-color: #ccc;
+}
+
+@media screen and (max-width:320px){
+    .btnContainer button {
+        min-width:120px;
+        min-height: unset;
+    }
+    .intro-body .container {
+        padding-top: 170px;
+    }
+    #firstSlide #submitedBtn {
+        max-width: 120px;
+    }
+}
+
+@media screen and (min-width:320px) and (max-width: 375px){
+    #slideOfCardCc .col-xs-5 {
+        padding-left: 6px;
+    }
+    #firstSlide #submitedBtn {
+        max-width: 120px;
+        margin: auto;
+    }
+}
+
+body button#submitedBtn {
+    max-width: 250px;
+    margin: auto;
+
+}
+
+button#submitedBtn {
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 20px;
+    background: #e84566;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    text-shadow: none;
+}
+
+button#submitedBtn:hover {
+    background: #3cb0fd;
+    text-decoration: none;
+    text-shadow: none;
+}
+
+body button#submitedBtn:hover {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.29);
+}
+
+.box h1, .box h2, .box h3, .box h4, .box span, .box p {
+    text-shadow: none;
+}
+
+.card-block button {
+    position: absolute;
+    left: 103px;
+    bottom: 40px;
+    color: #e84566;
+    border-color: #f3a2b3;
+}
+
+#selectedCardCc div.ui-input-text.ui-body-inherit.ui-corner-all.ui-shadow-inset {
+    max-width: 250px;
+    margin: auto;
+}
+
+ul.list-group.text-center {
+    border: 1px solid #e84566;
+}
+
+.appreContent.highlight {
+    padding: 10px 0px;
+    background-color: white;
+    margin: 5px;
+}
+
+.appreContent.highlight h1 {
+    color: #e84566;
+}
+
+#firstSlide {
+    background-color: rgba(0, 0, 0, 0.16);
+    padding-bottom: 35px;
+}
+
+#circleInfo {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.rounded-circle {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
