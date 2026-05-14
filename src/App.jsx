@@ -134,8 +134,8 @@ const PORTFOLIO = [
     icon: '✈️',
     tech: 'Angular 4',
     desc: '英商凱萊線上旅遊平安險投保流程，Angular 4 開發',
-    url: '/projects/travelp/',
-    tag: 'demo',
+    url: null,
+    tag: 'private',
   },
   {
     name: 'CareLine 機車險 v2',
@@ -723,11 +723,41 @@ function Skills() {
 /* ══════════════════════════════════════════
    PORTFOLIO
 ══════════════════════════════════════════ */
-function PortfolioCard({ item, index }) {
+function VideoModal({ item, onClose }) {
+  useEffect(() => {
+    const onKey = e => { if (e.key === 'Escape') onClose() }
+    document.addEventListener('keydown', onKey)
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.body.style.overflow = ''
+    }
+  }, [onClose])
+
+  return (
+    <div className="vm-overlay" onClick={onClose}>
+      <div className="vm-modal" onClick={e => e.stopPropagation()}>
+        <div className="vm-corner tl"/><div className="vm-corner tr"/>
+        <div className="vm-corner bl"/><div className="vm-corner br"/>
+        <div className="vm-scanline"/>
+        <div className="vm-header">
+          <span className="vm-icon">{item.icon}</span>
+          <span className="vm-title">{item.name}</span>
+          <button className="vm-close" onClick={onClose}>✕</button>
+        </div>
+        <video className="vm-video" src={item.video} controls autoPlay playsInline />
+        <p className="vm-tech">{item.tech}</p>
+      </div>
+    </div>
+  )
+}
+
+function PortfolioCard({ item, index, onPlay }) {
   return (
     <motion.div
-      className="flip-card"
+      className={`flip-card${item.video ? ' has-video' : ''}`}
       tabIndex={0}
+      onClick={item.video ? onPlay : undefined}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
@@ -742,6 +772,7 @@ function PortfolioCard({ item, index }) {
               {item.tag === 'live' ? '🔴 LIVE' : item.tag === 'demo' ? '▶ DEMO' : '🔒 PRIVATE'}
             </span>
           )}
+          {item.video && <span className="video-play-badge">▶</span>}
           <span className="proj-icon">{item.icon}</span>
           <h4>{item.name}</h4>
           <p className="proj-name-en">{item.nameEn}</p>
@@ -749,9 +780,11 @@ function PortfolioCard({ item, index }) {
         </div>
         <div className="flip-back">
           <p>{item.desc}</p>
-          {item.url
-            ? <a className="visit-btn" href={item.url} target="_blank" rel="noreferrer">VISIT →</a>
-            : <span className="no-url">Internal / Private</span>
+          {item.video
+            ? <button className="visit-btn" onClick={onPlay}>▶ PLAY VIDEO</button>
+            : item.url
+              ? <a className="visit-btn" href={item.url} target="_blank" rel="noreferrer">VISIT →</a>
+              : <span className="no-url">Internal / Private</span>
           }
         </div>
       </div>
@@ -760,12 +793,16 @@ function PortfolioCard({ item, index }) {
 }
 
 function Portfolio() {
+  const [activeVideo, setActiveVideo] = useState(null)
   return (
     <section id="portfolio" className="portfolio-section">
       <SectionHeader title="作品集" sub="Portfolio" />
       <div className="portfolio-grid">
-        {PORTFOLIO.map((item, i) => <PortfolioCard key={i} item={item} index={i} />)}
+        {PORTFOLIO.map((item, i) => (
+          <PortfolioCard key={i} item={item} index={i} onPlay={() => setActiveVideo(item)} />
+        ))}
       </div>
+      {activeVideo && <VideoModal item={activeVideo} onClose={() => setActiveVideo(null)} />}
     </section>
   )
 }
