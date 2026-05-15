@@ -1,5 +1,5 @@
-import { useState, useRef, useEffect, useCallback } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { useState, useRef, useEffect } from 'react'
+import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion'
 import emailjs from '@emailjs/browser'
 import './index.css'
 
@@ -202,6 +202,16 @@ const PORTFOLIO = [
   },
   // ── Private / Internal work ──────────────────
   {
+    name: '百家樂遊戲',
+    nameEn: 'Baccarat Game',
+    icon: '🃏',
+    tech: 'Vue3 · WebSocket · Node.js',
+    desc: '高併發百家樂遊戲平台，即時牌局同步、動畫效果與下注系統',
+    url: null,
+    video: '/videos/baccarat.mp4',
+    tag: 'private',
+  },
+  {
     name: '即時遊戲平台',
     nameEn: 'Real-time Gaming Platform',
     icon: '⚡',
@@ -258,7 +268,7 @@ const PORTFOLIO = [
 ]
 
 /* ══════════════════════════════════════════
-   STARFIELD CANVAS
+   STARFIELD CANVAS — global fixed, warp-on-scroll
 ══════════════════════════════════════════ */
 function StarfieldCanvas() {
   const canvasRef = useRef(null)
@@ -266,42 +276,37 @@ function StarfieldCanvas() {
   useEffect(() => {
     const canvas = canvasRef.current
     const ctx = canvas.getContext('2d')
-    let raf
-    let W, H
+    let raf, W, H
+    let scrollVel = 0, prevScrollY = window.scrollY
+    let sTick = 0
 
     const LAYERS = [
-      { count: 200, speed: 0.08, sizeRange: [0.4, 1.0], alpha: 0.6 },
-      { count: 100, speed: 0.18, sizeRange: [1.0, 2.0], alpha: 0.8 },
-      { count:  40, speed: 0.35, sizeRange: [1.5, 3.0], alpha: 1.0 },
+      { count: 260, speed: 0.07, sizeRange: [0.3, 0.9],  alpha: 0.5  },
+      { count: 120, speed: 0.16, sizeRange: [0.8, 1.8],  alpha: 0.75 },
+      { count:  50, speed: 0.32, sizeRange: [1.4, 2.8],  alpha: 1.0  },
     ]
+    let stars = [], shootingStars = []
 
-    let stars = []
-    let shootingStars = []
-
-    function resize() {
+    const resize = () => {
       W = canvas.width  = window.innerWidth
       H = canvas.height = window.innerHeight
     }
-
-    function initStars() {
-      stars = []
-      LAYERS.forEach(layer => {
-        for (let i = 0; i < layer.count; i++) {
-          stars.push({
-            x: Math.random() * W,
-            y: Math.random() * H,
-            size: layer.sizeRange[0] + Math.random() * (layer.sizeRange[1] - layer.sizeRange[0]),
-            speed: layer.speed * (0.8 + Math.random() * 0.4),
-            alpha: layer.alpha * (0.5 + Math.random() * 0.5),
-            twinkle: Math.random() * Math.PI * 2,
-            twinkleSpeed: 0.02 + Math.random() * 0.03,
-            hue: Math.random() < 0.15 ? (Math.random() < 0.5 ? 200 : 270) : 0,
-          })
-        }
-      })
+    const initStars = () => {
+      stars = LAYERS.flatMap(layer =>
+        Array.from({ length: layer.count }, () => ({
+          x: Math.random() * W,
+          y: Math.random() * H,
+          size: layer.sizeRange[0] + Math.random() * (layer.sizeRange[1] - layer.sizeRange[0]),
+          speed: layer.speed * (0.8 + Math.random() * 0.4),
+          alpha: layer.alpha * (0.5 + Math.random() * 0.5),
+          twinkle: Math.random() * Math.PI * 2,
+          twinkleSpeed: 0.02 + Math.random() * 0.03,
+          hue: Math.random() < 0.15 ? (Math.random() < 0.5 ? 200 : 270) : 0,
+        }))
+      )
     }
 
-    function spawnShootingStar() {
+    const spawnShootingStar = () => {
       if (shootingStars.length > 3) return
       const angle = -Math.PI / 5 + (Math.random() - 0.5) * 0.4
       shootingStars.push({
@@ -315,68 +320,145 @@ function StarfieldCanvas() {
       })
     }
 
-    let shootingTimer = 0
+    const trackScroll = () => {
+      scrollVel = Math.min(scrollVel + Math.abs(window.scrollY - prevScrollY) * 0.45, 55)
+      prevScrollY = window.scrollY
+    }
+    window.addEventListener('scroll', trackScroll, { passive: true })
 
-    function draw(ts) {
+    const draw = () => {
       ctx.clearRect(0, 0, W, H)
+      scrollVel *= 0.87
+      const warp = Math.min(scrollVel / 55, 1)
+      const cx = W / 2, cy = H * 0.38
 
-      // stars
       stars.forEach(s => {
         s.twinkle += s.twinkleSpeed
         const a = s.alpha * (0.6 + 0.4 * Math.sin(s.twinkle))
-        if (s.hue === 0) {
-          ctx.fillStyle = `rgba(255,255,255,${a})`
-        } else if (s.hue === 200) {
-          ctx.fillStyle = `rgba(100,180,255,${a})`
+        const rgb = s.hue === 200 ? '100,180,255' : s.hue === 270 ? '180,100,255' : '255,255,255'
+
+        if (warp > 0.07) {
+          const dx = s.x - cx, dy = s.y - cy
+          const dist = Math.hypot(dx, dy) || 1
+          const nx = dx / dist, ny = dy / dist
+          const stretch = Math.max(dist * warp * 0.14, 2)
+          const g = ctx.createLinearGradient(s.x, s.y, s.x + nx * stretch, s.y + ny * stretch)
+          g.addColorStop(0, `rgba(${rgb},0)`)
+          g.addColorStop(0.4, `rgba(${rgb},${a * warp * 0.7})`)
+          g.addColorStop(1, `rgba(${rgb},${a})`)
+          ctx.strokeStyle = g
+          ctx.lineWidth = s.size * (1 + warp * 2)
+          ctx.beginPath()
+          ctx.moveTo(s.x, s.y)
+          ctx.lineTo(s.x + nx * stretch, s.y + ny * stretch)
+          ctx.stroke()
         } else {
-          ctx.fillStyle = `rgba(180,100,255,${a})`
+          ctx.fillStyle = `rgba(${rgb},${a})`
+          ctx.beginPath()
+          ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2)
+          ctx.fill()
         }
-        ctx.beginPath()
-        ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2)
-        ctx.fill()
 
-        s.y += s.speed
-        if (s.y > H) { s.y = -2; s.x = Math.random() * W }
+        s.y += s.speed * (1 + warp * 7)
+        if (s.y > H + 4) { s.y = -4; s.x = Math.random() * W }
       })
 
-      // shooting stars
-      shootingTimer++
-      if (shootingTimer > 90 + Math.random() * 120) {
-        spawnShootingStar()
-        shootingTimer = 0
+      if (warp < 0.25) {
+        if (++sTick > 90 + Math.random() * 120) { spawnShootingStar(); sTick = 0 }
+        shootingStars = shootingStars.filter(ss => ss.life > 0)
+        shootingStars.forEach(ss => {
+          const mag = Math.hypot(ss.vx, ss.vy)
+          const tailX = ss.x - ss.vx / mag * ss.len
+          const tailY = ss.y - ss.vy / mag * ss.len
+          const g = ctx.createLinearGradient(tailX, tailY, ss.x, ss.y)
+          g.addColorStop(0, 'rgba(255,255,255,0)')
+          g.addColorStop(0.6, `rgba(160,220,255,${ss.life * 0.5})`)
+          g.addColorStop(1, `rgba(255,255,255,${ss.life})`)
+          ctx.strokeStyle = g; ctx.lineWidth = 1.5
+          ctx.beginPath(); ctx.moveTo(tailX, tailY); ctx.lineTo(ss.x, ss.y); ctx.stroke()
+          ss.x += ss.vx; ss.y += ss.vy; ss.life -= ss.decay
+        })
       }
-
-      shootingStars = shootingStars.filter(ss => ss.life > 0)
-      shootingStars.forEach(ss => {
-        const tailX = ss.x - ss.vx * (ss.len / Math.hypot(ss.vx, ss.vy))
-        const tailY = ss.y - ss.vy * (ss.len / Math.hypot(ss.vx, ss.vy))
-        const grad = ctx.createLinearGradient(tailX, tailY, ss.x, ss.y)
-        grad.addColorStop(0, `rgba(255,255,255,0)`)
-        grad.addColorStop(0.6, `rgba(160,220,255,${ss.life * 0.5})`)
-        grad.addColorStop(1, `rgba(255,255,255,${ss.life})`)
-        ctx.strokeStyle = grad
-        ctx.lineWidth = 1.5
-        ctx.beginPath()
-        ctx.moveTo(tailX, tailY)
-        ctx.lineTo(ss.x, ss.y)
-        ctx.stroke()
-        ss.x += ss.vx
-        ss.y += ss.vy
-        ss.life -= ss.decay
-      })
 
       raf = requestAnimationFrame(draw)
     }
 
-    resize()
-    initStars()
-    raf = requestAnimationFrame(draw)
-
-    window.addEventListener('resize', () => { resize(); initStars() })
-    return () => { cancelAnimationFrame(raf); window.removeEventListener('resize', resize) }
+    resize(); initStars(); raf = requestAnimationFrame(draw)
+    const onResize = () => { resize(); initStars() }
+    window.addEventListener('resize', onResize)
+    return () => {
+      cancelAnimationFrame(raf)
+      window.removeEventListener('resize', onResize)
+      window.removeEventListener('scroll', trackScroll)
+    }
   }, [])
 
   return <canvas ref={canvasRef} className="starfield-canvas" />
+}
+
+/* ══════════════════════════════════════════
+   CURSOR GLOW
+══════════════════════════════════════════ */
+function CursorGlow() {
+  const ref = useRef(null)
+  useEffect(() => {
+    const move = e => {
+      if (ref.current)
+        ref.current.style.transform = `translate(${e.clientX - 200}px,${e.clientY - 200}px)`
+    }
+    window.addEventListener('mousemove', move, { passive: true })
+    return () => window.removeEventListener('mousemove', move)
+  }, [])
+  return <div ref={ref} className="cursor-glow" aria-hidden />
+}
+
+/* ══════════════════════════════════════════
+   HUD OVERLAY
+══════════════════════════════════════════ */
+const HUD_SECTORS = [
+  { id: 'top',       code: 'SEC·00', name: 'HOME',   sub: 'ENGINEER PROFILE' },
+  { id: 'timeline',  code: 'SEC·01', name: 'ORIGIN', sub: '7 MILESTONES' },
+  { id: 'about',     code: 'SEC·02', name: 'ABOUT',  sub: 'PERSONNEL FILE' },
+  { id: 'skills',    code: 'SEC·03', name: 'TECH',   sub: '26 SKILLS' },
+  { id: 'portfolio', code: 'SEC·04', name: 'WORKS',  sub: '17 PROJECTS' },
+  { id: 'contact',   code: 'SEC·05', name: 'COMMS',  sub: 'CHANNEL OPEN' },
+]
+
+function HudOverlay() {
+  const [sector, setSector] = useState(HUD_SECTORS[0])
+
+  useEffect(() => {
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const found = HUD_SECTORS.find(s => s.id === e.target.id)
+          if (found) setSector(found)
+        }
+      })
+    }, { threshold: 0.2, rootMargin: '-10% 0px -70% 0px' })
+
+    HUD_SECTORS.forEach(s => {
+      const el = document.getElementById(s.id)
+      if (el) obs.observe(el)
+    })
+    return () => obs.disconnect()
+  }, [])
+
+  return (
+    <motion.div
+      className="hud-overlay"
+      key={sector.code}
+      initial={{ opacity: 0, x: 8 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.3 }}
+    >
+      <div className="hud-corner hud-tl" />
+      <div className="hud-corner hud-br" />
+      <div className="hud-code">{sector.code} ── {sector.name}</div>
+      <div className="hud-sub">{sector.sub}</div>
+      <div className="hud-bar"><div className="hud-bar-fill" /></div>
+    </motion.div>
+  )
 }
 
 /* ══════════════════════════════════════════
@@ -439,52 +521,67 @@ function Navbar() {
 }
 
 /* ══════════════════════════════════════════
-   HERO
+   HERO — mouse parallax 3D tilt
 ══════════════════════════════════════════ */
 function Hero() {
   const audioRef = useRef(null)
   const { scrollY } = useScroll()
   const y = useTransform(scrollY, [0, 600], [0, 120])
 
+  const mx = useMotionValue(0)
+  const my = useMotionValue(0)
+  const smx = useSpring(mx, { stiffness: 50, damping: 18 })
+  const smy = useSpring(my, { stiffness: 50, damping: 18 })
+  const rotX = useTransform(smy, [-0.5, 0.5], [6, -6])
+  const rotY = useTransform(smx, [-0.5, 0.5], [-6, 6])
+
   const playAudio = () => {
     if (audioRef.current) { audioRef.current.currentTime = 0; audioRef.current.play() }
   }
 
+  const onMouseMove = e => {
+    mx.set((e.clientX / window.innerWidth) - 0.5)
+    my.set((e.clientY / window.innerHeight) - 0.5)
+  }
+  const onMouseLeave = () => { mx.set(0); my.set(0) }
+
   return (
-    <section id="top" className="hero">
-      <StarfieldCanvas />
+    <section id="top" className="hero" onMouseMove={onMouseMove} onMouseLeave={onMouseLeave}>
       <NebulaBlobs />
-      <ScanLine />
       <LaserGrid color="#4a9eff" opacity={0.06} />
 
       <motion.div className="hero-content" style={{ y }}>
-        {/* orbit ring */}
-        <div className="orbit-ring">
-          <div className="orbit-dot" />
-        </div>
-
         <motion.div
-          className="portrait-wrapper"
-          onClick={playAudio}
-          title="Click for SCV ready!"
-          initial={{ opacity: 0, scale: 0.7 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          className="hero-3d-wrap"
+          style={{ rotateX: rotX, rotateY: rotY }}
         >
-          {[...Array(5)].map((_, i) => <div key={i} className="pulser" />)}
-          <div className="portrait-holo-ring" />
-          <img className="portrait-img" src="/img/marine.gif" alt="Jung-wei Lin" />
-          <div className="portrait-overlay" />
-        </motion.div>
+          <div className="orbit-ring">
+            <div className="orbit-dot" />
+          </div>
 
-        <motion.h1
-          className="hero-name"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.7 }}
-        >
-          Jung<span className="name-dash">-</span>wei<span className="hero-comma">,</span> Lin
-        </motion.h1>
+          <motion.div
+            className="portrait-wrapper"
+            onClick={playAudio}
+            title="Click for SCV ready!"
+            initial={{ opacity: 0, scale: 0.7 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          >
+            {[...Array(5)].map((_, i) => <div key={i} className="pulser" />)}
+            <div className="portrait-holo-ring" />
+            <img className="portrait-img" src="/img/marine.gif" alt="Jung-wei Lin" />
+            <div className="portrait-overlay" />
+          </motion.div>
+
+          <motion.h1
+            className="hero-name"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.7 }}
+          >
+            Jung<span className="name-dash">-</span>wei<span className="hero-comma">,</span> Lin
+          </motion.h1>
+        </motion.div>
 
         <motion.div
           className="hero-tags"
@@ -521,13 +618,14 @@ function Hero() {
 }
 
 /* ══════════════════════════════════════════
-   SECTION HEADER
+   SECTION HEADER — with sector code
 ══════════════════════════════════════════ */
-function SectionHeader({ title, sub }) {
+function SectionHeader({ title, sub, sector }) {
   return (
     <div className="section-header">
       <div className="section-laser-line left" />
       <div className="section-title-wrap">
+        {sector && <span className="sector-tag">{sector}</span>}
         <h2 className="section-title">{title}</h2>
         {sub && <p className="section-sub">{sub}</p>}
       </div>
@@ -587,7 +685,7 @@ function Timeline() {
   return (
     <section id="timeline" className="timeline-section">
       <LaserGrid color="#b44aff" opacity={0.07} />
-      <SectionHeader title="時光機" sub="那一年，我幹過什麼好事" />
+      <SectionHeader title="時光機" sub="那一年，我幹過什麼好事" sector="SEC·01 ── ORIGIN" />
       <div className="timeline">
         {TIMELINE.map((item, i) => <TimelineItem key={i} item={item} index={i} />)}
         <div className="timeline-end-node">
@@ -653,7 +751,7 @@ function About() {
   return (
     <section id="about" className="about-section">
       <NebulaBlobs />
-      <SectionHeader title="關於我" sub="About — About — 自己紹介" />
+      <SectionHeader title="關於我" sub="About — About — 自己紹介" sector="SEC·02 ── ABOUT" />
       <div className="about-grid">
         {cards.map((c, i) => (
           <motion.div
@@ -692,7 +790,7 @@ function Skills() {
   return (
     <section id="skills" className="skills-section">
       <LaserGrid color="#00ffea" opacity={0.06} />
-      <SectionHeader title="技術棧" sub="Tech Stack" />
+      <SectionHeader title="技術棧" sub="Tech Stack" sector="SEC·03 ── TECH" />
       {cats.map(cat => (
         <div key={cat} className="skill-cat-row">
           <span className="skill-cat-label" style={{ color: CAT_COLOR[cat] }}>
@@ -745,7 +843,16 @@ function VideoModal({ item, onClose }) {
           <span className="vm-title">{item.name}</span>
           <button className="vm-close" onClick={onClose}>✕</button>
         </div>
-        <video className="vm-video" src={item.video} controls autoPlay playsInline />
+        <video
+          className="vm-video"
+          src={item.video}
+          controls
+          autoPlay
+          playsInline
+          controlsList="nodownload noremoteplayback"
+          disablePictureInPicture
+          onContextMenu={e => e.preventDefault()}
+        />
         <p className="vm-tech">{item.tech}</p>
       </div>
     </div>
@@ -796,7 +903,7 @@ function Portfolio() {
   const [activeVideo, setActiveVideo] = useState(null)
   return (
     <section id="portfolio" className="portfolio-section">
-      <SectionHeader title="作品集" sub="Portfolio" />
+      <SectionHeader title="作品集" sub="Portfolio" sector="SEC·04 ── WORKS" />
       <div className="portfolio-grid">
         {PORTFOLIO.map((item, i) => (
           <PortfolioCard key={i} item={item} index={i} onPlay={() => setActiveVideo(item)} />
@@ -841,7 +948,7 @@ function Contact() {
   return (
     <section id="contact" className="contact-section">
       <LaserGrid color="#ff4af8" opacity={0.06} />
-      <SectionHeader title="Contact" sub="聯絡我" />
+      <SectionHeader title="Contact" sub="聯絡我" sector="SEC·05 ── COMMS" />
       <div className="planet-wrap">
         <div className="planet">
           <div className="texture" />
@@ -956,7 +1063,6 @@ function BgmPlayer() {
   const [started, setStarted] = useState(false)
   const [volume, setVolume] = useState(0.35)
 
-  // 第一次任何互動就自動播
   useEffect(() => {
     const tryPlay = () => {
       if (started) return
@@ -1026,6 +1132,10 @@ function BgmPlayer() {
 export default function App() {
   return (
     <>
+      <StarfieldCanvas />
+      <ScanLine />
+      <CursorGlow />
+      <HudOverlay />
       <BgmPlayer />
       <Navbar />
       <Hero />
