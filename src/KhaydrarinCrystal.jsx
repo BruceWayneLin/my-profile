@@ -25,7 +25,7 @@ function orbitAt(t) {
 }
 
 /* ── Pylon（無鑽石，只留環 + 發光核心）─────────────────── */
-function Pylon({ mouseRef, starPos }) {
+function Pylon({ mouseRef, starPos, mobile }) {
   const coreRef  = useRef()
   const halo1Ref = useRef()
   const ringRef  = useRef()
@@ -34,10 +34,11 @@ function Pylon({ mouseRef, starPos }) {
 
   useFrame(({ clock }, delta) => {
     const t  = clock.elapsedTime
+    const rs = mobile ? 0.55 : 1
     const op = orbitAt(t)
-    const px = op.x + mouseRef.current.x * 0.6
-    const py = op.y + mouseRef.current.y * 0.35 + Math.sin(t * 0.55) * 0.05
-    const pz = op.z
+    const px = OC.x + (op.x - OC.x) * rs + mouseRef.current.x * 0.6
+    const py = OC.y + (op.y - OC.y) * rs + mouseRef.current.y * 0.35 + Math.sin(t * 0.55) * 0.05
+    const pz = OC.z + (op.z - OC.z) * rs
 
     if (groupRef.current) {
       groupRef.current.position.set(px, py, pz)
@@ -214,16 +215,17 @@ function CometTail({ pylonPos }) {
 /* ── Scene root ─────────────────────────────────────────── */
 function Scene({ mouseRef, mobile }) {
   const starPos = useRef({ x: OC.x + OR, y: OC.y, z: OC.z })
-  const m = mobile ? 0.45 : 1
+  const m  = mobile ? 0.45 : 1   // 粒子數係數
+  const rs = mobile ? 0.55 : 1   // 半徑縮放係數
 
   return (
     <>
       <ambientLight intensity={0.04} color="#112244" />
-      <Pylon mouseRef={mouseRef} starPos={starPos} />
+      <Pylon mouseRef={mouseRef} starPos={starPos} mobile={mobile} />
       <CometTail pylonPos={starPos} />
-      <OrbitRing pylonPos={starPos} count={Math.ceil(120 * m)} radius={1.6}  spread={0.25} incX={0.15} incZ={0.98} color="#88ccff" size={0.022} opacity={0.80} speed={0.60} />
-      <OrbitRing pylonPos={starPos} count={Math.ceil(85  * m)} radius={3.0}  spread={0.45} incX={0.68} incZ={0.73} color="#aaddff" size={0.016} opacity={0.55} speed={0.34} />
-      <OrbitRing pylonPos={starPos} count={Math.ceil(55  * m)} radius={5.0}  spread={0.70} incX={1.22} incZ={0.42} color="#7799cc" size={0.012} opacity={0.35} speed={0.18} />
+      <OrbitRing pylonPos={starPos} count={Math.ceil(120 * m)} radius={1.6  * rs} spread={0.25 * rs} incX={0.15} incZ={0.98} color="#88ccff" size={0.022} opacity={0.80} speed={0.60} />
+      <OrbitRing pylonPos={starPos} count={Math.ceil(85  * m)} radius={3.0  * rs} spread={0.45 * rs} incX={0.68} incZ={0.73} color="#aaddff" size={0.016} opacity={0.55} speed={0.34} />
+      <OrbitRing pylonPos={starPos} count={Math.ceil(55  * m)} radius={5.0  * rs} spread={0.70 * rs} incX={1.22} incZ={0.42} color="#7799cc" size={0.012} opacity={0.35} speed={0.18} />
       {!mobile && <OrbitRing pylonPos={starPos} count={35} radius={7.5} spread={1.0} incX={-0.5} incZ={0.88} color="#4455aa" size={0.008} opacity={0.18} speed={0.09} />}
       <EffectComposer>
         <Bloom intensity={mobile ? 3.5 : 5.5} luminanceThreshold={0.05} luminanceSmoothing={0.92} mipmapBlur={!mobile} />
