@@ -271,6 +271,80 @@ const PORTFOLIO = [
 /* ══════════════════════════════════════════
    STARFIELD CANVAS — global fixed, warp-on-scroll
 ══════════════════════════════════════════ */
+function NebulaCanvas() {
+  const canvasRef = useRef(null)
+
+  useEffect(() => {
+    const canvas = canvasRef.current
+    const ctx = canvas.getContext('2d')
+    let raf, W, H, t = 0
+
+    // [cx%, cy%, rx%, ry%, angle, r, g, b, opacity, phase, blurFactor]
+    const BLOBS = [
+      [0.65, 0.30, 0.32, 0.24, 0.4,    0, 210, 180, 0.09, 0.0,  0.12],
+      [0.60, 0.27, 0.15, 0.11, 0.1,   60, 230, 210, 0.07, 1.2,  0.10],
+      [0.63, 0.28, 0.07, 0.05, 0.0,  120, 255, 240, 0.16, 0.4,  0.22],
+      [0.22, 0.48, 0.32, 0.20, -0.3, 110,  55, 225, 0.07, 0.8,  0.12],
+      [0.28, 0.42, 0.14, 0.10, 0.2,   80,  30, 200, 0.06, 2.0,  0.10],
+      [0.72, 0.68, 0.24, 0.13, 0.8,  230, 115,  40, 0.07, 1.5,  0.10],
+      [0.45, 0.74, 0.28, 0.13, -0.2, 200,  85,  30, 0.05, 0.7,  0.08],
+      [0.14, 0.26, 0.22, 0.15, -0.5, 210,  40, 185, 0.05, 1.8,  0.10],
+      [0.50, 0.45, 0.58, 0.48, 0.0,   20,  40, 130, 0.05, 3.0,  0.05],
+      [0.82, 0.20, 0.16, 0.09, -0.3,   0, 255, 234, 0.06, 1.1,  0.12],
+      [0.38, 0.60, 0.20, 0.10, 1.1,  255,  80,  80, 0.04, 2.4,  0.09],
+    ]
+
+    const resize = () => {
+      W = canvas.width  = window.innerWidth
+      H = canvas.height = window.innerHeight
+    }
+
+    const draw = () => {
+      t += 0.003
+      ctx.clearRect(0, 0, W, H)
+
+      for (const [cxf, cyf, rxf, ryf, angle, r, g, b, baseOp, ph, blurF] of BLOBS) {
+        const breathe = 1 + 0.03 * Math.sin(t + ph)
+        const op      = baseOp * (0.85 + 0.15 * Math.sin(t * 0.5 + ph))
+        const cx = cxf * W
+        const cy = cyf * H
+        const rx = rxf * W * breathe
+        const ry = ryf * H * breathe
+
+        ctx.save()
+        ctx.filter = `blur(${Math.round(rx * blurF)}px)`
+        ctx.translate(cx, cy)
+        ctx.rotate(angle + t * 0.004)
+        ctx.scale(1, ry / rx)
+
+        const g2 = ctx.createRadialGradient(0, 0, 0, 0, 0, rx)
+        g2.addColorStop(0,    `rgba(${r},${g},${b},${op})`)
+        g2.addColorStop(0.35, `rgba(${r},${g},${b},${op * 0.42})`)
+        g2.addColorStop(0.7,  `rgba(${r},${g},${b},${op * 0.10})`)
+        g2.addColorStop(1,    `rgba(${r},${g},${b},0)`)
+
+        ctx.fillStyle = g2
+        ctx.beginPath()
+        ctx.arc(0, 0, rx, 0, Math.PI * 2)
+        ctx.fill()
+        ctx.restore()
+      }
+
+      raf = requestAnimationFrame(draw)
+    }
+
+    resize()
+    raf = requestAnimationFrame(draw)
+    window.addEventListener('resize', resize)
+    return () => {
+      cancelAnimationFrame(raf)
+      window.removeEventListener('resize', resize)
+    }
+  }, [])
+
+  return <canvas ref={canvasRef} className="nebula-canvas" />
+}
+
 function StarfieldCanvas() {
   const canvasRef = useRef(null)
 
@@ -281,12 +355,22 @@ function StarfieldCanvas() {
     let scrollVel = 0, prevScrollY = window.scrollY
     let sTick = 0
 
+    // 星星顏色：白、藍白、淡黃、淡橘，模擬真實恆星光譜
+    const STAR_COLORS = [
+      '255,255,255',   // 白
+      '255,255,255',   // 白（權重高）
+      '255,255,255',   // 白
+      '200,220,255',   // 藍白
+      '180,200,255',   // 藍
+      '255,245,200',   // 淡黃
+      '255,220,160',   // 淡橘
+    ]
     const LAYERS = [
-      { count: 500, speed: 0.02, sizeRange: [0.2, 0.5],  alpha: 0.35 }, // 極遠星系塵埃
-      { count: 300, speed: 0.05, sizeRange: [0.3, 0.7],  alpha: 0.45 }, // 遠景星
-      { count: 200, speed: 0.10, sizeRange: [0.5, 1.1],  alpha: 0.60 }, // 中景星
-      { count: 100, speed: 0.20, sizeRange: [1.0, 2.0],  alpha: 0.80 }, // 近景星
-      { count:  40, speed: 0.38, sizeRange: [1.5, 3.0],  alpha: 1.0  }, // 前景亮星
+      { count: 700, driftMax: 0.003, sizeRange: [0.15, 0.45], alpha: 0.28 }, // 遠景星系塵埃
+      { count: 450, driftMax: 0.006, sizeRange: [0.30, 0.70], alpha: 0.42 }, // 遠景星
+      { count: 250, driftMax: 0.010, sizeRange: [0.55, 1.10], alpha: 0.62 }, // 中景星
+      { count: 100, driftMax: 0.016, sizeRange: [1.00, 2.00], alpha: 0.82 }, // 近景星
+      { count:  40, driftMax: 0.022, sizeRange: [1.60, 3.20], alpha: 1.00 }, // 前景亮星
     ]
     let stars = [], shootingStars = []
 
@@ -296,16 +380,22 @@ function StarfieldCanvas() {
     }
     const initStars = () => {
       stars = LAYERS.flatMap(layer =>
-        Array.from({ length: layer.count }, () => ({
-          x: Math.random() * W,
-          y: Math.random() * H,
-          size: layer.sizeRange[0] + Math.random() * (layer.sizeRange[1] - layer.sizeRange[0]),
-          speed: layer.speed * (0.8 + Math.random() * 0.4),
-          alpha: layer.alpha * (0.5 + Math.random() * 0.5),
-          twinkle: Math.random() * Math.PI * 2,
-          twinkleSpeed: 0.02 + Math.random() * 0.03,
-          hue: Math.random() < 0.15 ? (Math.random() < 0.5 ? 200 : 270) : 0,
-        }))
+        Array.from({ length: layer.count }, () => {
+          const angle = Math.random() * Math.PI * 2
+          const drift = layer.driftMax * Math.random()
+          return {
+            x: Math.random() * W,
+            y: Math.random() * H,
+            size:  layer.sizeRange[0] + Math.random() * (layer.sizeRange[1] - layer.sizeRange[0]),
+            vx:    Math.cos(angle) * drift,
+            vy:    Math.sin(angle) * drift,
+            alpha: layer.alpha * (0.45 + Math.random() * 0.55),
+            twinkle:      Math.random() * Math.PI * 2,
+            twinkleSpeed: 0.008 + Math.random() * 0.018,
+            rgb:   STAR_COLORS[Math.floor(Math.random() * STAR_COLORS.length)],
+            warpSpeed: drift * 180 + 0.05, // warp 時輻射速度
+          }
+        })
       )
     }
 
@@ -349,33 +439,42 @@ function StarfieldCanvas() {
 
       stars.forEach(s => {
         s.twinkle += s.twinkleSpeed
-        const a = s.alpha * (0.6 + 0.4 * Math.sin(s.twinkle))
-        const rgb = s.hue === 200 ? '100,180,255' : s.hue === 270 ? '180,100,255' : '255,255,255'
+        const a = s.alpha * (0.65 + 0.35 * Math.sin(s.twinkle))
 
-        if (warp > 0.07) {
+        if (warp > 0.06) {
+          // warp：從視窗中心向外輻射
           const dx = s.x - cx, dy = s.y - cy
           const dist = Math.hypot(dx, dy) || 1
           const nx = dx / dist, ny = dy / dist
-          const stretch = Math.max(dist * warp * 0.14, 2)
+          const stretch = Math.max(dist * warp * 0.12, 1.5)
           const g = ctx.createLinearGradient(s.x, s.y, s.x + nx * stretch, s.y + ny * stretch)
-          g.addColorStop(0, `rgba(${rgb},0)`)
-          g.addColorStop(0.4, `rgba(${rgb},${a * warp * 0.7})`)
-          g.addColorStop(1, `rgba(${rgb},${a})`)
+          g.addColorStop(0,   `rgba(${s.rgb},0)`)
+          g.addColorStop(0.4, `rgba(${s.rgb},${a * warp * 0.7})`)
+          g.addColorStop(1,   `rgba(${s.rgb},${a})`)
           ctx.strokeStyle = g
-          ctx.lineWidth = s.size * (1 + warp * 2)
+          ctx.lineWidth = s.size * (1 + warp * 1.8)
           ctx.beginPath()
           ctx.moveTo(s.x, s.y)
           ctx.lineTo(s.x + nx * stretch, s.y + ny * stretch)
           ctx.stroke()
+          // warp 時也輻射移動
+          s.x += nx * warp * s.warpSpeed * 0.3
+          s.y += ny * warp * s.warpSpeed * 0.3
         } else {
-          ctx.fillStyle = `rgba(${rgb},${a})`
+          // 靜止態：只有微小隨機漂移，像真實星空
+          ctx.fillStyle = `rgba(${s.rgb},${a})`
           ctx.beginPath()
           ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2)
           ctx.fill()
+          s.x += s.vx
+          s.y += s.vy
         }
 
-        s.y += s.speed * (1 + warp * 7)
-        if (s.y > H + 4) { s.y = -4; s.x = Math.random() * W }
+        // 邊界環繞（四個方向）
+        if (s.x < -4) s.x = W + 4
+        if (s.x > W + 4) s.x = -4
+        if (s.y < -4) s.y = H + 4
+        if (s.y > H + 4) s.y = -4
       })
 
       if (warp < 0.25) {
@@ -496,18 +595,6 @@ function LaserGrid({ color = '#4a9eff', opacity = 0.12 }) {
 }
 
 /* ══════════════════════════════════════════
-   NEBULA BLOBS
-══════════════════════════════════════════ */
-function NebulaBlobs() {
-  return (
-    <div className="nebula-wrap" aria-hidden>
-      <div className="nebula n1" />
-      <div className="nebula n2" />
-      <div className="nebula n3" />
-      <div className="nebula n4" />
-    </div>
-  )
-}
 
 /* ══════════════════════════════════════════
    SCAN LINE
@@ -573,7 +660,6 @@ function Hero() {
 
   return (
     <section id="top" className="hero" onMouseMove={onMouseMove} onMouseLeave={onMouseLeave}>
-      <NebulaBlobs />
       <LaserGrid color="#4a9eff" opacity={0.06} />
 
       <motion.div className="hero-content" style={{ y }}>
@@ -776,7 +862,6 @@ function About() {
 
   return (
     <section id="about" className="about-section">
-      <NebulaBlobs />
       <SectionHeader title="關於我" sub="About — About — 自己紹介" sector="SEC·02 ── ABOUT" />
       <div className="about-grid">
         {cards.map((c, i) => (
@@ -1158,6 +1243,7 @@ function BgmPlayer() {
 export default function App() {
   return (
     <>
+      <NebulaCanvas />
       <StarfieldCanvas />
       <CockpitVignette />
       <KhaydrarinCrystal />

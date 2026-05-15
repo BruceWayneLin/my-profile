@@ -18,13 +18,9 @@
       "Bash(gh repo *)",
       "Bash(cp -r /Users/sk/Desktop/takio-pro/moto /Users/sk/Desktop/portfolio-react/public/projects/moto)",
       "Bash(cp -r /Users/sk/Desktop/takio-pro/protoVersion1 /Users/sk/Desktop/portfolio-react/public/projects/protoVersion1)",
-      "Bash(npm run *)",
-      "Read(//Users/sk/Desktop/**)",
-      "Bash(ffprobe -v quiet -print_format json -show_streams /Users/sk/Desktop/barccarat.mov)",
-      "Bash(ffmpeg -version)",
-      "Bash(brew install *)",
-      "Bash(ffmpeg -i /Users/sk/Desktop/portfolio-react/public/videos/baccarat.mov -c:v libx264 -crf 28 -preset slow -c:a aac -b:a 96k -movflags +faststart /Users/sk/Desktop/portfolio-react/public/videos/baccarat.mp4)",
-      "Bash(npm list *)"
+      "Bash(git checkout *)",
+      "Bash(curl -s -o space_bg.jpg \"https://s3-us-west-2.amazonaws.com/s.cdpn.io/1037366/space1.jpg\" -w \"%{http_code}\")",
+      "Bash(curl -s -o planet2.png \"https://s3-us-west-2.amazonaws.com/s.cdpn.io/1037366/planet2.png\")"
     ]
   }
 }
