@@ -31,14 +31,26 @@ function Pylon({ mouseRef, starPos, mobile }) {
   const ringRef  = useRef()
   const lightRef = useRef()
   const groupRef = useRef()
+  const angleRef = useRef(OA)   /* 累積角度，不用 clock.elapsedTime */
 
   useFrame(({ clock }, delta) => {
-    const t  = clock.elapsedTime
-    const rs = mobile ? 0.55 : 1
-    const op = orbitAt(t)
-    const px = OC.x + (op.x - OC.x) * rs + mouseRef.current.x * 0.6
-    const py = OC.y + (op.y - OC.y) * rs + mouseRef.current.y * 0.35 + Math.sin(t * 0.55) * 0.05
-    const pz = OC.z + (op.z - OC.z) * rs
+    const t = clock.elapsedTime
+    const a = angleRef.current
+
+    /* 目前位置的 z → 與鏡頭距離（鏡頭在 z=10） */
+    const curZ    = OC.z + OR * Math.sin(a) * Math.cos(OT)
+    const distCam = Math.max(1, 10 - curZ)
+
+    /* 開普勒感：遠快近慢。divisor 越小 = 手機整體更快 */
+    const divisor  = mobile ? 3.2 : 5.5
+    const speedMul = Math.min(5.0, Math.max(0.22, distCam / divisor))
+    angleRef.current += delta * OS * speedMul
+
+    const na = angleRef.current
+    const px = OC.x + OR * Math.cos(na) + mouseRef.current.x * 0.6
+    const py = OC.y + OR * Math.sin(na) * Math.sin(OT)
+              + mouseRef.current.y * 0.35 + Math.sin(t * 0.55) * 0.05
+    const pz = OC.z + OR * Math.sin(na) * Math.cos(OT)
 
     if (groupRef.current) {
       groupRef.current.position.set(px, py, pz)
