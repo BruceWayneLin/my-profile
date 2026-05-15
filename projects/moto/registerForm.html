@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/myCustomer.css">
+    <link rel="stylesheet" href="css/jui/jquery.mobile.datepicker.css">
+    <link rel="stylesheet" href="css/jui/jquery.mobile.datepicker.theme.css">
+    <link rel="stylesheet" href="css/jui/jqueryDatePickergit.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="js/tether.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" src="js/vued.js"></script>
+    <script type="text/javascript" src="js/jui/jquery.mobile.datepicker.js"></script>
+    <script type="text/javascript" src="js/jui/datepicker.js"></script>
+    <script type="text/javascript" src="js/myCustomer.js"></script>
+    <script type="text/javascript" src="js/myUi.js"></script>
+
+    <title>Motobike Insurance</title>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                Menu <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand page-scroll" href="index.html">
+                <span class="light" ></span> Moto Journey Logo
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+            <ul class="nav navbar-nav">
+                <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                <li class="hidden">
+                    <a href="#page-top"></a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#about">About</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#download">Products</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#contact">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="man hide">
+                <div class="talkBubble"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+         <form id="registerFormDiv" class="form-horizontal">
+        <div class="row">
+            <div class="col-sm-12">
+                <fieldset>
+                    <!-- Form Name -->
+                    <legend>會員註冊</legend>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="姓">姓名:</label>
+                        <div class="col-md-2">
+                            <input id="姓" name="姓" type="text" placeholder="請輸入姓" class="form-control input-md">
+
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="名"></label>
+                        <div class="col-md-4">
+                            <input id="名" name="名" type="text" placeholder="請輸入名" class="form-control input-md">
+
+                        </div>
+                    </div>
+
+                    <!-- Password input-->
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="pid">身分證字號</label>
+                        <div class="col-md-4">
+                            <input id="pid" name="pid" type="password" placeholder="請輸入身分證字號" class="form-control input-md">
+
+                        </div>
+                    </div>
+
+                    <!-- Multiple Radios -->
+                    <div class="form-group row">
+                        <label class="col-md-2 control-label">性別</label>
+                        <div class="col-md-4">
+                            <input type="radio" name="sex" id="male" value="on" checked="checked">
+                            <label for="male">男</label>
+                            <input type="radio" name="sex" id="female" value="off">
+                            <label for="female">女</label>
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="mobile">手機</label>
+                        <div class="col-md-4">
+                            <input id="mobile" name="mobile" type="text" placeholder="請輸入手機號碼" class="form-control input-md">
+
+                        </div>
+                    </div>
+
+                    <!-- Select Basic -->
+                    <div class="form-group">
+                        <label class="col-md-2 control-label"></label>
+                        <div class="col-md-2">
+                            <select id="city" name="city">
+                                <option value="1">台北市</option>
+                                <option value="2">台中市</option>
+                                <option value="3">高雄市</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <select id="district" name="district">
+                                <option value="1">中正區</option>
+                                <option value="2">信義區</option>
+                                <option value="3">大安區</option>
+                                <option value="4">中山區</option>
+                                <option value="5">北投區</option>
+                                <option value="6">淡水區</option>
+                                <option value="7">士林區</option>
+                                <option value="8">樹林區</option>
+                                <option value="9">木柵區</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4" style="">
+                            <input id="addr" name="addr" type="text" placeholder="請輸入地址" class="input-md">
+                        </div>
+                    </div>
+
+                    <!-- Select Basic -->
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="relationship">被保人關係</label>
+                        <div class="col-md-2">
+                            <select id="relationship" name="relationship" class="">
+                                <option value="1">父子</option>
+                                <option value="2">母子</option>
+                                <option value="3">親子</option>
+                                <option value="4">其他</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="insuredName">被保人姓名</label>
+                        <div class="col-md-2">
+                            <input id="insuredName" name="insuredName" type="text" placeholder="請輸入姓" class="form-control input-md">
+
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="insuredFirstName"></label>
+                        <div class="col-md-4">
+                            <input id="insuredFirstName" name="insuredFirstName" type="text" placeholder="請輸入名" class="form-control input-md">
+
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="insuredPid">被保人身分證字號</label>
+                        <div class="col-md-4">
+                            <input id="insuredPid" name="insuredPid" type="text" placeholder="請輸入被保人身分證字號" class="form-control input-md">
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="insuredBirth">被保人生日</label>
+                        <div class="col-md-4">
+                            <input id="insuredBirth" data-role="date" name="insuredBirth" type="text" placeholder="請輸入被保人生日" class="form-control input-md">
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="beneficiaries">受益人</label>
+                        <div class="col-md-4">
+                            <input id="beneficiaries" name="beneficiaries" type="text" placeholder="請輸入受益人" class="form-control input-md">
+                        </div>
+                        <label style="margin-left: 14px;" for="lawBenfici" class="lawBenfici">法定繼承人</label>
+                        <input style="margin-left: 14px;" type="checkbox" id="lawBenfici" name="lawBenfici" value="other">
+                    </div>
+
+                    <!-- Button -->
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for=""></label>
+                        <div class="col-md-4">
+                            <button id="toGoNext" name="" class="btn btn-primary">下一步</button>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </div>
+        </div>
+    </form>
+    </div>
+</div>
+</body>
+</html>

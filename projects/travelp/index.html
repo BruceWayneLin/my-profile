@@ -1,0 +1,15 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>立刻投保 | Care Line英國凱萊 旅遊平安險</title><base href="/projects/travelp/"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/x-icon" href="favicon.ico"><link href="styles.e5bdc99ec046ff663181.bundle.css" rel="stylesheet"/></head><body><app-root></app-root><script type="text/javascript" src="inline.a87732441f674ff227f9.bundle.js"></script><script type="text/javascript" src="polyfills.574056ad92b56d22f7bb.bundle.js"></script><script type="text/javascript" src="scripts.2079c43b3c6cd2362738.bundle.js"></script><script type="text/javascript" src="vendor.a1301cb82ef85bfe38b4.bundle.js"></script><script type="text/javascript" src="main.54f93472026200cc096c.bundle.js"></script></body></html><script>$(document).ready(function () {
+    $(document).on('click', '#xBtn' ,function (){
+      $('#insuredInfoAppend').find('#insuredOneCard').remove();
+      var test = $('.priceHead > h3').text();
+      var test2 = parseInt(test);
+    })
+    $(document).on('scroll', function () {
+      if($(window).scrollTop() > 212){
+      }
+    });
+    $(document).on('click', '.customSelectUi', function(){
+        var testBtn = $('ul.customSelectUi').children('li').hasClass('hidden');
+        console.log(testBtn);
+    })
+  });</script>

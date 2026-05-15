@@ -1,0 +1,68 @@
+{
+  "items": [
+    {
+      "pictureTitle" : ["20/200 Million"],
+      "picturePrice" : "NT: 658",
+      "years"        : "1 year",
+      "discount"     : "false",
+      "card-text"    : "CTPL + Driver + VTPL"
+    },
+    {
+      "pictureTitle" : ["20/200 Million"],
+      "picturePrice" : "NT: 1106",
+      "years"        : "1 year",
+      "discount"     : "false",
+      "card-text"    : "CTPL + Driver + VTPL"
+    },
+    {
+      "pictureTitle" : ["20/200 Million"],
+      "pictureDisPrice" : "NT: 2212",
+      "picturePrice" : "NT: 1920",
+      "years"        : "1 year",
+      "discount"     : "true",
+      "card-text"    : "CTPL + Driver + VTPL"
+    },
+    {
+      "pictureTitle" : ["20/200 Million", "100/200 Million"],
+      "picturePrice" : "NT: 1735",
+      "years"        : "1 year",
+      "discount"     : "false",
+      "card-text"    : "CTPL + Driver + VTPL"
+    },
+    {
+      "pictureTitle" : ["20/200 Million", "200/400 Million"],
+      "picturePrice" : "NT: 1891",
+      "years"        : "1 year",
+      "discount"     : "false",
+      "card-text"    : "CTPL + Driver + VTPL"
+    },
+    {
+      "pictureTitle" : ["20/200 Million", "300/600 Million"],
+      "picturePrice" : "NT: 1961",
+      "years"        : "1 year",
+      "discount"     : "false",
+      "card-text"    : "CTPL + Driver + VTPL"
+    },
+    {
+      "pictureTitle" : ["20/200 Million", "100/200 Million"],
+      "picturePrice" : "NT: 2153",
+      "years"        : "1 year",
+      "discount"     : "false",
+      "card-text"    : "CTPL + Driver + VTPL"
+    },
+    {
+      "pictureTitle" : ["20/200 Million", "200/400 Million"],
+      "picturePrice" : "NT: 2309",
+      "years"        : "1 year",
+      "discount"     : "false",
+      "card-text"    : "CTPL + Driver + VTPL"
+    },
+    {
+      "pictureTitle" : ["20/200 Million", "300/600 Million"],
+      "picturePrice" : "NT: 2376",
+      "years"        : "1 year",
+      "discount"     : "false",
+      "card-text"    : "CTPL + Driver + VTPL"
+    }
+  ]
+}

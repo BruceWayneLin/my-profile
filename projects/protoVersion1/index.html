@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/myCustomer.css">
+    <link rel="stylesheet" href="css/jui/jquery.mobile.datepicker.css">
+    <link rel="stylesheet" href="css/jui/jquery.mobile.datepicker.theme.css">
+    <link rel="stylesheet" href="css/component.css">
+    <link rel="stylesheet" href="css/jui/jqueryDatePickergit.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+
+    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="js/tether.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" src="js/vued.js"></script>
+    <script type="text/javascript" src="js/jui/jquery.mobile.datepicker.js"></script>
+    <script type="text/javascript" src="js/jui/datepicker.js"></script>
+    <script type="text/javascript" src="js/myCustomer.js"></script>
+    <script type="text/javascript" src="js/jquery.textillate.js"></script>
+    <script type="text/javascript" src="js/jquery.lettering.js"></script>
+
+    <script>
+        $(function(){
+            $('.tlt').textillate({
+                in: { effect: 'fadeInLeft' },
+            });
+        })
+    </script>
+    <title>Motobike Insurance</title>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                Menu <i class="fa fa-bars"></i>
+            </button>
+            <div id="brandDiv">
+                <a class="navbar-brand page-scroll" onclick="location.reload();" href="#">
+                    <span class="light" ></span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+            <ul class="nav navbar-nav">
+                <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                <li class="hidden">
+                    <a href="#page-top"></a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#about">About</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#download">Products</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#contact">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<div id="introDiv">
+<header id="intro">
+    <div class="intro-body">
+        <div class="container">
+            <div class="row">
+                <div id="slide" class="firstIntro col-lg-12">
+                    <div id="firstSlide">
+                        <div id="selectedCardCc" class="hide">
+                            <div class="row text-center"> 
+                                <div class="col-lg-12"> 
+                                    <div class="col-lg-4"></div>
+                                    <div class="col-lg-4 text-center"> 
+                                        <div>
+                                            <input type="text" class="date-input" data-inline="false" data-role="date" placeholder="請輸入您的生日"> 
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4"></div>
+                                </div>
+                            </div>
+                            <div class="row text-center"> 
+                                <div class="col-lg-12"> 
+                                    <div class="col-lg-5"></div>
+                                    <div class="col-lg-2" style="top: -20px;"> 
+                                        <button type="button" id="submitedBtn" class="btn-sm btn btn-default">送出</button>
+                                    </div>
+                                    <div class="col-lg-5"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                         <div id="slideOfCardCc">
+                        <div class="row text-center">
+                            <h1 class="brand-heading tlt">CareLine Moto Insurance</h1>
+                        </div>
+                        <div class="row text-center">
+                            <div class="row">
+                                <div class="col-lg-12 btnContainer">
+                                    <div class="col-xs-1"></div>
+                                    <div class="col-xs-5">
+                                        <button class="btn-success btn-small">1-50CC</button>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <button class="btn-white btn-small">51-250CC</button>
+                                    </div>
+                                    <div class="col-xs-1"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 btnContainer">
+                                    <div class="col-xs-1"></div>
+                                    <div class="col-xs-5">
+                                        <button class="btn-warning btn-small">250-550CC</button>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <button class=" btn-danger  btn-small">550CC+</button>
+                                    </div>
+                                    <div class="col-xs-1"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 text-center" style="margin-top:27px;color:white;"><h4>選擇您的機車ＣＣ數或車牌顏色</h4></div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+</div>
+
+<div class="row">
+    <div id="cardsDivShow" class="container hide">
+        <div id="showCards" class="row">
+
+        </div>
+    </div>
+</div>
+
+<div id="circleInfo" class="container">
+    <div class="row">
+        <div class="col-lg-4">
+            <img class="rounded-circle" src="css/images/owlicon.png" alt="Generic placeholder image" width="140" height="140">
+            <h2>Heading</h2>
+            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
+            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+            <img class="rounded-circle" src="css/images/owlicon.png" alt="Generic placeholder image" width="140" height="140">
+            <h2>Heading</h2>
+            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+            <img class="rounded-circle" src="css/images/owlicon.png" alt="Generic placeholder image" width="140" height="140">
+            <h2>Heading</h2>
+            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
+</div>
+
+<div class="container footer-container">
+    <footer class="footer">
+        <div class="container text-center">
+            <p class="text-muted">Copyright© 2017 Care Line Co., Ltd.  All Right Reserved.</p>
+        </div>
+    </footer>
+</div>
+</body>
+</html>
+

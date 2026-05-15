@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="js/vue.js"></script>
+    <script src="js/moment.js"></script>
+    <script type="text/javascript" src="js/jqeury.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/myCustomer.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/process.css">
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <my-nav></my-nav>
+        <my-process></my-process>
+        <my-infocheck></my-infocheck>
+        <my-motoform></my-motoform>
+        <my-modal></my-modal>
+        <applicant-form></applicant-form>
+        <insured-form></insured-form>
+        <my-footer></my-footer>
+    </div>
+</body>
+</html>
+<script src="components/formOne.js"></script>
+<script src="components/home.js"></script>
+<script src="js/axios.min.js"></script>
+<script src="js/bootstrap-datetimepicker.min.js"></script>
+<script src="js/holder.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker').datetimepicker({
+            format: 'YYYY-MM-DD',
+            minDate: moment(),
+            viewMode: 'days',
+            maxDate: moment().add(60, 'days')
+        });
+
+       
+
+    });
+</script>
+    <script src="js/myCustomer.js"></script>
+
+
+

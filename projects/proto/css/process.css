@@ -1,0 +1,107 @@
+.timeLineDiv {
+    padding: 0px 15px;
+}
+
+.time-bar {
+    background-color: #eeeeee;
+    height: 3px;
+    width: 98%;
+    position: relative;
+    top: -60px;
+    margin-left: 6px;
+    margin-right: 6px;
+}
+
+.timeLine-wrap {
+    margin-bottom: 40px;
+    position: fixed;
+    width: 100%;
+    background-color: grey;
+    z-index: 99;
+    top: 52px;
+}
+
+.eventDivs {
+    height: 120px;
+    white-space: nowrap;
+}
+
+.eventDiv {
+    height: 100px;
+    width: 24%;
+    position: relative;
+    display: inline-block;
+    margin-top: 10px;
+    left: 15px;
+}
+
+.eventDiv-animated {
+    -webkit-animation: mymove 5s; /* Safari 4.0 - 8.0 */
+    animation: mymove 5s infinite;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes mymove {
+    0%   {right: 0px;}
+    100% {right: 100%;}
+}
+
+/* Standard syntax */
+@keyframes mymove {
+    0%   {right: 0px;}
+    100% {right: 100%;}
+}
+
+@media screen and (max-width: 500px){
+    .eventDiv {
+       min-width: 282px;
+    }
+    .time-bar .progress-bar {
+        width: 100%!important;
+    }
+}
+
+.circle {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    background-color: #eeeeee;
+    z-index: 10;
+    position: relative;
+    top: 8px;
+    right: -90%;
+}
+
+.specialIcon h3 {
+    width: 25%;
+    position: relative;
+    left: 37%;
+    z-index: 11;
+    top: 11px;
+}
+
+.time-bar .progress {
+    height: 5px;
+}
+
+.circle div {
+    position: relative;
+    top: 14px;
+    left: -4px;
+}
+
+.circle h3 {
+    border: none;
+}
+
+.circle.circleComplete {
+    background-color: #2b689c;
+}
+
+.circle.circleComplete h3 {
+    color: white;
+}
+
+.navbar-collapse.collapse.secondPageNav a {
+    color: grey!important;
+}

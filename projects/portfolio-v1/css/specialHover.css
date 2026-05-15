@@ -1,0 +1,281 @@
+  /* keyframes for rotating animation */
+  @-webkit-keyframes spin {
+    from { transform: rotateY(0); }
+    to   { transform: rotateY(360deg); }
+  }
+
+  @-webkit-keyframes spinReverse {
+    from { transform: rotateX(0); }
+    to   { transform: rotateX(360deg); }
+  }
+  
+  /* scene wrapper */
+  .wrapper{
+    height: 300px;
+    margin-top:50px;
+    position:relative;
+    perspective: 800;
+    perspective-origin: 50% 100px;
+  }
+  
+  /* cube wrapper */
+  .cube{
+    position: relative;
+    margin: 0 auto;
+    width: 200px;
+    transform-style: preserve-3d;
+    animation: spin 4s infinite linear;
+    transition: all 1s linear;
+  }
+
+  #cubeOne > b {
+      color:rgb(255, 255, 255);
+  }
+
+  /* outer cube */
+  b{
+    position:absolute;
+    width:200px;
+    height:200px;
+    display:block;
+    background:rgba(255,255,255,0.1);
+    box-shadow:inset 0 0 30px rgba(0,0,0,0.2);
+    font-size:20px;
+    text-align:center;
+    line-height:200px;
+    color: white;
+    font-family:sans-serif;
+    text-transform:uppercase;
+    transition: all 1s linear;
+  }
+  b.back{
+    transform: translateZ(-100px) rotateY(180deg);
+  }
+  b.right{
+    transform:rotateY(-270deg) translateX(100px);
+    transform-origin: top right;
+  }
+  b.left{
+    transform:rotateY(270deg) translateX(-100px);
+    transform-origin: center left;
+  }
+  b.top{
+    transform:rotateX(-90deg) translateY(-100px);
+    transform-origin: top center;
+  }
+  b.bottom{
+    transform:rotateX(90deg) translateY(100px);
+    transform-origin: bottom center;
+  }
+  b.front{
+    transform: translateZ(100px);
+  }
+  
+  /* inner cube */
+  i{
+    position:absolute;
+    top:50px;
+    left:50px;
+    width:100px;
+    height:100px;
+    display: block;
+    /* background:url(../img/ghost.gif) no-repeat; */
+    background-color: #dd020266;
+    background-size: cover;
+    transition: all 1s linear;
+  }
+  i.front{
+    transform: translateZ(50px);
+  }
+  i.back{
+    transform: translateZ(-50px) rotateY(180deg);
+  }
+  i.bottom{
+    transform:rotateX(-90deg) translateY(50px);
+    transform-origin: left bottom;
+  }
+  i.left{
+    transform:rotateY(270deg) translateX(-50px);
+    transform-origin: center left;
+  }
+  i.right{
+    transform:rotateY(-270deg) translateX(50px);
+    transform-origin: top right;
+  }
+  i.top{
+    transform:rotateX(-270deg) translateY(-50px);
+    transform-origin: left top;
+  }
+
+  .cube:hover{
+    cursor: pointer!important;
+  }
+  
+  #F, #B, #T, #M, #L, #R {
+    background-color: #0027ff2b;
+  }
+
+  /* hover transformations
+  .cube:hover{
+    top:150px;
+  }
+  .cube:hover b.top{
+    transform: translateZ(100px) rotateX(-210deg);
+    transform-origin: top center;
+  }
+  .cube:hover i{
+    top:-200px;
+  } */
+                            
+  .pulser {
+    width: 30vmin;
+    height: 30vmin;
+    border-radius: 50%;
+    /* mix-blend-mode: screen; */
+    background: #d845787a;
+    position: absolute;
+    -webkit-transform-origin: 12vmin 48vmin;
+            transform-origin: 12vmin 48vmin;
+    -webkit-animation: filtered 10000ms 0ms infinite alternate linear;
+            animation: filtered 10000ms 0ms infinite alternate linear;
+    will-change: filter, transform;
+  }
+  
+  main {
+    /* width: 90vmin;
+    height: 90vmin;
+    position: relative; */
+    display: inline-flex;
+  }
+  
+  /* body {
+    background: #042739;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  } */
+  
+  /* * {
+    box-sizing: border-box;
+  } */
+  
+  @-webkit-keyframes filtered {
+    0% {
+      -webkit-filter: hue-rotate(0deg) blur(3vmin);
+              filter: hue-rotate(0deg) blur(3vmin);
+    }
+    100% {
+      -webkit-filter: hue-rotate(360deg) blur(20vmin);
+              filter: hue-rotate(360deg) blur(20vmin);
+    }
+  }
+  
+  @keyframes filtered {
+    0% {
+      -webkit-filter: hue-rotate(0deg) blur(3vmin);
+              filter: hue-rotate(0deg) blur(3vmin);
+    }
+    100% {
+      -webkit-filter: hue-rotate(360deg) blur(20vmin);
+              filter: hue-rotate(360deg) blur(20vmin);
+    }
+  }
+  
+.planet{
+        width:200px;
+        height:200px;
+        background:#07132f;
+        border-radius:150px;
+        position:absolute;
+        overflow:hidden;
+        box-shadow:0px 0px 55px rgba(20,100,255,0.7);
+        border:1px solid #0089dd;
+        border-right:none;
+        -webkit-transform:rotateZ(15deg);
+        transform:rotateZ(15deg)
+    }
+.planet:after{content:"";width:90px;height:100%;background: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.9));position:absolute;right:0;}
+.planet:before{content:"";width:90px;height:100%;background: linear-gradient(to right, rgba(10,130,255,0.6), rgba(0,0,0,0));position:absolute;left:0;z-index:3;}
+.texture{position:absolute;left:-360px;-webkit-animation: rotation 30s linear infinite;animation: rotation 30s linear infinite;content: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/184191/earth_copy.jpg);height:320px;background-size:cover;}
+
+@keyframes rotation{
+  0%{left:-845px}
+  100%{left:-185px}
+}
+@-webkit-keyframes rotation{
+  0%{left:-845px}
+  100%{left:-185px}
+}
+
+.loader2{
+	position: relative;
+	width: 5px;
+	height: 5px;
+
+	top: 49%;
+	top: -webkit-calc(50% - 43px);
+	top: calc(50% - 2.5px);
+	left: 49%;
+	left: -webkit-calc(50% - 43px);
+	left: calc(50% - 2.5px);
+
+	background-color: #fff;
+    border-radius: 50px;
+    margin-top: 20%;
+}
+
+.loader2:before{
+	content: "";
+	position: absolute;
+	top: -38px;
+	border-top: 3px solid #fff;
+	border-right: 3px solid #fff;
+	border-radius: 0 50px 0px  0;
+	width: 40px;
+	height: 40px;
+	background-color: rgba(255, 255, 255, .1);
+	-webkit-transform-origin:  0% 100%;
+			transform-origin:  0% 100% ;
+	-webkit-animation: loader2 1.5s linear infinite;
+			animation: loader2 1.5s linear infinite;
+}
+
+.loader2:after{
+	content: "";
+	position: absolute;
+	top: 2px;
+	right: 2px;
+	border-bottom: 3px solid #fff;
+	border-left: 3px solid #fff;
+	border-radius: 0 0px 0px  50px;
+	width: 40px;
+	height: 40px;
+	background-color: rgba(255, 255, 255, .1);
+	-webkit-transform-origin:  100% 0%;
+			transform-origin:  100% 0% ;
+	-webkit-animation: loader2 1.5s linear infinite;
+			animation: loader2 1.5s linear infinite;
+}
+
+
+
+@-webkit-keyframes loader2{
+    0%{-webkit-transform:rotate(0deg);}
+    100%{-webkit-transform:rotate(360deg);}
+}
+
+@keyframes loader2{
+    0%{transform:rotate(0deg);}
+    100%{transform:rotate(360deg);}
+}
+
+@media screen and (max-width: 693px) {
+  .wrapperTwo {
+    margin-top: 380px!important;
+  }
+  .loader2 {
+    margin-top: 30%!important;
+  }
+}
