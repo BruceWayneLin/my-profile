@@ -47,6 +47,18 @@ body {
 }
 
 /* ══════════════════════════════════════════
+   COCKPIT VIGNETTE
+══════════════════════════════════════════ */
+.cockpit-vignette {
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 95% 90% at 50% 50%, transparent 60%, rgba(2,3,10,0.35) 82%, rgba(2,3,10,0.72) 100%);
+}
+
+/* ══════════════════════════════════════════
    CURSOR GLOW
 ══════════════════════════════════════════ */
 .cursor-glow {
@@ -513,6 +525,14 @@ section {
   z-index: 2;
 }
 
+.crystal-canvas-wrap {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
 .hero-3d-wrap {
   display: flex;
   flex-direction: column;
@@ -697,7 +717,7 @@ section {
    TIMELINE
 ══════════════════════════════════════════ */
 .timeline-section {
-  background: rgba(5,6,16,0.82);
+  background: rgba(5,6,16,0.62);
 }
 
 .timeline-section::before {
@@ -898,7 +918,7 @@ section {
    ABOUT
 ══════════════════════════════════════════ */
 .about-section {
-  background: rgba(4,5,13,0.78);
+  background: rgba(4,5,13,0.60);
 }
 
 .about-section::before {
@@ -984,7 +1004,7 @@ section {
    SKILLS
 ══════════════════════════════════════════ */
 .skills-section {
-  background: rgba(5,6,16,0.84);
+  background: rgba(5,6,16,0.64);
   padding: 80px 0;
 }
 
@@ -1047,7 +1067,7 @@ section {
    PORTFOLIO
 ══════════════════════════════════════════ */
 .portfolio-section {
-  background: rgba(4,5,13,0.76);
+  background: rgba(4,5,13,0.58);
 }
 
 .portfolio-section::before {
@@ -1239,7 +1259,7 @@ section {
    CONTACT
 ══════════════════════════════════════════ */
 .contact-section {
-  background: rgba(5,6,16,0.84);
+  background: rgba(5,6,16,0.62);
 }
 
 .contact-section::before {

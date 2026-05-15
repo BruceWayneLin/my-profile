@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion'
 import emailjs from '@emailjs/browser'
+import KhaydrarinCrystal from './KhaydrarinCrystal'
 import './index.css'
 
 /* ══════════════════════════════════════════
@@ -281,9 +282,11 @@ function StarfieldCanvas() {
     let sTick = 0
 
     const LAYERS = [
-      { count: 260, speed: 0.07, sizeRange: [0.3, 0.9],  alpha: 0.5  },
-      { count: 120, speed: 0.16, sizeRange: [0.8, 1.8],  alpha: 0.75 },
-      { count:  50, speed: 0.32, sizeRange: [1.4, 2.8],  alpha: 1.0  },
+      { count: 500, speed: 0.02, sizeRange: [0.2, 0.5],  alpha: 0.35 }, // 極遠星系塵埃
+      { count: 300, speed: 0.05, sizeRange: [0.3, 0.7],  alpha: 0.45 }, // 遠景星
+      { count: 200, speed: 0.10, sizeRange: [0.5, 1.1],  alpha: 0.60 }, // 中景星
+      { count: 100, speed: 0.20, sizeRange: [1.0, 2.0],  alpha: 0.80 }, // 近景星
+      { count:  40, speed: 0.38, sizeRange: [1.5, 3.0],  alpha: 1.0  }, // 前景亮星
     ]
     let stars = [], shootingStars = []
 
@@ -320,17 +323,29 @@ function StarfieldCanvas() {
       })
     }
 
+    let scrollTilt = 0
+    let targetTilt = 0
+
     const trackScroll = () => {
-      scrollVel = Math.min(scrollVel + Math.abs(window.scrollY - prevScrollY) * 0.45, 55)
+      const delta = window.scrollY - prevScrollY
+      scrollVel = Math.min(scrollVel + Math.abs(delta) * 0.45, 55)
       prevScrollY = window.scrollY
+      const progress = window.scrollY / Math.max(1, document.documentElement.scrollHeight - window.innerHeight)
+      targetTilt = Math.sin(progress * Math.PI * 1.5) * 0.07
     }
     window.addEventListener('scroll', trackScroll, { passive: true })
 
     const draw = () => {
       ctx.clearRect(0, 0, W, H)
       scrollVel *= 0.87
+      scrollTilt += (targetTilt - scrollTilt) * 0.018
       const warp = Math.min(scrollVel / 55, 1)
       const cx = W / 2, cy = H * 0.38
+
+      ctx.save()
+      ctx.translate(W / 2, H / 2)
+      ctx.rotate(scrollTilt)
+      ctx.translate(-W / 2, -H / 2)
 
       stars.forEach(s => {
         s.twinkle += s.twinkleSpeed
@@ -380,6 +395,7 @@ function StarfieldCanvas() {
         })
       }
 
+      ctx.restore()
       raf = requestAnimationFrame(draw)
     }
 
@@ -394,6 +410,13 @@ function StarfieldCanvas() {
   }, [])
 
   return <canvas ref={canvasRef} className="starfield-canvas" />
+}
+
+/* ══════════════════════════════════════════
+   COCKPIT VIGNETTE — spaceship window edges
+══════════════════════════════════════════ */
+function CockpitVignette() {
+  return <div className="cockpit-vignette" aria-hidden />
 }
 
 /* ══════════════════════════════════════════
@@ -534,16 +557,19 @@ function Hero() {
   const smy = useSpring(my, { stiffness: 50, damping: 18 })
   const rotX = useTransform(smy, [-0.5, 0.5], [6, -6])
   const rotY = useTransform(smx, [-0.5, 0.5], [-6, 6])
+  const crystalMouseRef = useRef({ x: 0, y: 0 })
 
   const playAudio = () => {
     if (audioRef.current) { audioRef.current.currentTime = 0; audioRef.current.play() }
   }
 
   const onMouseMove = e => {
-    mx.set((e.clientX / window.innerWidth) - 0.5)
-    my.set((e.clientY / window.innerHeight) - 0.5)
+    const x = (e.clientX / window.innerWidth) - 0.5
+    const y = (e.clientY / window.innerHeight) - 0.5
+    mx.set(x); my.set(y)
+    crystalMouseRef.current = { x, y }
   }
-  const onMouseLeave = () => { mx.set(0); my.set(0) }
+  const onMouseLeave = () => { mx.set(0); my.set(0); crystalMouseRef.current = { x: 0, y: 0 } }
 
   return (
     <section id="top" className="hero" onMouseMove={onMouseMove} onMouseLeave={onMouseLeave}>
@@ -1133,6 +1159,8 @@ export default function App() {
   return (
     <>
       <StarfieldCanvas />
+      <CockpitVignette />
+      <KhaydrarinCrystal />
       <ScanLine />
       <CursorGlow />
       <HudOverlay />

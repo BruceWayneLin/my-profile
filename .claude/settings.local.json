@@ -6,7 +6,25 @@
       "Bash(dig jungwei.com.tw CAA +short)",
       "Bash(dig www.jungwei.com.tw A +short)",
       "Bash(dig www.jungwei.com.tw CNAME +short)",
-      "Bash(npm install *)"
+      "Bash(npm install *)",
+      "Bash(git check-ignore *)",
+      "Bash(git submodule *)",
+      "Bash(git rm *)",
+      "Bash(git add *)",
+      "Bash(git ls-remote *)",
+      "Bash(git fetch *)",
+      "Bash(git ls-tree *)",
+      "Bash(git remote *)",
+      "Bash(gh repo *)",
+      "Bash(cp -r /Users/sk/Desktop/takio-pro/moto /Users/sk/Desktop/portfolio-react/public/projects/moto)",
+      "Bash(cp -r /Users/sk/Desktop/takio-pro/protoVersion1 /Users/sk/Desktop/portfolio-react/public/projects/protoVersion1)",
+      "Bash(npm run *)",
+      "Read(//Users/sk/Desktop/**)",
+      "Bash(ffprobe -v quiet -print_format json -show_streams /Users/sk/Desktop/barccarat.mov)",
+      "Bash(ffmpeg -version)",
+      "Bash(brew install *)",
+      "Bash(ffmpeg -i /Users/sk/Desktop/portfolio-react/public/videos/baccarat.mov -c:v libx264 -crf 28 -preset slow -c:a aac -b:a 96k -movflags +faststart /Users/sk/Desktop/portfolio-react/public/videos/baccarat.mp4)",
+      "Bash(npm list *)"
     ]
   }
 }
