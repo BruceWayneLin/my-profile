@@ -20,7 +20,8 @@
       "Bash(cp -r /Users/sk/Desktop/takio-pro/protoVersion1 /Users/sk/Desktop/portfolio-react/public/projects/protoVersion1)",
       "Bash(git checkout *)",
       "Bash(curl -s -o space_bg.jpg \"https://s3-us-west-2.amazonaws.com/s.cdpn.io/1037366/space1.jpg\" -w \"%{http_code}\")",
-      "Bash(curl -s -o planet2.png \"https://s3-us-west-2.amazonaws.com/s.cdpn.io/1037366/planet2.png\")"
+      "Bash(curl -s -o planet2.png \"https://s3-us-west-2.amazonaws.com/s.cdpn.io/1037366/planet2.png\")",
+      "Bash(npm list *)"
     ]
   }
 }
