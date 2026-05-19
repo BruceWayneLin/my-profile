@@ -703,7 +703,7 @@ function Hero() {
         >
           <span className="htag">SENIOR SOFTWARE ENGINEER</span>
           <span className="htag-sep">◆</span>
-          <span className="htag">Tech Lead · 10+ Yrs</span>
+          <span className="htag">Tech Lead · 15+ Yrs</span>
         </motion.div>
 
         <motion.div
@@ -833,7 +833,7 @@ function About() {
       content: (
         <dl>
           <dt>Takio Lin (林容為)</dt>
-          <dd>10+ years frontend, backend & DevOps experience. B.A. Literature, University of Oregon, 2010. Fluent in English, Chinese, Japanese, and Taiwanese.</dd>
+          <dd>15+ years frontend, backend & DevOps experience. B.A. Literature, University of Oregon, 2010. Fluent in English, Chinese, Japanese, and Taiwanese.</dd>
           <dt>Sunny Software · 2018–Present</dt>
           <dd>Senior Engineer & Tech Lead. Vue3, React, Node.js, Go, WebSocket, Docker, Kubernetes, AWS. Led real-time gaming platform development, CI/CD pipelines, and team technical decisions.</dd>
           <dt>Previous Experience</dt>

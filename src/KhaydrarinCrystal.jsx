@@ -32,24 +32,28 @@ const THRUST_BEAMS = [
   { ox: -0.06, oy:  0.18, len: 1.5, color: '#3377dd', intensity: 2.5 },
 ]
 
-function EngineCore() {
+function EngineCore({ boostRef }) {
   const coreRef   = useRef()
   const haloRef   = useRef()
   const lightRef  = useRef()
   const beamRefs  = useRef([])
 
   useFrame(({ clock }) => {
-    const t = clock.elapsedTime
-    if (coreRef.current) coreRef.current.scale.setScalar(0.88 + Math.sin(t * 2.2) * 0.14)
-    if (haloRef.current) haloRef.current.material.opacity = 0.22 + Math.sin(t * 1.4) * 0.08
-    if (lightRef.current) lightRef.current.intensity = 14 + Math.sin(t * 1.7) * 4
+    const t     = clock.elapsedTime
+    const boost = boostRef?.current ?? 1.0
+    if (coreRef.current) coreRef.current.scale.setScalar((0.88 + Math.sin(t * 2.2) * 0.14) * boost)
+    if (haloRef.current) haloRef.current.material.opacity = Math.min(0.95, (0.22 + Math.sin(t * 1.4) * 0.08) * boost)
+    if (lightRef.current) lightRef.current.intensity = (14 + Math.sin(t * 1.7) * 4) * boost
 
-    // 噴射脈動
     beamRefs.current.forEach((m, i) => {
       if (!m) return
-      const pulse = 1 + Math.sin(t * 3 + i * 0.8) * 0.15
-      m.scale.z = pulse
-      m.material.opacity = 0.75 + Math.sin(t * 2.5 + i) * 0.2
+      const b    = THRUST_BEAMS[i]
+      const pulse  = 1 + Math.sin(t * 3 + i * 0.8) * 0.15
+      const scaleZ = pulse * Math.max(1, boost)
+      m.scale.z    = scaleZ
+      // 鎖住噴口端 (z=0)，只往後 (-Z) 伸長
+      m.position.z = -(b.len * scaleZ) / 2
+      m.material.opacity = Math.min(1, (0.75 + Math.sin(t * 2.5 + i) * 0.2) * (boost > 1 ? boost * 0.55 : 1))
     })
   })
 
@@ -90,40 +94,138 @@ function EngineCore() {
   )
 }
 
+/* 狀態機 */
+const S = { ORBIT: 0, STOP: 1, CHARGE: 2, BLAST: 3, RETURN: 4 }
+
+function orbitPos(na) {
+  return new THREE.Vector3(
+    OC.x + OR * Math.cos(na),
+    OC.y + OR * Math.sin(na) * Math.sin(OT),
+    OC.z + OR * Math.sin(na) * Math.cos(OT)
+  )
+}
+
 function Battlecruiser({ starPos }) {
-  const { scene }  = useGLTF('/models/battlecruiser.glb')
-  const groupRef   = useRef()
-  const angleRef   = useRef(OA)
-  const nextPos    = useMemo(() => new THREE.Vector3(), [])
+  const { scene }   = useGLTF('/models/battlecruiser.glb')
+  const groupRef    = useRef()
+  const angleRef    = useRef(OA)
+  const boostRef    = useRef(1.0)
+  const stateRef    = useRef(S.ORBIT)
+  const timerRef    = useRef(0)
+  const blastDirRef = useRef(new THREE.Vector3())
+  const farPosRef   = useRef(new THREE.Vector3())
+  const cooldownRef = useRef(20)
+  const prevPzRef   = useRef(0)
 
   useFrame(({ clock }, delta) => {
-    const t = clock.elapsedTime
-    const a = angleRef.current
-    const curZ    = OC.z + OR * Math.sin(a) * Math.cos(OT)
-    const distCam = Math.max(1, 10 - curZ)
-    const speedMul = Math.min(5.0, Math.max(0.22, distCam / 5.5))
-    angleRef.current += delta * OS * speedMul
+    if (!groupRef.current) return
+    timerRef.current    += delta
+    cooldownRef.current  = Math.max(0, cooldownRef.current - delta)
+    const st = stateRef.current
 
+    /* 共用軌道位置計算 */
     const na = angleRef.current
-    const px = OC.x + OR * Math.cos(na)
-    const py = OC.y + OR * Math.sin(na) * Math.sin(OT) + Math.sin(t * 0.55) * 0.05
-    const pz = OC.z + OR * Math.sin(na) * Math.cos(OT)
+    const op = orbitPos(na)
+    const na2 = na + 0.05
+    const op2 = orbitPos(na2)
 
-    if (groupRef.current) {
-      groupRef.current.position.set(px, py, pz)
-      // 看向下一個位置，船頭朝飛行方向
-      const na_next = na + 0.05
-      nextPos.set(
-        OC.x + OR * Math.cos(na_next),
-        py,
-        OC.z + OR * Math.sin(na_next) * Math.cos(OT)
-      )
-      groupRef.current.lookAt(nextPos)
+    /* ── ORBIT ── */
+    if (st === S.ORBIT) {
+      const distCam = Math.max(1, 10 - op.z)
+      const spd = Math.min(5.0, Math.max(0.22, distCam / 5.5))
+      angleRef.current += delta * OS * spd
+      boostRef.current += (1.0 - boostRef.current) * 0.05
+
+      groupRef.current.position.copy(orbitPos(angleRef.current))
+      groupRef.current.lookAt(op2)
+      starPos.current.x = op.x; starPos.current.y = op.y; starPos.current.z = op.z
+
+      const pz = op.z
+      const cross = prevPzRef.current > -7.5 && pz < -7.5
+      prevPzRef.current = pz
+      if (cross && cooldownRef.current <= 0) { stateRef.current = S.STOP; timerRef.current = 0 }
+      return
     }
 
-    starPos.current.x = px
-    starPos.current.y = py
-    starPos.current.z = pz
+    /* ── STOP：剎車 1.0s ── */
+    if (st === S.STOP) {
+      const brake = Math.max(0, 1 - timerRef.current / 1.0)
+      const distCam = Math.max(1, 10 - op.z)
+      angleRef.current += delta * OS * Math.min(5.0, Math.max(0.22, distCam / 5.5)) * brake
+
+      const pos = orbitPos(angleRef.current)
+      groupRef.current.position.copy(pos)
+      groupRef.current.lookAt(op2)
+      starPos.current.x = pos.x; starPos.current.y = pos.y; starPos.current.z = pos.z
+
+      if (timerRef.current > 1.0) { stateRef.current = S.CHARGE; timerRef.current = 0 }
+      return
+    }
+
+    /* ── CHARGE：充能 1.8s，停在原地 ── */
+    if (st === S.CHARGE) {
+      boostRef.current = 1.0 + Math.min(1, timerRef.current / 1.8) * 4.0
+      // 維持位置不動
+      const pos = orbitPos(angleRef.current)
+      groupRef.current.position.copy(pos)
+      groupRef.current.lookAt(op2)
+      if (timerRef.current > 1.8) {
+        blastDirRef.current.copy(
+          new THREE.Vector3(0, 0, 1).applyQuaternion(groupRef.current.quaternion)
+        )
+        stateRef.current = S.BLAST; timerRef.current = 0
+      }
+      return
+    }
+
+    /* ── BLAST：噴出飛遠 1.6s ── */
+    if (st === S.BLAST) {
+      const speed = 55 + timerRef.current * 25
+      groupRef.current.position.addScaledVector(blastDirRef.current, speed * delta)
+      groupRef.current.lookAt(
+        groupRef.current.position.clone().add(blastDirRef.current)
+      )
+      boostRef.current = 5.0
+      if (timerRef.current > 1.6) {
+        farPosRef.current.copy(groupRef.current.position)  // 記住遠端位置
+        angleRef.current = OA + 2 * Math.PI - 0.6          // 右側入軌
+        stateRef.current = S.RETURN; timerRef.current = 0
+      }
+      return
+    }
+
+    /* ── RETURN：從遠端位置插值回軌道，無瞬移 ── */
+    if (st === S.RETURN) {
+      const dur = 3.5
+      const p   = Math.min(1, timerRef.current / dur)
+      // smoothstep：開始慢、結尾快
+      const e   = p * p * (3 - 2 * p)
+
+      // 軌道目標也在移動（高速）
+      const retMul = 7 * (1 - p) + 1
+      angleRef.current += delta * OS * retMul
+      const target = orbitPos(angleRef.current)
+
+      // 從遠端位置插值到軌道
+      const px = farPosRef.current.x + (target.x - farPosRef.current.x) * e
+      const py = farPosRef.current.y + (target.y - farPosRef.current.y) * e
+      const pz = farPosRef.current.z + (target.z - farPosRef.current.z) * e
+      groupRef.current.position.set(px, py, pz)
+
+      // 朝軌道目標方向
+      const moveDir = target.clone().sub(groupRef.current.position)
+      if (moveDir.length() > 0.01) {
+        groupRef.current.lookAt(groupRef.current.position.clone().add(moveDir.normalize()))
+      }
+
+      starPos.current.x = px; starPos.current.y = py; starPos.current.z = pz
+      boostRef.current += (1.0 - boostRef.current) * 0.025
+
+      if (timerRef.current > dur) {
+        groupRef.current.position.copy(target)
+        stateRef.current = S.ORBIT; timerRef.current = 0; cooldownRef.current = 15
+      }
+    }
   })
 
   return (
@@ -145,7 +247,7 @@ function Battlecruiser({ starPos }) {
 
       {/* 引擎核心光球 */}
       <group position={[0, 0, -1.0]}>
-        <EngineCore />
+        <EngineCore boostRef={boostRef} />
       </group>
     </group>
   )
