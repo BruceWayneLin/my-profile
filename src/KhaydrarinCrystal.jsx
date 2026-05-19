@@ -109,13 +109,14 @@ function Battlecruiser({ starPos }) {
   const { scene }   = useGLTF('/models/battlecruiser.glb')
   const groupRef    = useRef()
   const angleRef    = useRef(OA)
-  const boostRef    = useRef(1.0)
-  const stateRef    = useRef(S.ORBIT)
-  const timerRef    = useRef(0)
-  const blastDirRef = useRef(new THREE.Vector3())
-  const farPosRef   = useRef(new THREE.Vector3())
-  const cooldownRef = useRef(20)
-  const prevPzRef   = useRef(0)
+  const boostRef      = useRef(1.0)
+  const stateRef      = useRef(S.ORBIT)
+  const timerRef      = useRef(0)
+  const blastDirRef   = useRef(new THREE.Vector3())
+  const farPosRef     = useRef(new THREE.Vector3())
+  const cooldownRef   = useRef(20)
+  const prevPzRef     = useRef(0)
+  const slerpRef      = useRef(0.12)  // 動態 slerp 因子
 
   useFrame(({ clock }, delta) => {
     if (!groupRef.current) return
@@ -137,7 +138,14 @@ function Battlecruiser({ starPos }) {
       boostRef.current += (1.0 - boostRef.current) * 0.05
 
       groupRef.current.position.copy(orbitPos(angleRef.current))
-      groupRef.current.lookAt(op2)
+
+      // slerp 因子：剛進入 ORBIT 時快速對齊，之後慢慢穩定
+      slerpRef.current = Math.max(0.08, slerpRef.current * 0.92)
+      const dummy = new THREE.Object3D()
+      dummy.position.copy(groupRef.current.position)
+      dummy.lookAt(op2)
+      groupRef.current.quaternion.slerp(dummy.quaternion, slerpRef.current)
+
       starPos.current.x = op.x; starPos.current.y = op.y; starPos.current.z = op.z
 
       const pz = op.z
@@ -222,7 +230,12 @@ function Battlecruiser({ starPos }) {
       boostRef.current += (1.0 - boostRef.current) * 0.025
 
       if (timerRef.current > dur) {
-        groupRef.current.position.copy(target)
+        // 從當前實際位置反算對應的軌道角度，接上去不跳
+        const cur = groupRef.current.position
+        const dx  = cur.x - OC.x
+        const dz  = cur.z - OC.z
+        angleRef.current = Math.atan2(dz / (Math.cos(OT) || 0.001), dx)
+        slerpRef.current = 0.5
         stateRef.current = S.ORBIT; timerRef.current = 0; cooldownRef.current = 15
       }
     }
