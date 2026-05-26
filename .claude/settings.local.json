@@ -21,7 +21,9 @@
       "Bash(git checkout *)",
       "Bash(curl -s -o space_bg.jpg \"https://s3-us-west-2.amazonaws.com/s.cdpn.io/1037366/space1.jpg\" -w \"%{http_code}\")",
       "Bash(curl -s -o planet2.png \"https://s3-us-west-2.amazonaws.com/s.cdpn.io/1037366/planet2.png\")",
-      "Bash(npm list *)"
+      "Bash(npm list *)",
+      "Bash(cp \"/Users/sk/Downloads/Dark Orchestral Scores for Ruthless Ascensions [FL7JlS5fIFc].mp3\" \"/Users/sk/Desktop/portfolio-react/public/audio/\")",
+      "Bash(cp \"/Users/sk/Downloads/Om Chanting - 10 min.mp3\" \"/Users/sk/Desktop/portfolio-react/public/audio/\")"
     ]
   }
 }

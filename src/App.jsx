@@ -1199,11 +1199,21 @@ function Footer() {
 /* ══════════════════════════════════════════
    BGM PLAYER
 ══════════════════════════════════════════ */
+const TRACKS = [
+  { src: '/audio/terran-bgm.mp3',   title: 'Terran BGM — StarCraft Live Concert' },
+  { src: '/audio/terran-bgm-2.mp3', title: 'Terran 3 (Cover) 2.0' },
+  { src: '/audio/terran-bgm-3.mp3', title: 'Terran Theme 1 — Lithium Remix' },
+  { src: '/audio/Dark Orchestral Scores for Ruthless Ascensions [FL7JlS5fIFc].mp3', title: 'Dark Orchestral Scores for Ruthless Ascensions' },
+].sort(() => Math.random() - 0.5)
+
 function BgmPlayer() {
-  const audioRef = useRef(null)
-  const [playing, setPlaying] = useState(false)
-  const [started, setStarted] = useState(false)
-  const [volume, setVolume] = useState(0.35)
+  const audioRef   = useRef(null)
+  const [playing,  setPlaying]  = useState(false)
+  const [started,  setStarted]  = useState(false)
+  const [volume,   setVolume]   = useState(0.35)
+  const [trackIdx, setTrackIdx] = useState(() => Math.floor(Math.random() * TRACKS.length))
+
+  const track = TRACKS[trackIdx]
 
   useEffect(() => {
     const tryPlay = () => {
@@ -1211,34 +1221,41 @@ function BgmPlayer() {
       const audio = audioRef.current
       if (!audio) return
       audio.volume = volume
-      audio.play().then(() => {
-        setPlaying(true)
-        setStarted(true)
-      }).catch(() => {})
+      audio.play().then(() => { setPlaying(true); setStarted(true) }).catch(() => {})
     }
-    window.addEventListener('mousemove', tryPlay, { once: true })
-    window.addEventListener('click',     tryPlay, { once: true })
-    window.addEventListener('keydown',   tryPlay, { once: true })
-    window.addEventListener('touchstart',tryPlay, { once: true })
+    window.addEventListener('mousemove',  tryPlay, { once: true })
+    window.addEventListener('click',      tryPlay, { once: true })
+    window.addEventListener('keydown',    tryPlay, { once: true })
+    window.addEventListener('touchstart', tryPlay, { once: true })
     return () => {
-      window.removeEventListener('mousemove', tryPlay)
-      window.removeEventListener('click',     tryPlay)
-      window.removeEventListener('keydown',   tryPlay)
-      window.removeEventListener('touchstart',tryPlay)
+      window.removeEventListener('mousemove',  tryPlay)
+      window.removeEventListener('click',      tryPlay)
+      window.removeEventListener('keydown',    tryPlay)
+      window.removeEventListener('touchstart', tryPlay)
     }
   }, [started, volume])
 
   const toggle = () => {
     const audio = audioRef.current
     if (!audio) return
-    if (playing) {
-      audio.pause()
-      setPlaying(false)
-    } else {
-      audio.play()
-      setPlaying(true)
-      setStarted(true)
-    }
+    if (playing) { audio.pause(); setPlaying(false) }
+    else         { audio.play();  setPlaying(true); setStarted(true) }
+  }
+
+  const prevTrack = () => changeTrack((trackIdx - 1 + TRACKS.length) % TRACKS.length)
+  const nextTrack = () => changeTrack((trackIdx + 1) % TRACKS.length)
+
+  const changeTrack = idx => {
+    const audio = audioRef.current
+    if (!audio) return
+    const wasPlaying = playing
+    audio.pause()
+    setTrackIdx(idx)
+    setTimeout(() => {
+      audio.load()
+      audio.volume = volume
+      if (wasPlaying) audio.play().then(() => setPlaying(true)).catch(() => {})
+    }, 50)
   }
 
   const handleVolume = e => {
@@ -1249,21 +1266,22 @@ function BgmPlayer() {
 
   return (
     <div className={`bgm-player ${playing ? 'bgm-playing' : ''}`}>
-      <audio ref={audioRef} src="/audio/terran-bgm.mp3" loop preload="auto" />
-      <button className="bgm-btn" onClick={toggle} title={playing ? 'Pause BGM' : 'Play BGM'}>
+      <audio ref={audioRef} src={track.src} preload="auto"
+        onEnded={nextTrack} />
+      <button className="bgm-btn" onClick={toggle} title={playing ? 'Pause' : 'Play'}>
         {playing ? '♪' : '♩'}
       </button>
       <div className="bgm-info">
-        <span className={`bgm-title ${playing ? 'bgm-scroll' : ''}`}>
-          Terran BGM — StarCraft Live Concert
-        </span>
-        <input
-          className="bgm-volume"
-          type="range" min="0" max="1" step="0.05"
-          value={volume}
-          onChange={handleVolume}
-        />
+        <span className={`bgm-title ${playing ? 'bgm-scroll' : ''}`}>{track.title}</span>
+        <input className="bgm-volume" type="range" min="0" max="1" step="0.05"
+          value={volume} onChange={handleVolume} />
       </div>
+      <button className="bgm-next" onClick={nextTrack} title="Next Track">
+        <svg width="12" height="12" viewBox="0 0 14 14">
+          <polygon points="1,1 10,7 1,13" fill="currentColor"/>
+          <rect x="11" y="1" width="2.5" height="12" fill="currentColor" rx="1"/>
+        </svg>
+      </button>
     </div>
   )
 }
