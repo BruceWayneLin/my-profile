@@ -1204,6 +1204,9 @@ const TRACKS = [
   { src: '/audio/terran-bgm-2.mp3', title: 'Terran 3 (Cover) 2.0' },
   { src: '/audio/terran-bgm-3.mp3', title: 'Terran Theme 1 — Lithium Remix' },
   { src: '/audio/Dark Orchestral Scores for Ruthless Ascensions [FL7JlS5fIFc].mp3', title: 'Dark Orchestral Scores for Ruthless Ascensions' },
+  { src: '/audio/Starcraft Lo-Fi - Terran 2.mp3', title: 'StarCraft Lo-Fi — Terran 2' },
+  { src: '/audio/Starcraft Lo-Fi - Terran 3.mp3', title: 'StarCraft Lo-Fi — Terran 3' },
+  { src: '/audio/StarCraft - Terran Theme 1 Lithium Remix.mp3', title: 'Terran Theme 1 — Lithium Remix' },
 ].sort(() => Math.random() - 0.5)
 
 function BgmPlayer() {
