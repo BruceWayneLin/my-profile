@@ -1398,7 +1398,7 @@ section {
 .form-group textarea { resize: vertical; min-height: 120px; }
 
 .submit-btn {
-  align-self: flex-start;
+  align-self: center;
   padding: 11px 34px;
   background: transparent;
   border: 1px solid var(--c-cyan);
