@@ -116,7 +116,7 @@ const PORTFOLIO = [
     icon: '🤖',
     tech: 'Multi-Agent · Algorithmic Trading · Quant Finance',
     desc: '多 Agent 量化交易系統，個人獨立開發：策略 × 市場組合出數十個 agent，含 real/virtual 影子倉、分級晉升機制、PF / WR / R 倍數 / MFE-MAE 績效追蹤、訊號攔截原因統計與即時交易紀錄。 — Multi-agent quant trading system: dozens of strategy × market agents with real/virtual shadow trading, tiered promotion, PF / WR / R-multiple / MFE-MAE analytics, signal-reject diagnostics & live trade ledger.',
-    url: 'https://trade.jungwei.com.tw',
+    url: null,
     video: '/videos/quant-trading.mov',
     tag: 'live',
   },
