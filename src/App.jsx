@@ -114,9 +114,10 @@ const PORTFOLIO = [
     name: '量化交易平台',
     nameEn: 'Quantitative Trading Platform',
     icon: '🤖',
-    tech: 'Algorithmic Trading · Quant Finance',
-    desc: '量化交易策略平台，個人獨立開發 — Quantitative trading strategy platform, independently developed.',
+    tech: 'Multi-Agent · Algorithmic Trading · Quant Finance',
+    desc: '多 Agent 量化交易系統，個人獨立開發：策略 × 市場組合出數十個 agent，含 real/virtual 影子倉、分級晉升機制、PF / WR / R 倍數 / MFE-MAE 績效追蹤、訊號攔截原因統計與即時交易紀錄。 — Multi-agent quant trading system: dozens of strategy × market agents with real/virtual shadow trading, tiered promotion, PF / WR / R-multiple / MFE-MAE analytics, signal-reject diagnostics & live trade ledger.',
     url: 'https://trade.jungwei.com.tw',
+    video: '/videos/quant-trading.mov',
     tag: 'live',
   },
   // ── Local demos (靜態 build) ─────────────────
@@ -1029,11 +1030,22 @@ function PortfolioCard({ item, index, onPlay }) {
         </div>
         <div className="flip-back">
           <p>{item.desc}</p>
-          {item.video
-            ? <button className="visit-btn" onClick={onPlay}>▶ PLAY VIDEO</button>
-            : item.url
-              ? <a className="visit-btn" href={item.url} target="_blank" rel="noreferrer">VISIT →</a>
-              : <span className="no-url">Internal / Private</span>
+          {item.video || item.url
+            ? (
+              <div className="flip-actions">
+                {item.video && <button className="visit-btn" onClick={onPlay}>▶ PLAY VIDEO</button>}
+                {item.url && (
+                  <a
+                    className="visit-btn"
+                    href={item.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={e => e.stopPropagation()}
+                  >VISIT →</a>
+                )}
+              </div>
+            )
+            : <span className="no-url">Internal / Private</span>
           }
         </div>
       </div>

@@ -1234,6 +1234,13 @@ section {
   box-shadow: var(--glow-purple);
 }
 
+.flip-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
 .no-url {
   font-family: 'Rajdhani', sans-serif;
   font-size: 0.7rem;
