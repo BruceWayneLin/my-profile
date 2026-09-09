@@ -1219,6 +1219,7 @@ const TRACKS = [
   { src: '/audio/Starcraft Lo-Fi - Terran 2.mp3', title: 'StarCraft Lo-Fi — Terran 2' },
   { src: '/audio/Starcraft Lo-Fi - Terran 3.mp3', title: 'StarCraft Lo-Fi — Terran 3' },
   { src: '/audio/StarCraft - Terran Theme 1 Lithium Remix.mp3', title: 'Terran Theme 1 — Lithium Remix' },
+  { src: '/audio/KOF XV - The Origin Of Mind (Orochi Theme) Epic Remix.mp3', title: 'KOF XV — The Origin Of Mind (Orochi Theme) Epic Remix' },
 ].sort(() => Math.random() - 0.5)
 
 function BgmPlayer() {
