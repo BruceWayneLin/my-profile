@@ -245,6 +245,16 @@ const PORTFOLIO = [
     tag: 'private',
   },
   {
+    name: '經典百家',
+    nameEn: 'Classic Baccarat',
+    icon: '🎴',
+    tech: 'Vue3 · WebSocket · Node.js',
+    desc: '新款經典百家樂手機遊戲：莊 / 閒 / 和 / 對子 / 超級 6 下注區、即時開牌動畫、免佣切換、籌碼下注與大路 / 珠盤路路單 — New classic Baccarat mobile game with Banker / Player / Tie / Pair / Super 6 bets, live card-reveal animation, no-commission toggle, chip betting & bead / big-road scoreboards.',
+    url: null,
+    video: '/videos/classic-baccarat.mp4',
+    tag: 'private',
+  },
+  {
     name: '即時遊戲平台',
     nameEn: 'Real-time Gaming Platform',
     icon: '⚡',
