@@ -87,6 +87,7 @@ const SKILLS = [
   { name: 'Unity',        cat: 'other'    },
   { name: 'Pixi.js',      cat: 'other'    },
   { name: 'Spine 2D',     cat: 'other'    },
+  { name: 'Cocos Creator', cat: 'other'   },
   { name: 'Git',          cat: 'other'    },
   { name: 'Linux',        cat: 'other'    },
 ]
@@ -605,7 +606,7 @@ const HUD_SECTORS = [
   { id: 'top',       code: 'SEC·00', name: 'HOME',   sub: 'ENGINEER PROFILE' },
   { id: 'timeline',  code: 'SEC·01', name: 'ORIGIN', sub: '7 MILESTONES' },
   { id: 'about',     code: 'SEC·02', name: 'ABOUT',  sub: 'PERSONNEL FILE' },
-  { id: 'skills',    code: 'SEC·03', name: 'TECH',   sub: '28 SKILLS' },
+  { id: 'skills',    code: 'SEC·03', name: 'TECH',   sub: '29 SKILLS' },
   { id: 'portfolio', code: 'SEC·04', name: 'WORKS',  sub: '17 PROJECTS' },
   { id: 'contact',   code: 'SEC·05', name: 'COMMS',  sub: 'CHANNEL OPEN' },
 ]
