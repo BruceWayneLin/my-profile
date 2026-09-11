@@ -74,6 +74,7 @@ const SKILLS = [
   { name: 'Laravel/PHP',  cat: 'backend'  },
   { name: 'Express.js',   cat: 'backend'  },
   { name: 'C / C++',      cat: 'backend'  },
+  { name: 'Swift',        cat: 'backend'  },
   { name: 'Docker',       cat: 'devops'   },
   { name: 'Kubernetes',   cat: 'devops'   },
   { name: 'AWS',          cat: 'devops'   },
@@ -118,6 +119,16 @@ const PORTFOLIO = [
     desc: '多 Agent 量化交易系統，個人獨立開發：策略 × 市場組合出數十個 agent，含 real/virtual 影子倉、分級晉升機制、PF / WR / R 倍數 / MFE-MAE 績效追蹤、訊號攔截原因統計與即時交易紀錄。 — Multi-agent quant trading system: dozens of strategy × market agents with real/virtual shadow trading, tiered promotion, PF / WR / R-multiple / MFE-MAE analytics, signal-reject diagnostics & live trade ledger.',
     url: null,
     video: '/videos/quant-trading.mov',
+    tag: 'live',
+  },
+  {
+    name: '日文學習 App',
+    nameEn: 'Japanese Learning App',
+    icon: '🈂️',
+    tech: 'Swift · SwiftUI · iOS',
+    desc: '個人獨立開發的日文學習 iOS App：五十音／片假名練習、N5–N1 單字與文法庫、模擬試題（漢字讀音／文字語彙）、每日分級日文新聞閱讀，含振り仮名切換、字級調整與各項學習進度追蹤。 — Independently built iOS Japanese-learning app: kana/katakana drills, N5–N1 vocab & grammar library, JLPT-style mock exams (kanji reading / vocabulary), daily level-graded Japanese news reader, with furigana toggle, font-size control & per-category progress tracking.',
+    url: null,
+    video: '/videos/nihongo-app.mp4',
     tag: 'live',
   },
   // ── Local demos (靜態 build) ─────────────────
@@ -583,7 +594,7 @@ const HUD_SECTORS = [
   { id: 'top',       code: 'SEC·00', name: 'HOME',   sub: 'ENGINEER PROFILE' },
   { id: 'timeline',  code: 'SEC·01', name: 'ORIGIN', sub: '7 MILESTONES' },
   { id: 'about',     code: 'SEC·02', name: 'ABOUT',  sub: 'PERSONNEL FILE' },
-  { id: 'skills',    code: 'SEC·03', name: 'TECH',   sub: '26 SKILLS' },
+  { id: 'skills',    code: 'SEC·03', name: 'TECH',   sub: '27 SKILLS' },
   { id: 'portfolio', code: 'SEC·04', name: 'WORKS',  sub: '17 PROJECTS' },
   { id: 'contact',   code: 'SEC·05', name: 'COMMS',  sub: 'CHANNEL OPEN' },
 ]
