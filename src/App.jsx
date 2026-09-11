@@ -86,6 +86,7 @@ const SKILLS = [
   { name: 'WebSocket',    cat: 'other'    },
   { name: 'Unity',        cat: 'other'    },
   { name: 'Pixi.js',      cat: 'other'    },
+  { name: 'Spine 2D',     cat: 'other'    },
   { name: 'Git',          cat: 'other'    },
   { name: 'Linux',        cat: 'other'    },
 ]
@@ -243,6 +244,16 @@ const PORTFOLIO = [
     url: null,
     video: '/videos/chat.mov',
     tag: 'private',
+  },
+  {
+    name: 'Spine 骨骼動畫練習',
+    nameEn: 'Spine Animation Practice — Maw Beast',
+    icon: '👹',
+    tech: 'Spine 2D · Mesh Deform',
+    desc: '自己練習做的 Spine 2D 骨骼動畫作品「巨口獸」，透過網格變形（Mesh Deform）製作張口咀嚼動態，包含待機、咆哮、咬擊、受擊、死亡等狀態動畫。 — Personal Spine 2D skeletal-animation practice piece "Maw Beast": mesh-deform driven mouth/jaw motion with idle, roar, bite, hit & death state animations.',
+    url: null,
+    video: '/videos/spine-maw-beast.mp4',
+    tag: 'demo',
   },
   // ── Private / Internal work ──────────────────
   {
@@ -594,7 +605,7 @@ const HUD_SECTORS = [
   { id: 'top',       code: 'SEC·00', name: 'HOME',   sub: 'ENGINEER PROFILE' },
   { id: 'timeline',  code: 'SEC·01', name: 'ORIGIN', sub: '7 MILESTONES' },
   { id: 'about',     code: 'SEC·02', name: 'ABOUT',  sub: 'PERSONNEL FILE' },
-  { id: 'skills',    code: 'SEC·03', name: 'TECH',   sub: '27 SKILLS' },
+  { id: 'skills',    code: 'SEC·03', name: 'TECH',   sub: '28 SKILLS' },
   { id: 'portfolio', code: 'SEC·04', name: 'WORKS',  sub: '17 PROJECTS' },
   { id: 'contact',   code: 'SEC·05', name: 'COMMS',  sub: 'CHANNEL OPEN' },
 ]
