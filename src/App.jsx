@@ -2,7 +2,10 @@ import { useState, useRef, useEffect } from 'react'
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion'
 import emailjs from '@emailjs/browser'
 import KhaydrarinCrystal from './KhaydrarinCrystal'
+import FeaturedProject from './FeaturedProject'
+import { TK_CASINO } from './data/featuredProject'
 import './index.css'
+import './App.css'
 
 /* ══════════════════════════════════════════
    DATA
@@ -58,6 +61,7 @@ const CAT_COLOR = {
   devops:   '#00ffea',
   db:       '#ff4af8',
   other:    '#ffaa00',
+  testing:  '#99c9b5',
 }
 
 const SKILLS = [
@@ -65,6 +69,8 @@ const SKILLS = [
   { name: 'React',        cat: 'frontend' },
   { name: 'Angular',      cat: 'frontend' },
   { name: 'TypeScript',   cat: 'frontend' },
+  { name: 'Vite',         cat: 'frontend' },
+  { name: 'React Router', cat: 'frontend' },
   { name: 'JavaScript',   cat: 'frontend' },
   { name: 'Tailwind CSS', cat: 'frontend' },
   { name: 'SCSS',         cat: 'frontend' },
@@ -73,19 +79,35 @@ const SKILLS = [
   { name: 'Go (Golang)',  cat: 'backend'  },
   { name: 'Laravel/PHP',  cat: 'backend'  },
   { name: 'Express.js',   cat: 'backend'  },
+  { name: 'Fastify',      cat: 'backend'  },
+  { name: 'Lua',          cat: 'backend'  },
+  { name: 'Ed25519 JWT',  cat: 'backend'  },
   { name: 'C / C++',      cat: 'backend'  },
   { name: 'Swift',        cat: 'backend'  },
   { name: 'Docker',       cat: 'devops'   },
   { name: 'Kubernetes',   cat: 'devops'   },
   { name: 'AWS',          cat: 'devops'   },
   { name: 'CI/CD',        cat: 'devops'   },
+  { name: 'GitHub Actions', cat: 'devops' },
+  { name: 'ArgoCD',       cat: 'devops'   },
+  { name: 'Helm',         cat: 'devops'   },
+  { name: 'Kustomize',    cat: 'devops'   },
+  { name: 'KEDA',         cat: 'devops'   },
+  { name: 'Caddy',        cat: 'devops'   },
+  { name: 'Prometheus',   cat: 'devops'   },
+  { name: 'Grafana',      cat: 'devops'   },
   { name: 'MySQL',        cat: 'db'       },
   { name: 'PostgreSQL',   cat: 'db'       },
   { name: 'MongoDB',      cat: 'db'       },
   { name: 'Redis',        cat: 'db'       },
+  { name: 'Redis Streams', cat: 'db'      },
+  { name: 'Vitest',       cat: 'testing'  },
+  { name: 'k6',           cat: 'testing'  },
+  { name: 'Playwright',   cat: 'testing'  },
   { name: 'WebSocket',    cat: 'other'    },
   { name: 'Unity',        cat: 'other'    },
   { name: 'Pixi.js',      cat: 'other'    },
+  { name: 'WebGL',        cat: 'other'    },
   { name: 'Spine 2D',     cat: 'other'    },
   { name: 'Cocos Creator', cat: 'other'   },
   { name: 'Git',          cat: 'other'    },
@@ -94,6 +116,7 @@ const SKILLS = [
 
 // tag: 'live' | 'demo' | 'private'
 const PORTFOLIO = [
+  TK_CASINO,
   // ── Live sites ──────────────────────────────
   {
     name: 'Portfolio v1',
@@ -223,7 +246,6 @@ const PORTFOLIO = [
     tech: 'Vue3 · WebSocket · PixiJS',
     desc: '賽鴿競速遊戲前端，即時賠率、動畫賽道與下注系統 — Pigeon racing game frontend with real-time odds, animated track & betting system.',
     url: null,
-    video: '/videos/pigeon-game.mov',
     tag: 'private',
   },
   {
@@ -233,7 +255,6 @@ const PORTFOLIO = [
     tech: 'Vue3 · Node.js · WebSocket',
     desc: '賽鴿遊戲控制後台，開盤管理、賽事操控與即時監控 — Admin panel for pigeon racing game with race management, event control & real-time monitoring.',
     url: null,
-    video: '/videos/pigeon-admin.mov',
     tag: 'private',
   },
   {
@@ -606,8 +627,8 @@ const HUD_SECTORS = [
   { id: 'top',       code: 'SEC·00', name: 'HOME',   sub: 'ENGINEER PROFILE' },
   { id: 'timeline',  code: 'SEC·01', name: 'ORIGIN', sub: '7 MILESTONES' },
   { id: 'about',     code: 'SEC·02', name: 'ABOUT',  sub: 'PERSONNEL FILE' },
-  { id: 'skills',    code: 'SEC·03', name: 'TECH',   sub: '29 SKILLS' },
-  { id: 'portfolio', code: 'SEC·04', name: 'WORKS',  sub: '17 PROJECTS' },
+  { id: 'skills',    code: 'SEC·03', name: 'TECH',   sub: `${SKILLS.length} SKILLS` },
+  { id: 'portfolio', code: 'SEC·04', name: 'WORKS',  sub: `${PORTFOLIO.length} PROJECTS` },
   { id: 'contact',   code: 'SEC·05', name: 'COMMS',  sub: 'CHANNEL OPEN' },
 ]
 
@@ -959,10 +980,11 @@ const SKILL_CAT_LABEL = {
   devops:   'DevOps',
   db:       'Database',
   other:    'Other',
+  testing:  'Testing',
 }
 
 function Skills() {
-  const cats = ['frontend', 'backend', 'devops', 'db', 'other']
+  const cats = ['frontend', 'backend', 'devops', 'db', 'testing', 'other']
   return (
     <section id="skills" className="skills-section">
       <LaserGrid color="#00ffea" opacity={0.06} />
@@ -1036,6 +1058,8 @@ function VideoModal({ item, onClose }) {
 }
 
 function PortfolioCard({ item, index, onPlay }) {
+  if (item === TK_CASINO) return <FeaturedProject />
+
   return (
     <motion.div
       className={`flip-card${item.video ? ' has-video' : ''}`}
@@ -1291,7 +1315,6 @@ function BgmPlayer() {
     else         { audio.play();  setPlaying(true); setStarted(true) }
   }
 
-  const prevTrack = () => changeTrack((trackIdx - 1 + TRACKS.length) % TRACKS.length)
   const nextTrack = () => changeTrack((trackIdx + 1) % TRACKS.length)
 
   const changeTrack = idx => {

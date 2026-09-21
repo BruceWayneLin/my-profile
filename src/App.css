@@ -1,0 +1,108 @@
+/* Effects are scoped to TK Casino. The original design lives in index.css. */
+.tk-project {
+  grid-column: 1 / -1;
+  position: relative;
+  isolation: isolate;
+  min-width: 0;
+  padding: 2rem;
+  border: 1px solid rgba(0, 255, 234, 0.3);
+  border-radius: 6px;
+  background: radial-gradient(ellipse at 80% 0%, rgba(108, 35, 180, 0.18), transparent 60%), rgba(5, 9, 23, 0.96);
+  box-shadow: 0 0 35px rgba(74, 158, 255, 0.1), inset 0 0 45px rgba(74, 158, 255, 0.025);
+}
+
+.tk-project::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(110deg, #00ffea, #4a9eff, #b44aff, #ff4af8, #00ffea);
+  background-size: 300% 300%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.75;
+}
+
+.tk-project > [class^='flip-corner-'] { border-color: var(--c-cyan); opacity: 1; pointer-events: none; }
+.tk-project-header { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1.6rem; }
+.tk-project-badge { display: flex; align-items: center; gap: 10px; font-family: 'Orbitron', sans-serif; font-size: 0.55rem; letter-spacing: 2px; color: var(--c-cyan); text-shadow: var(--glow-cyan); }
+.tk-project-badge i { width: 6px; height: 6px; background: var(--c-cyan); box-shadow: var(--glow-cyan); transform: rotate(45deg); }
+.tk-project-live { color: var(--c-green); font-family: 'Rajdhani', sans-serif; font-size: 0.64rem; letter-spacing: 1.5px; }
+.tk-project-overview { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 2rem; align-items: center; }
+.tk-project-image { display: block; overflow: hidden; position: relative; border: 1px solid rgba(74, 158, 255, 0.4); border-radius: 4px; box-shadow: 0 0 24px rgba(74, 158, 255, 0.08); }
+.tk-project-image img { display: block; width: 100%; height: auto; }
+.tk-project-image::after { content: ''; position: absolute; top: 0; bottom: 0; left: -70%; width: 55%; background: linear-gradient(100deg, transparent, rgba(126, 224, 255, 0.16), transparent); transform: skewX(-18deg); pointer-events: none; }
+.tk-image-caption { position: absolute; bottom: 0; left: 0; right: 0; display: flex; justify-content: space-between; padding: 1.8rem 0.9rem 0.7rem; background: linear-gradient(transparent, rgba(2, 7, 17, 0.96)); font-family: 'Orbitron', sans-serif; font-size: 0.5rem; letter-spacing: 2px; color: var(--c-cyan); }
+.tk-image-caption > span { font-size: 0.9rem; }
+.tk-project-content { min-width: 0; }
+.tk-project h3 { font-family: 'Orbitron', sans-serif; font-size: clamp(1.6rem, 3vw, 2.1rem); letter-spacing: 4px; color: #e8f0ff; text-shadow: var(--glow-blue); }
+.tk-project-subtitle { margin-top: 0.5rem; font-size: 0.76rem; letter-spacing: 1.2px; color: var(--c-blue); }
+.tk-project-authorship { margin-top: 0.65rem; font-family: 'Rajdhani', sans-serif; font-size: 1.1rem; color: var(--c-cyan); }
+.tk-project-description { margin-top: 0.85rem; color: #bacde8; font-size: 0.78rem; line-height: 1.9; }
+.tk-project-stats { display: flex; flex-wrap: wrap; gap: 1.3rem; margin-top: 1rem; font-family: 'Rajdhani', sans-serif; }
+.tk-project-stats > span { display: flex; flex-direction: column; gap: 4px; color: #8fa9ce; font-size: 0.58rem; letter-spacing: 1.4px; }
+.tk-project-stats strong { font-family: 'Orbitron', sans-serif; font-size: 1rem; color: #d6e6ff; letter-spacing: 2px; }
+.tk-project .tech-label { margin-top: 1rem; line-height: 1.8; letter-spacing: 1px; }
+.tk-project-visit { display: inline-flex; align-items: center; gap: 1.5rem; margin-top: 1rem; padding: 9px 18px; border-color: var(--c-cyan); color: var(--c-cyan); text-shadow: var(--glow-cyan); background: rgba(0, 255, 234, 0.045); }
+.tk-project-visit:hover { background: rgba(0, 255, 234, 0.13); box-shadow: var(--glow-cyan); }
+.tk-project-visit > span { transition: transform 0.2s; }
+.tk-project-visit:hover > span { transform: translate(3px, -3px); }
+.tk-game-heading { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.6rem; margin: 2rem 0 1rem; padding-top: 1.2rem; border-top: 1px solid rgba(74, 158, 255, 0.18); font-family: 'Rajdhani', sans-serif; font-size: 0.64rem; color: var(--c-cyan); letter-spacing: 1.8px; }
+.tk-game-heading > span:last-child { color: #829ec6; font-size: 0.58rem; }
+.tk-game-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 0.65rem; }
+.tk-game { min-width: 0; display: block; border: 1px solid color-mix(in srgb, var(--game-accent) 32%, transparent); border-radius: 4px; overflow: hidden; background: #080d1c; color: #dbe8fc; text-decoration: none; transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s; }
+.tk-game-art { position: relative; overflow: hidden; aspect-ratio: 0.78; background: radial-gradient(circle, color-mix(in srgb, var(--game-accent) 18%, #070b14), #070b14); }
+.tk-game-art::after { content: ''; position: absolute; inset: 0; background: linear-gradient(transparent 60%, #080d1c); pointer-events: none; }
+.tk-game-bg { width: 100%; height: 100%; object-fit: cover; opacity: 0.75; }
+.tk-game-character { position: absolute; width: 100%; height: 100%; object-fit: contain; object-position: bottom; inset: 0; transition: transform 0.4s; }
+.tk-game-number { position: absolute; top: 7px; left: 8px; color: var(--game-accent); font-family: 'Orbitron', sans-serif; font-size: 0.45rem; text-shadow: 0 0 8px #000; }
+.tk-game-arrow { position: absolute; top: 5px; right: 7px; color: var(--game-accent); font-size: 0.85rem; opacity: 0; transition: opacity 0.25s; }
+.tk-nova-wordmark { position: absolute; inset: 0; display: grid; place-items: center; font-family: 'Orbitron', sans-serif; font-size: clamp(0.8rem, 1.3vw, 1.25rem); letter-spacing: 3px; text-shadow: var(--glow-blue); color: #e2edff; }
+.tk-game-label { padding: 0.7rem 0.5rem; }
+.tk-game-label > span { color: var(--game-accent); font-family: 'Rajdhani', sans-serif; font-size: 0.5rem; letter-spacing: 1.2px; }
+.tk-game-label h4 { font-size: 0.66rem; line-height: 1.6; font-weight: 400; margin-top: 0.25rem; }
+.tk-game-label p { color: #8da4c4; font-family: 'Rajdhani', sans-serif; font-size: 0.6rem; line-height: 1.4; margin-top: 0.2rem; }
+.tk-game:hover, .tk-game:focus-visible { transform: translateY(-7px); border-color: var(--game-accent); box-shadow: 0 8px 24px color-mix(in srgb, var(--game-accent) 22%, transparent); }
+.tk-game:hover .tk-game-character, .tk-game:focus-visible .tk-game-character { transform: scale(1.07); }
+.tk-game:hover .tk-game-arrow, .tk-game:focus-visible .tk-game-arrow { opacity: 1; }
+.tk-project-stack { margin-top: 1.3rem; border-top: 1px solid rgba(74, 158, 255, 0.2); padding-top: 0.9rem; }
+.tk-project-stack summary { width: fit-content; padding: 0.4rem 0; cursor: pointer; font-family: 'Rajdhani', sans-serif; font-size: 0.75rem; letter-spacing: 2px; color: var(--c-cyan); }
+.tk-project-stack-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.3rem; margin-top: 1.2rem; }
+.tk-project-stack h4 { margin-bottom: 0.4rem; font-family: 'Rajdhani', sans-serif; font-size: 0.8rem; letter-spacing: 1px; color: var(--c-blue); }
+.tk-project-stack p { font-size: 0.75rem; line-height: 1.8; color: #b2c8e4; }
+.tk-project a:focus-visible, .tk-project summary:focus-visible { outline: 2px solid var(--c-cyan); outline-offset: 4px; }
+.tk-sparks { position: absolute; inset: 0; overflow: hidden; z-index: -1; border-radius: inherit; pointer-events: none; }
+.tk-sparks i { position: absolute; bottom: 0; left: calc(8% + var(--i) * 17%); width: 2px; height: 2px; background: var(--c-cyan); box-shadow: 0 0 7px 1px var(--c-blue); opacity: 0; }
+.tk-project-active::before { animation: tk-energy 7s linear infinite; }
+.tk-project-active h3 { animation: tk-title-glow 4s ease-in-out infinite alternate; }
+.tk-project-active .tk-project-image::after { animation: tk-scan 7s ease-in-out infinite; }
+.tk-project-active .tk-project-badge i { animation: tk-beacon 2.4s ease-in-out infinite; }
+.tk-project-active .tk-sparks i { animation: tk-spark 6s linear infinite; animation-delay: calc(var(--i) * -1s); }
+@keyframes tk-energy { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+@keyframes tk-title-glow { from { text-shadow: 0 0 12px #4a9eff66, 0 0 28px #4a9eff33; } to { text-shadow: 0 0 15px #00ffea88, 0 0 38px #b44aff66; } }
+@keyframes tk-scan { 0%, 20% { left: -70%; } 60%, 100% { left: 140%; } }
+@keyframes tk-beacon { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+@keyframes tk-spark { 0% { transform: translateY(0); opacity: 0; } 20%, 70% { opacity: 0.6; } 100% { transform: translate(20px, -500px); opacity: 0; } }
+@media (max-width: 1100px) { .tk-game-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (max-width: 768px) {
+  .tk-project { padding: 1.2rem; }
+  .tk-project-overview { grid-template-columns: minmax(0, 1fr); gap: 1.4rem; }
+  .tk-project-header { flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1.1rem; }
+  .tk-project-badge { font-size: 0.49rem; letter-spacing: 1.5px; }
+  .tk-project-live { font-size: 0.55rem; }
+  .tk-project h3 { font-size: 1.65rem; letter-spacing: 3px; }
+  .tk-project-subtitle { font-size: 0.69rem; letter-spacing: 0.5px; }
+  .tk-project-authorship { font-size: 0.95rem; }
+  .tk-game-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.7rem; }
+  .tk-game-label h4 { font-size: 0.75rem; }
+  .tk-game-label p { font-size: 0.7rem; }
+  .tk-nova-wordmark { font-size: 1.2rem; }
+  .tk-project-stack-grid { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tk-project::before, .tk-project *, .tk-project *::before, .tk-project *::after { animation: none !important; transition: none !important; }
+  .tk-game:hover, .tk-game:focus-visible, .tk-game:hover .tk-game-character, .tk-game:focus-visible .tk-game-character { transform: none; }
+}

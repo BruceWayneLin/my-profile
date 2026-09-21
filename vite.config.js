@@ -4,6 +4,9 @@ import fs from 'fs'
 import path from 'path'
 
 export default defineConfig({
+  optimizeDeps: {
+    entries: ['index.html'],
+  },
   build: {
     minify: 'terser',
     terserOptions: {
@@ -23,7 +26,7 @@ export default defineConfig({
 
           // strip query string
           const urlPath = req.url.split('?')[0]
-          let filePath = path.join(__dirname, 'public', urlPath)
+          let filePath = path.join(import.meta.dirname, 'public', urlPath)
 
           // directory request → look for index.html
           if (fs.existsSync(filePath) && fs.statSync(filePath).isDirectory()) {
