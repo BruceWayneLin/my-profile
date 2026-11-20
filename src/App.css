@@ -68,6 +68,16 @@
 .tk-game:hover, .tk-game:focus-visible { transform: translateY(-7px); border-color: var(--game-accent); box-shadow: 0 8px 24px color-mix(in srgb, var(--game-accent) 22%, transparent); }
 .tk-game:hover .tk-game-character, .tk-game:focus-visible .tk-game-character { transform: scale(1.07); }
 .tk-game:hover .tk-game-arrow, .tk-game:focus-visible .tk-game-arrow { opacity: 1; }
+.tk-project-description-en { margin-top: 0.5rem; color: #8fa9ce; font-family: 'Rajdhani', sans-serif; font-size: 0.86rem; line-height: 1.6; }
+.tk-feature-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.65rem; }
+.tk-feature-grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.tk-feature { display: block; min-width: 0; padding: 0.9rem 0.9rem 1rem; border: 1px solid color-mix(in srgb, var(--game-accent) 32%, transparent); border-radius: 4px; background: linear-gradient(160deg, color-mix(in srgb, var(--game-accent) 10%, #080d1c), #080d1c 70%); color: #dbe8fc; text-decoration: none; transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s; }
+.tk-feature-kind { display: flex; justify-content: space-between; color: var(--game-accent); font-family: 'Rajdhani', sans-serif; font-size: 0.56rem; letter-spacing: 1.4px; }
+.tk-feature h4 { margin-top: 0.45rem; font-size: 0.82rem; font-weight: 500; letter-spacing: 1px; }
+.tk-feature-name { margin-top: 0.15rem; color: #8da4c4; font-family: 'Orbitron', sans-serif; font-size: 0.55rem; letter-spacing: 1.6px; }
+.tk-feature-note { margin-top: 0.6rem; color: #b2c8e4; font-size: 0.7rem; line-height: 1.75; }
+.tk-feature-note-en { margin-top: 0.3rem; color: #8299bb; font-family: 'Rajdhani', sans-serif; font-size: 0.78rem; line-height: 1.5; }
+.tk-feature-link:hover, .tk-feature-link:focus-visible { transform: translateY(-5px); border-color: var(--game-accent); box-shadow: 0 8px 24px color-mix(in srgb, var(--game-accent) 22%, transparent); }
 .tk-project-stack { margin-top: 1.3rem; border-top: 1px solid rgba(74, 158, 255, 0.2); padding-top: 0.9rem; }
 .tk-project-stack summary { width: fit-content; padding: 0.4rem 0; cursor: pointer; font-family: 'Rajdhani', sans-serif; font-size: 0.75rem; letter-spacing: 2px; color: var(--c-cyan); }
 .tk-project-stack-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.3rem; margin-top: 1.2rem; }
@@ -101,8 +111,31 @@
   .tk-game-label p { font-size: 0.7rem; }
   .tk-nova-wordmark { font-size: 1.2rem; }
   .tk-project-stack-grid { grid-template-columns: minmax(0, 1fr); }
+  .tk-feature-grid, .tk-feature-grid-2 { grid-template-columns: minmax(0, 1fr); }
 }
 @media (prefers-reduced-motion: reduce) {
   .tk-project::before, .tk-project *, .tk-project *::before, .tk-project *::after { animation: none !important; transition: none !important; }
-  .tk-game:hover, .tk-game:focus-visible, .tk-game:hover .tk-game-character, .tk-game:focus-visible .tk-game-character { transform: none; }
+  .tk-game:hover, .tk-game:focus-visible, .tk-game:hover .tk-game-character, .tk-game:focus-visible .tk-game-character, .tk-feature-link:hover, .tk-feature-link:focus-visible { transform: none; }
 }
+
+/* ── Portfolio filter bar ───────────────────────── */
+.portfolio-filters { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; max-width: 1200px; margin: 0 auto 2rem; padding: 0 1rem; }
+.portfolio-filter { display: inline-flex; align-items: baseline; gap: 0.5rem; padding: 0.55rem 1rem; border: 1px solid rgba(74, 158, 255, 0.35); border-radius: 3px; background: rgba(8, 13, 28, 0.7); color: #a9bfdf; cursor: pointer; font-family: 'Rajdhani', sans-serif; transition: border-color 0.2s, color 0.2s, box-shadow 0.2s, background 0.2s; }
+.portfolio-filter .pf-zh { font-size: 0.82rem; letter-spacing: 1px; }
+.portfolio-filter .pf-en { font-size: 0.62rem; letter-spacing: 1.6px; opacity: 0.75; }
+.portfolio-filter .pf-count { font-family: 'Orbitron', sans-serif; font-size: 0.55rem; color: var(--c-cyan); }
+.portfolio-filter:hover { border-color: var(--c-cyan); color: #e2edff; }
+.portfolio-filter.active { border-color: var(--c-cyan); color: #e8f7ff; background: rgba(0, 255, 234, 0.08); box-shadow: 0 0 14px rgba(0, 255, 234, 0.18); }
+.portfolio-filter:focus-visible { outline: 2px solid var(--c-cyan); outline-offset: 3px; }
+@media (max-width: 480px) {
+  .portfolio-filters { gap: 0.45rem; padding: 0; }
+  .portfolio-filter { padding: 0.5rem 0.7rem; }
+  .portfolio-filter .pf-en { display: none; }
+}
+
+/* ── Flip-card back: long bilingual descriptions scroll inside the card ── */
+.flip-card { height: 250px; }
+.flip-back { justify-content: safe center; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: rgba(180, 74, 255, 0.5) transparent; padding: 1.1rem 1.2rem; }
+.flip-back p.flip-desc-zh { font-size: 0.74rem; line-height: 1.7; margin-bottom: 0.55rem; }
+.flip-back p.flip-desc-en { font-family: 'Rajdhani', sans-serif; font-size: 0.8rem; line-height: 1.45; color: #9fb4d6; margin-bottom: 0.8rem; }
+.flip-back .flip-actions, .flip-back .no-url { flex-shrink: 0; }

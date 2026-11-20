@@ -53,6 +53,12 @@ const TIMELINE = [
     en: 'Senior Engineer & Tech Lead — Sunny Software  ·  2018–Present',
     zh: 'Sunny Software 資深工程師 / 技術主管，Vue3 / React / Node.js / Go / K8s / AWS，帶領團隊開發高併發博弈平台與即時系統',
   },
+  {
+    date: '2025',
+    gif: '/img/Ghost.gif',
+    en: 'Founder & Solo Developer — TK Casino (independent)  ·  2025–Present',
+    zh: '獨立打造 TK Casino：Arbitrum One 區塊鏈 PvP 競技場、十二款自製遊戲、瀏覽器 MMORPG「天啓」，以及 iOS／macOS App 與開源教材',
+  },
 ]
 
 const CAT_COLOR = {
@@ -62,6 +68,7 @@ const CAT_COLOR = {
   db:       '#ff4af8',
   other:    '#ffaa00',
   testing:  '#99c9b5',
+  web3:     '#8cff5a',
 }
 
 const SKILLS = [
@@ -75,6 +82,8 @@ const SKILLS = [
   { name: 'Tailwind CSS', cat: 'frontend' },
   { name: 'SCSS',         cat: 'frontend' },
   { name: 'jQuery',       cat: 'frontend' },
+  { name: 'Three.js',     cat: 'frontend' },
+  { name: 'Electron',     cat: 'frontend' },
   { name: 'Node.js',      cat: 'backend'  },
   { name: 'Go (Golang)',  cat: 'backend'  },
   { name: 'Laravel/PHP',  cat: 'backend'  },
@@ -84,6 +93,15 @@ const SKILLS = [
   { name: 'Ed25519 JWT',  cat: 'backend'  },
   { name: 'C / C++',      cat: 'backend'  },
   { name: 'Swift',        cat: 'backend'  },
+  { name: 'C# / .NET 8',  cat: 'backend'  },
+  { name: 'Python',       cat: 'backend'  },
+  { name: 'Solidity',     cat: 'web3'     },
+  { name: 'Arbitrum One', cat: 'web3'     },
+  { name: 'EVM',          cat: 'web3'     },
+  { name: 'ethers.js',    cat: 'web3'     },
+  { name: 'viem',         cat: 'web3'     },
+  { name: 'Merkle Proofs', cat: 'web3'    },
+  { name: 'Provably Fair', cat: 'web3'    },
   { name: 'Docker',       cat: 'devops'   },
   { name: 'Kubernetes',   cat: 'devops'   },
   { name: 'AWS',          cat: 'devops'   },
@@ -106,6 +124,8 @@ const SKILLS = [
   { name: 'Playwright',   cat: 'testing'  },
   { name: 'WebSocket',    cat: 'other'    },
   { name: 'Unity',        cat: 'other'    },
+  { name: 'SwiftUI',      cat: 'other'    },
+  { name: 'AVFoundation', cat: 'other'    },
   { name: 'Pixi.js',      cat: 'other'    },
   { name: 'WebGL',        cat: 'other'    },
   { name: 'Spine 2D',     cat: 'other'    },
@@ -120,6 +140,7 @@ const PORTFOLIO = [
   // ── Live sites ──────────────────────────────
   {
     name: 'Portfolio v1',
+    group: 'early',
     nameEn: 'Original jQuery Portfolio',
     icon: '🏛️',
     tech: 'jQuery · Bootstrap · CSS3 · AniJS',
@@ -129,6 +150,7 @@ const PORTFOLIO = [
   },
   {
     name: 'StockChicken.tw',
+    group: 'indie',
     nameEn: 'Stock Prediction Platform',
     icon: '📈',
     tech: 'Full Stack',
@@ -138,27 +160,90 @@ const PORTFOLIO = [
   },
   {
     name: '量化交易平台',
+    group: 'indie',
     nameEn: 'Quantitative Trading Platform',
     icon: '🤖',
     tech: 'Multi-Agent · Algorithmic Trading · Quant Finance',
     desc: '多 Agent 量化交易系統，個人獨立開發：策略 × 市場組合出數十個 agent，含 real/virtual 影子倉、分級晉升機制、PF / WR / R 倍數 / MFE-MAE 績效追蹤、訊號攔截原因統計與即時交易紀錄。 — Multi-agent quant trading system: dozens of strategy × market agents with real/virtual shadow trading, tiered promotion, PF / WR / R-multiple / MFE-MAE analytics, signal-reject diagnostics & live trade ledger.',
     url: null,
     video: '/videos/quant-trading.mov',
-    tag: 'live',
+    tag: 'demo',
   },
   {
     name: '日文學習 App',
+    group: 'indie',
     nameEn: 'Japanese Learning App',
     icon: '🈂️',
     tech: 'Swift · SwiftUI · iOS',
-    desc: '個人獨立開發的日文學習 iOS App：五十音／片假名練習、N5–N1 單字與文法庫、模擬試題（漢字讀音／文字語彙）、每日分級日文新聞閱讀，含振り仮名切換、字級調整與各項學習進度追蹤。 — Independently built iOS Japanese-learning app: kana/katakana drills, N5–N1 vocab & grammar library, JLPT-style mock exams (kanji reading / vocabulary), daily level-graded Japanese news reader, with furigana toggle, font-size control & per-category progress tracking.',
+    desc: '個人獨立開發的日文學習 iOS App（日本語読む）：五十音／片假名練習、N5–N1 單字與文法庫、22 卷程度測驗（逐題附繁中解說）、依程度安排「今天的份量」、分級讀解書庫、每日分級日文新聞，含振り仮名切換、字級調整與學習進度追蹤。 — Independently built iOS Japanese-learning app: kana drills, N5–N1 vocabulary & grammar, a 22-paper placement test with per-question explanations, a daily study quota set by level, a graded reading library and a level-graded news reader, with furigana toggle, font-size control and progress tracking.',
     url: null,
     video: '/videos/nihongo-app.mp4',
+    tag: 'live',
+  },
+  {
+    name: '鏈上卡丁車競速',
+    group: 'indie',
+    nameEn: 'On-chain Kart Racing dApp',
+    icon: '🏎️',
+    tech: 'TypeScript · Three.js · React · viem · Solidity · Arbitrum',
+    desc: '錢包直接報名、免帳號免 KYC 的多人競速 dApp：每 3 分鐘一場、四條賽道輪替、前三名分獎池，獎金由合約託管、6 小時未結算任何人都能觸發退費。賽車物理是決定性的純 TypeScript，瀏覽器與伺服器裁判跑同一份程式，重播結果逐位元相同；Three.js 程式化場景、WebAudio 合成音效。 — Wallet-only multiplayer racing dApp (no account, no KYC): a race every 3 minutes on four rotating tracks, top three split a pool escrowed by the contract, with a permissionless refund after 6 hours. Deterministic TypeScript physics runs identically in the browser and on the server referee, so replays are bit-identical; procedural Three.js scenes and WebAudio-synthesised sound.',
+    url: null,
+    tag: 'private',
+  },
+  {
+    name: '4v4 團戰 MOBA',
+    group: 'indie',
+    nameEn: '4v4 Arena MOBA (Unity)',
+    icon: '⚔️',
+    tech: 'Unity 6 · C# · NUnit',
+    desc: 'Unity 6 + C# 的四打四團戰遊戲原型：規則層是零引擎依賴的純 C#（伺服器權威），附無頭模擬器與 NUnit 測試；三分鐘亂鬥、搶據點、推塔等模式，練等、裝備商店與隊伍／公頻聊天。 — 4v4 team-fight prototype in Unity 6 and C#: an engine-free, server-authoritative rules library with a headless simulator and NUnit tests; three-minute brawl, king-of-the-hill and lane modes, levelling, a gear shop and team/global chat.',
+    url: null,
+    tag: 'private',
+  },
+  {
+    name: '快剪 KuaiJian',
+    group: 'indie',
+    nameEn: 'macOS Video Editor',
+    icon: '🎬',
+    tech: 'Swift · SwiftUI · AppKit · AVFoundation · Core Image',
+    desc: 'CapCut 風格的 macOS 剪輯軟體，零第三方相依：多軌時間軸、磁吸、分割／裁切、轉場、濾鏡、文字與子母畫面；預覽與輸出共用同一條自訂 Core Image 合成管線，所見即所得。 — CapCut-style macOS video editor with zero third-party dependencies: multi-track magnetic timeline, split/trim, transitions, filters, titles and picture-in-picture; preview and export share one custom Core Image compositor, so what you see is what you export.',
+    url: null,
+    tag: 'private',
+  },
+  {
+    name: '淨剪 JingJian',
+    group: 'indie',
+    nameEn: 'One-tap Auto Editor (iOS)',
+    icon: '🪷',
+    tech: 'Swift · AVFoundation · Vision · Speech',
+    desc: '為長輩設計的一鍵自動剪輯 iPhone App：選幾支影片、按一下就輸出成品。Vision 切鏡頭並評分人臉品質、裝置端語音辨識挑段落、AVFoundation 自動排時間軸與溶接；「換一版」只重排、不重新分析。 — One-tap auto-editing iPhone app designed for elderly users: pick a few clips, press one button, get a finished video. Vision detects shots and scores face quality, on-device speech recognition picks segments, and AVFoundation assembles the timeline with cross-dissolves; "try another cut" re-edits without re-analysing.',
+    url: null,
+    tag: 'private',
+  },
+  {
+    name: '短影音自動產線',
+    group: 'indie',
+    nameEn: 'Programmatic Shorts Pipeline',
+    icon: '📹',
+    tech: 'Canvas · Playwright · FFmpeg · Python · NumPy',
+    desc: '從腳本到成片全程式化、不開剪輯軟體：腳本 JSON → 逐句 TTS 配音 → NumPy 合成配樂與音效（人聲自動 ducking）→ Canvas 決定性逐格動畫 → 無頭 Chrome 擷取直接送進 FFmpeg、響度正規化到 −14 LUFS，一個指令重建整支影片。 — Script-to-video pipeline with no editing software: JSON script → per-line TTS → NumPy-synthesised music and SFX with voice ducking → deterministic per-frame canvas animation → headless Chrome capture piped into FFmpeg, loudness-normalised to −14 LUFS; one command rebuilds the whole video.',
+    url: null,
+    tag: 'private',
+  },
+  {
+    name: 'Ops Academy',
+    group: 'indie',
+    nameEn: 'DevOps & Security Course Site',
+    icon: '📚',
+    tech: 'Vanilla JS · Interactive Diagrams · EN / 繁中',
+    desc: '寫給自己的中英雙語進修網站：從電晶體、邏輯閘、CPU 一路到網路、Linux、容器、Kubernetes、CI/CD、資料庫擴展、資安與千萬人架構，100 多課附可互動圖解與練習題，純靜態、零相依。 — Bilingual self-study site I wrote for myself: from transistors, logic gates and CPUs to networking, Linux, containers, Kubernetes, CI/CD, database scaling, security and ten-million-user architecture; 100+ lessons with interactive diagrams and quizzes, pure static with zero dependencies.',
+    url: 'https://brucewaynelin.github.io/ops-academy/',
     tag: 'live',
   },
   // ── Local demos (靜態 build) ─────────────────
   {
     name: 'TGC 官方網站',
+    group: 'early',
     nameEn: 'TGC Official Site',
     icon: '🎯',
     tech: 'React (CRA)',
@@ -168,6 +253,7 @@ const PORTFOLIO = [
   },
   {
     name: 'CareLine 旅遊險',
+    group: 'early',
     nameEn: 'Travel Insurance',
     icon: '✈️',
     tech: 'Angular 4',
@@ -177,6 +263,7 @@ const PORTFOLIO = [
   },
   {
     name: 'CareLine 機車險 v2',
+    group: 'early',
     nameEn: 'Moto Insurance v2',
     icon: '🏍️',
     tech: 'Vue.js · SCSS',
@@ -186,6 +273,7 @@ const PORTFOLIO = [
   },
   {
     name: '機車險 Prototype v1',
+    group: 'early',
     nameEn: 'Moto Insurance v1',
     icon: '🛵',
     tech: 'Vue.js · jQuery',
@@ -195,6 +283,7 @@ const PORTFOLIO = [
   },
   {
     name: '遊戲桌台 UI',
+    group: 'early',
     nameEn: 'Game Table UI',
     icon: '🃏',
     tech: 'Vue.js',
@@ -204,6 +293,7 @@ const PORTFOLIO = [
   },
   {
     name: '博弈遊戲 Mock',
+    group: 'early',
     nameEn: 'Casino Game Mock',
     icon: '🎲',
     tech: 'Vue.js',
@@ -213,6 +303,7 @@ const PORTFOLIO = [
   },
   {
     name: '娛樂家官網',
+    group: 'early',
     nameEn: 'Entertainment Co. Site',
     icon: '🌐',
     tech: 'jQuery · CSS3',
@@ -222,6 +313,7 @@ const PORTFOLIO = [
   },
   {
     name: 'Dream Web App',
+    group: 'early',
     nameEn: 'Dream App',
     icon: '💫',
     tech: 'Vue.js',
@@ -231,6 +323,7 @@ const PORTFOLIO = [
   },
   {
     name: '保險 Prototype',
+    group: 'early',
     nameEn: 'Insurance Proto',
     icon: '📝',
     tech: 'Vue.js',
@@ -241,6 +334,7 @@ const PORTFOLIO = [
   // ── Video demos ─────────────────────────────
   {
     name: '賽鴿遊戲前台',
+    group: 'work',
     nameEn: 'Pigeon Racing Game',
     icon: '🐦',
     tech: 'Vue3 · WebSocket · PixiJS',
@@ -250,6 +344,7 @@ const PORTFOLIO = [
   },
   {
     name: '賽鴿後台管理',
+    group: 'work',
     nameEn: 'Pigeon Racing Admin',
     icon: '🎛️',
     tech: 'Vue3 · Node.js · WebSocket',
@@ -259,6 +354,7 @@ const PORTFOLIO = [
   },
   {
     name: '直播聊天系統',
+    group: 'work',
     nameEn: 'Live Stream Chat',
     icon: '📡',
     tech: 'Vue3 · WebSocket · Node.js',
@@ -269,6 +365,7 @@ const PORTFOLIO = [
   },
   {
     name: 'Spine 骨骼動畫練習',
+    group: 'indie',
     nameEn: 'Spine Animation Practice — Maw Beast',
     icon: '👹',
     tech: 'Spine 2D · Mesh Deform',
@@ -280,26 +377,99 @@ const PORTFOLIO = [
   // ── Private / Internal work ──────────────────
   {
     name: '百家樂遊戲',
+    group: 'work',
     nameEn: 'Baccarat Game',
     icon: '🃏',
-    tech: 'Vue3 · WebSocket · Node.js',
-    desc: '高併發百家樂遊戲平台，即時牌局同步、動畫效果與下注系統 — High-concurrency Baccarat platform with real-time card sync, animations & betting system.',
+    tech: 'Vue3 · Cocos Creator · WebSocket · Node.js',
+    desc: '高併發百家樂遊戲平台：Vue 3 版與 Cocos Creator 重製版，即時牌局同步、開牌動畫、直播主播房、打賞、路單與下注系統 — High-concurrency baccarat: a Vue 3 edition plus a Cocos Creator rebuild, with real-time card sync, reveal animation, live-streamer rooms, gifting, scoreboards and betting.',
     url: null,
     video: '/videos/baccarat.mp4',
     tag: 'private',
   },
   {
     name: '經典百家',
+    group: 'work',
     nameEn: 'Classic Baccarat',
     icon: '🎴',
     tech: 'Cocos Creator · WebSocket',
-    desc: '以 Cocos 開發的新款手機遊戲，外觀沿用經典百家樂桌台，但玩法與傳統百家樂不同：多種下注區、即時開牌動畫、免佣切換、籌碼下注與大路 / 珠盤路路單 — New mobile game built with Cocos: classic Baccarat table look, but with its own distinct rules — multiple bet zones, live card-reveal animation, no-commission toggle, chip betting & bead / big-road scoreboards.',
+    desc: '以 Cocos 開發的新款手機遊戲，外觀沿用經典百家樂桌台，但玩法與傳統百家樂不同：多種下注區、即時開牌動畫、免佣切換、籌碼下注與大路 / 珠盤路路單，另有語音報牌與背景音樂、直播聊天室與打賞、開發用 GM 發牌工具 — New mobile game built with Cocos: classic Baccarat table look, but with its own distinct rules — multiple bet zones, live card-reveal animation, no-commission toggle, chip betting & bead / big-road scoreboards, plus voice call-outs and music, live-stream chat & gifting, and a dev-only GM dealing tool.',
     url: null,
     video: '/videos/classic-baccarat.mp4',
     tag: 'private',
   },
   {
+    name: 'N.T Cookie 線上商店',
+    group: 'work',
+    nameEn: 'Bakery Storefront on LINE',
+    icon: '🍪',
+    tech: 'HTML / JS · AWS Lambda · DynamoDB · ECPay',
+    desc: '接案：幫甜點店做的 LINE 官方帳號網站。照設計稿等比還原的手機版面、購物車與下單、綠界金流、店家後台（開／關接單、訂單管理、冷凍運費級距），後端是 AWS Lambda + DynamoDB。 — Client project: storefront for a bakery\'s LINE official account. Pixel-matched mobile layout from the design, cart and checkout, ECPay payments, and an owner dashboard (open/close orders, order management, chilled-shipping tiers) on AWS Lambda + DynamoDB.',
+    url: 'https://brucewaynelin.github.io/ntcookie/',
+    tag: 'live',
+  },
+  {
+    name: '注單回放系統',
+    group: 'work',
+    nameEn: 'Bet Replay Pages',
+    icon: '⏪',
+    tech: 'Vue 3 · Tailwind CSS · Vite · WebView',
+    desc: '多款遊戲共用的注單回放與詳情頁：拉霸逐轉重現盤面與中獎線、百家樂注單詳情與開牌回放，嵌進遊戲的 WebView，派彩計算精確到分。 — Shared bet-replay and bet-detail pages for multiple games: slot spins re-rendered reel by reel with winning lines, baccarat bet details and card-reveal replay, embedded in game WebViews, with cent-exact payout math.',
+    url: null,
+    tag: 'private',
+  },
+  {
+    name: '推筒子',
+    group: 'work',
+    nameEn: 'Tui Tong Zi Tile Game',
+    icon: '🀄',
+    tech: 'Vue 3 · PixiJS · Spine · ethers.js',
+    desc: '推筒子牌桌遊戲前端與管理後台：PixiJS + Spine 動畫、錢包登入、即時下注與開牌 — Tui Tong Zi tile-game frontend and admin console: PixiJS + Spine animation, wallet sign-in, real-time betting and reveals.',
+    url: null,
+    tag: 'private',
+  },
+  {
+    name: '麻將遊戲',
+    group: 'work',
+    nameEn: 'Mahjong Live',
+    icon: '🀅',
+    tech: 'Vue 3 · PixiJS · Spine · ethers.js',
+    desc: '麻將遊戲前端與代理、管理後台（2023–2025），2025 年用 PixiJS + Spine 重製牌桌動畫並接上 Web3 錢包 — Mahjong game frontend plus agent and admin consoles (2023–2025); rebuilt the table in PixiJS + Spine in 2025 with Web3 wallet support.',
+    url: null,
+    tag: 'private',
+  },
+  {
+    name: 'Web3 遊戲前端',
+    group: 'work',
+    nameEn: 'Web3 Betting Games',
+    icon: '🐉',
+    tech: 'Vue 3 · ethers.js · web3.js · Tailwind CSS',
+    desc: 'NFT 龍族下注平台與彈珠台遊戲的前端（2023–2024，約 900 次提交）：錢包連線、NFT 資產、下注與即時開獎動畫 — Frontends for an NFT dragon-betting platform and a marbles game (2023–2024, ~900 commits): wallet connection, NFT assets, betting and live result animation.',
+    url: null,
+    tag: 'private',
+  },
+  {
+    name: '7PK 撲克',
+    group: 'work',
+    nameEn: '7PK Video Poker (Desktop)',
+    icon: '🂡',
+    tech: 'Vue 3 · Electron · Vite',
+    desc: '7PK 電子撲克遊戲客戶端（2022–2023），Vue 3 + Electron 桌面版，含牌局動畫、歷史紀錄與多語系 — 7PK video-poker client (2022–2023) built with Vue 3 and Electron, with hand animation, history panels and i18n.',
+    url: null,
+    tag: 'private',
+  },
+  {
+    name: 'RPG 博弈遊戲',
+    group: 'work',
+    nameEn: 'RPG Betting Game (Full Stack)',
+    icon: '🐲',
+    tech: 'React · TypeScript · PixiJS · Spine · Express · MySQL · Redis · WebSocket',
+    desc: '前後端主力開發的 RPG 主題博弈遊戲（2021–2024，前後端合計約 1,400 次提交）：React + PixiJS + Spine 場景與 Boss 動畫、路單與預測；Node.js / Express + TypeScript 後端、MySQL、Redis 與 WebSocket 即時推送 — RPG-themed betting game where I was the main frontend and backend developer (2021–2024, ~1,400 commits): React + PixiJS + Spine scenes and boss animation, scoreboards and predictions; Node.js / Express + TypeScript backend with MySQL, Redis and WebSocket push.',
+    url: null,
+    tag: 'private',
+  },
+  {
     name: '即時遊戲平台',
+    group: 'work',
     nameEn: 'Real-time Gaming Platform',
     icon: '⚡',
     tech: 'Vue3 · React · Node.js · Go · WebSocket · K8s · AWS',
@@ -309,6 +479,7 @@ const PORTFOLIO = [
   },
   {
     name: '多人遊戲房間系統',
+    group: 'work',
     nameEn: 'Game Room Mgmt',
     icon: '🕹️',
     tech: 'Node.js · Go · Redis · Kubernetes',
@@ -318,6 +489,7 @@ const PORTFOLIO = [
   },
   {
     name: '球鞋搶購系統',
+    group: 'work',
     nameEn: 'Sneaker Bot',
     icon: '👟',
     tech: 'Go · Goroutine · Channel',
@@ -327,6 +499,7 @@ const PORTFOLIO = [
   },
   {
     name: 'Unity 拉霸遊戲',
+    group: 'work',
     nameEn: 'Unity Slot Game',
     icon: '🎰',
     tech: 'Unity · C++',
@@ -336,6 +509,7 @@ const PORTFOLIO = [
   },
   {
     name: '銀行 / 保險系統',
+    group: 'work',
     nameEn: 'Banking & Insurance',
     icon: '🏦',
     tech: 'Vue1 · Angular2 · jQuery · Angular 4–6',
@@ -345,6 +519,7 @@ const PORTFOLIO = [
   },
   {
     name: '長照 / 勞健保系統',
+    group: 'work',
     nameEn: 'Healthcare Systems',
     icon: '🏥',
     tech: 'PHP (Joomla) · MySQL · Angular 8',
@@ -625,7 +800,7 @@ function CursorGlow() {
 ══════════════════════════════════════════ */
 const HUD_SECTORS = [
   { id: 'top',       code: 'SEC·00', name: 'HOME',   sub: 'ENGINEER PROFILE' },
-  { id: 'timeline',  code: 'SEC·01', name: 'ORIGIN', sub: '7 MILESTONES' },
+  { id: 'timeline',  code: 'SEC·01', name: 'ORIGIN', sub: `${TIMELINE.length} MILESTONES` },
   { id: 'about',     code: 'SEC·02', name: 'ABOUT',  sub: 'PERSONNEL FILE' },
   { id: 'skills',    code: 'SEC·03', name: 'TECH',   sub: `${SKILLS.length} SKILLS` },
   { id: 'portfolio', code: 'SEC·04', name: 'WORKS',  sub: `${PORTFOLIO.length} PROJECTS` },
@@ -908,7 +1083,9 @@ function About() {
           <dt>核心技術</dt>
           <dd>Vue.js、React、Node.js、Golang、WebSocket、Docker、Kubernetes、AWS，具備系統架構設計、效能優化與團隊技術管理經驗。</dd>
           <dt>現職 Sunny Software｜2018 – 至今</dt>
-          <dd>資深軟體工程師 / 技術主管，主導即時遊戲平台、雲端架構與 CI/CD 流程建置。</dd>
+          <dd>資深軟體工程師 / 技術主管，主導即時遊戲平台、雲端架構與 CI/CD 流程建置；近年負責百家樂 Cocos 重製、直播房、注單回放與多款 Web3 遊戲前端。</dd>
+          <dt>獨立作品｜2025 – 至今</dt>
+          <dd>一個人打造 TK Casino：Arbitrum One 鏈上 PvP 競技場、十二款自製遊戲、瀏覽器 MMORPG「天啓」；另有 iOS 日文學習 App、macOS 剪輯軟體與雙語 DevOps 教材網站。</dd>
           <dt>人生觀</dt>
           <dd>人生就是不斷的挑戰跟學習，用謙卑的姿態探索世界 yolo</dd>
         </dl>
@@ -921,11 +1098,13 @@ function About() {
           <dt>Takio Lin (林容為)</dt>
           <dd>15+ years frontend, backend & DevOps experience. B.A. Literature, University of Oregon, 2010. Fluent in English, Chinese, Japanese, and Taiwanese.</dd>
           <dt>Sunny Software · 2018–Present</dt>
-          <dd>Senior Engineer & Tech Lead. Vue3, React, Node.js, Go, WebSocket, Docker, Kubernetes, AWS. Led real-time gaming platform development, CI/CD pipelines, and team technical decisions.</dd>
+          <dd>Senior Engineer & Tech Lead. Vue3, React, Node.js, Go, WebSocket, Docker, Kubernetes, AWS. Led real-time gaming platform development, CI/CD pipelines, and team technical decisions; recently the Cocos Creator baccarat rebuild, live-stream rooms, bet replay and Web3 game frontends.</dd>
+          <dt>Independent · 2025–Present</dt>
+          <dd>Built TK Casino solo: an on-chain PvP arena on Arbitrum One, twelve original games and the browser MMORPG Apocalypse. Also an iOS Japanese-learning app, a macOS video editor and a bilingual DevOps course site.</dd>
           <dt>Previous Experience</dt>
           <dd>CareLine UK (Frontend Lead · Angular/Vue) → Nippon Sharyo USA (QA Inspector, Japan/USA/Canada) → Walton Computing (Software Engineer · PHP/MySQL)</dd>
           <dt>Links</dt>
-          <dd>github.com/BruceWayneLin · jungwei.com.tw · stockchicken.tw</dd>
+          <dd>github.com/BruceWayneLin · jungwei.com.tw · tk-casino.com · stockchicken.tw</dd>
         </dl>
       ),
     },
@@ -937,6 +1116,8 @@ function About() {
           <dd>アメリカのオレゴン大学（文学部）2010年卒業。英語・中国語・台湾語は精通、日本語は中級です。</dd>
           <dt>現職 — Sunny Software（2018〜現在）</dt>
           <dd>上級ソフトウェアエンジニア / テックリード。Vue3・React・Node.js・Go を活用した高並列ゲームプラットフォームを構築。Kubernetes・AWS・Docker を用いたクラウドアーキテクチャ設計を担当。</dd>
+          <dt>個人開発（2025〜現在）</dt>
+          <dd>TK Casino を一人で開発・運営。Arbitrum One 上のオンチェーン PvP、オリジナルゲーム 12 本、ブラウザ MMORPG「天啓」。iOS 日本語学習アプリや macOS 動画編集ソフトも制作。</dd>
           <dt>2014/11 – 2016/03</dt>
           <dd>日本車輌（JRグループ）にてシカゴ・バンクーバー・トロント・カリフォルニア・日本での鉄道車両品質検査に従事。</dd>
           <dt>スキルセット</dt>
@@ -981,10 +1162,11 @@ const SKILL_CAT_LABEL = {
   db:       'Database',
   other:    'Other',
   testing:  'Testing',
+  web3:     'Web3',
 }
 
 function Skills() {
-  const cats = ['frontend', 'backend', 'devops', 'db', 'testing', 'other']
+  const cats = ['frontend', 'backend', 'web3', 'devops', 'db', 'testing', 'other']
   return (
     <section id="skills" className="skills-section">
       <LaserGrid color="#00ffea" opacity={0.06} />
@@ -1086,7 +1268,16 @@ function PortfolioCard({ item, index, onPlay }) {
           <span className="tech-label">{item.tech}</span>
         </div>
         <div className="flip-back">
-          <p>{item.desc}</p>
+          {(() => {
+            const cut = item.desc.indexOf(' — ')
+            if (cut < 0) return <p>{item.desc}</p>
+            return (
+              <>
+                <p className="flip-desc-zh">{item.desc.slice(0, cut)}</p>
+                <p className="flip-desc-en">{item.desc.slice(cut + 3)}</p>
+              </>
+            )
+          })()}
           {item.video || item.url
             ? (
               <div className="flip-actions">
@@ -1110,14 +1301,42 @@ function PortfolioCard({ item, index, onPlay }) {
   )
 }
 
+const PORTFOLIO_FILTERS = [
+  { id: 'all',   zh: '全部',     en: 'ALL' },
+  { id: 'indie', zh: '獨立作品', en: 'INDEPENDENT' },
+  { id: 'work',  zh: '公司與接案', en: 'PROFESSIONAL' },
+  { id: 'early', zh: '早期作品', en: 'EARLY DEMOS' },
+]
+
 function Portfolio() {
   const [activeVideo, setActiveVideo] = useState(null)
+  const [filter, setFilter] = useState('all')
+  const shown = filter === 'all' ? PORTFOLIO : PORTFOLIO.filter(item => item.group === filter)
   return (
     <section id="portfolio" className="portfolio-section">
       <SectionHeader title="作品集" sub="Portfolio" sector="SEC·04 ── WORKS" />
+      <div className="portfolio-filters" role="tablist" aria-label="Filter projects">
+        {PORTFOLIO_FILTERS.map(f => {
+          const count = f.id === 'all' ? PORTFOLIO.length : PORTFOLIO.filter(item => item.group === f.id).length
+          return (
+            <button
+              key={f.id}
+              type="button"
+              role="tab"
+              aria-selected={filter === f.id}
+              className={`portfolio-filter${filter === f.id ? ' active' : ''}`}
+              onClick={() => setFilter(f.id)}
+            >
+              <span className="pf-zh">{f.zh}</span>
+              <span className="pf-en">{f.en}</span>
+              <span className="pf-count">{String(count).padStart(2, '0')}</span>
+            </button>
+          )
+        })}
+      </div>
       <div className="portfolio-grid">
-        {PORTFOLIO.map((item, i) => (
-          <PortfolioCard key={i} item={item} index={i} onPlay={() => setActiveVideo(item)} />
+        {shown.map((item, i) => (
+          <PortfolioCard key={item.name} item={item} index={i} onPlay={() => setActiveVideo(item)} />
         ))}
       </div>
       {activeVideo && <VideoModal item={activeVideo} onClose={() => setActiveVideo(null)} />}

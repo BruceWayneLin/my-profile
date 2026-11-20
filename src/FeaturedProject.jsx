@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { motion, useInView, useReducedMotion } from 'framer-motion'
-import { TK_CASINO, TK_GAMES, TK_STACK } from './data/featuredProject'
+import { TK_CASINO, TK_GAMES, TK_CHAIN_GAMES, TK_WORLDS, TK_STACK } from './data/featuredProject'
 
 export default function FeaturedProject() {
   const ref = useRef(null)
@@ -48,10 +48,14 @@ export default function FeaturedProject() {
           <p className="tk-project-subtitle">瀧尾娛樂 · 全平台與全系列遊戲獨立開發</p>
           <p className="tk-project-authorship">The entire casino. Every game. Built by me.</p>
           <p className="tk-project-description">
-            從百家樂、三款主題拉霸到三款桌上遊戲；從遊戲引擎、前端動畫、大廳、上莊系統，到原子錢包、即時後端、管理後台與雲端部署，全部由我獨立打造。
+            從 Arbitrum One 上的區塊鏈 PvP 競技場、百家樂、三款主題拉霸、三款桌上遊戲，到瀏覽器 MMORPG「天啓」與飛行遊戲 HOVR；從遊戲引擎、前端動畫、大廳、錢包、智能合約，到即時後端、管理後台與雲端部署，全部由我獨立打造。
+          </p>
+          <p className="tk-project-description tk-project-description-en">
+            On-chain PvP arena on Arbitrum One, baccarat, three slots, three table games, a browser MMORPG and a flight game — engines, animation, lobby, wallet, smart contracts, real-time backend, admin and cloud ops, all built solo.
           </p>
           <div className="tk-project-stats">
-            <span><strong>{String(TK_GAMES.length).padStart(2, '0')}</strong> ORIGINAL GAMES</span>
+            <span><strong>{String(TK_GAMES.length + TK_CHAIN_GAMES.length + TK_WORLDS.length).padStart(2, '0')}</strong> ORIGINAL GAMES</span>
+            <span><strong>ON-CHAIN</strong> PvP · ARBITRUM ONE</span>
             <span><strong>FULL STACK</strong> PLATFORM + GAME ENGINES</span>
           </div>
           <p className="tech-label">{TK_CASINO.tech}</p>
@@ -86,6 +90,44 @@ export default function FeaturedProject() {
           </a>
         ))}
       </div>
+      <div className="tk-game-heading">
+        <span>BLOCKCHAIN ARENA / 區塊鏈 PvP 競技場</span>
+        <span>PLAYER vs PLAYER · NO HOUSE · VERIFIABLE ON-CHAIN</span>
+      </div>
+      <div className="tk-feature-grid">
+        {TK_CHAIN_GAMES.map(game => (
+          <div key={game.id} className="tk-feature" style={{ '--game-accent': game.color }}>
+            <span className="tk-feature-kind">ON-CHAIN PvP</span>
+            <h4>{game.zh}</h4>
+            <p className="tk-feature-name">{game.name}</p>
+            <p className="tk-feature-note">{game.note}</p>
+            <p className="tk-feature-note tk-feature-note-en">{game.noteEn}</p>
+          </div>
+        ))}
+      </div>
+      <div className="tk-game-heading">
+        <span>TK GAMES / 自製遊戲世界</span>
+        <span>UNITY WEBGL · DESKTOP &amp; MOBILE</span>
+      </div>
+      <div className="tk-feature-grid tk-feature-grid-2">
+        {TK_WORLDS.map(game => (
+          <a
+            key={game.id}
+            className="tk-feature tk-feature-link"
+            href={game.url}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`${game.name} (opens in a new tab)`}
+            style={{ '--game-accent': game.color }}
+          >
+            <span className="tk-feature-kind">PLAY IN BROWSER <span aria-hidden="true">↗</span></span>
+            <h4>{game.zh}</h4>
+            <p className="tk-feature-name">{game.name}</p>
+            <p className="tk-feature-note">{game.note}</p>
+            <p className="tk-feature-note tk-feature-note-en">{game.noteEn}</p>
+          </a>
+        ))}
+      </div>
       <details className="tk-project-stack">
         <summary>TECH STACK / 完整技術細節</summary>
         <div className="tk-project-stack-grid">
@@ -97,7 +139,7 @@ export default function FeaturedProject() {
           ))}
           <div>
             <h4>Game clients</h4>
-            <p>NOVA: PixiJS · WebGL<br />TK Slots / TK Table: Cocos Creator · TypeScript</p>
+            <p>NOVA: PixiJS · WebGL<br />TK Slots / TK Table / Dark Chess: Cocos Creator · TypeScript<br />Apocalypse / HOVR: Unity 6 · C# · .NET 8</p>
           </div>
         </div>
       </details>
