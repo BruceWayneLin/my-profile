@@ -139,3 +139,12 @@
 .flip-back p.flip-desc-zh { font-size: 0.74rem; line-height: 1.7; margin-bottom: 0.55rem; }
 .flip-back p.flip-desc-en { font-family: 'Rajdhani', sans-serif; font-size: 0.8rem; line-height: 1.45; color: #9fb4d6; margin-bottom: 0.8rem; }
 .flip-back .flip-actions, .flip-back .no-url { flex-shrink: 0; }
+
+/* ── Card posters: a still from the project's video / screenshot behind the card front ── */
+.flip-poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; opacity: 0.32; filter: saturate(0.9) brightness(0.72); z-index: 0; pointer-events: none; transition: opacity 0.3s, transform 0.6s; }
+.has-poster .flip-front::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6, 8, 20, 0.15) 0%, rgba(6, 8, 20, 0.55) 55%, rgba(6, 8, 20, 0.92) 100%); z-index: 0; pointer-events: none; }
+.has-poster .flip-front > *:not(.flip-poster) { position: relative; z-index: 1; }
+.has-poster .flip-front > .proj-tag, .has-poster .flip-front > .video-play-badge { position: absolute; z-index: 2; }
+.has-poster .flip-front > [class^='flip-corner-'] { position: absolute; z-index: 2; }
+.flip-card.has-poster:hover .flip-poster { opacity: 0.45; transform: scale(1.04); }
+.vm-image { display: block; width: 100%; height: auto; max-height: 78vh; object-fit: contain; background: #05070f; }

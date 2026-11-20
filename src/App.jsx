@@ -171,6 +171,7 @@ const PORTFOLIO = [
     desc: '多 Agent 量化交易系統，個人獨立開發：策略 × 市場組合出數十個 agent，含 real/virtual 影子倉、分級晉升機制、PF / WR / R 倍數 / MFE-MAE 績效追蹤、訊號攔截原因統計與即時交易紀錄。 — Multi-agent quant trading system: dozens of strategy × market agents with real/virtual shadow trading, tiered promotion, PF / WR / R-multiple / MFE-MAE analytics, signal-reject diagnostics & live trade ledger.',
     url: null,
     video: '/videos/quant-trading.mov',
+    poster: '/img/projects/posters/quant-trading.webp',
     tag: 'demo',
   },
   {
@@ -182,6 +183,7 @@ const PORTFOLIO = [
     desc: '個人獨立開發的日文學習 iOS App（日本語読む）：五十音／片假名練習、N5–N1 單字與文法庫、22 卷程度測驗（逐題附繁中解說）、依程度安排「今天的份量」、分級讀解書庫、每日分級日文新聞，含振り仮名切換、字級調整與學習進度追蹤。 — Independently built iOS Japanese-learning app: kana drills, N5–N1 vocabulary & grammar, a 22-paper placement test with per-question explanations, a daily study quota set by level, a graded reading library and a level-graded news reader, with furigana toggle, font-size control and progress tracking.',
     url: null,
     video: '/videos/nihongo-app.mp4',
+    poster: '/img/projects/posters/nihongo-app.webp',
     tag: 'live',
   },
   {
@@ -190,6 +192,8 @@ const PORTFOLIO = [
     nameEn: 'On-chain Kart Racing dApp',
     icon: '🏎️',
     tech: 'TypeScript · Three.js · React · viem · Solidity · Arbitrum',
+    video: '/videos/kart-racer.mp4',
+    poster: '/img/projects/posters/kart-racer.webp',
     desc: '錢包直接報名、免帳號免 KYC 的多人競速 dApp：每 3 分鐘一場、四條賽道輪替、前三名分獎池，獎金由合約託管、6 小時未結算任何人都能觸發退費。賽車物理是決定性的純 TypeScript，瀏覽器與伺服器裁判跑同一份程式，重播結果逐位元相同；Three.js 程式化場景、WebAudio 合成音效。 — Wallet-only multiplayer racing dApp (no account, no KYC): a race every 3 minutes on four rotating tracks, top three split a pool escrowed by the contract, with a permissionless refund after 6 hours. Deterministic TypeScript physics runs identically in the browser and on the server referee, so replays are bit-identical; procedural Three.js scenes and WebAudio-synthesised sound.',
     url: null,
     tag: 'private',
@@ -210,6 +214,8 @@ const PORTFOLIO = [
     nameEn: 'macOS Video Editor',
     icon: '🎬',
     tech: 'Swift · SwiftUI · AppKit · AVFoundation · Core Image',
+    image: '/img/projects/shots/kuaijian.webp',
+    poster: '/img/projects/posters/kuaijian.webp',
     desc: 'CapCut 風格的 macOS 剪輯軟體，零第三方相依：多軌時間軸、磁吸、分割／裁切、轉場、濾鏡、文字與子母畫面；預覽與輸出共用同一條自訂 Core Image 合成管線，所見即所得。 — CapCut-style macOS video editor with zero third-party dependencies: multi-track magnetic timeline, split/trim, transitions, filters, titles and picture-in-picture; preview and export share one custom Core Image compositor, so what you see is what you export.',
     url: null,
     tag: 'private',
@@ -240,6 +246,8 @@ const PORTFOLIO = [
     nameEn: 'DevOps & Security Course Site',
     icon: '📚',
     tech: 'Vanilla JS · Interactive Diagrams · EN / 繁中',
+    video: '/videos/ops-academy.mp4',
+    poster: '/img/projects/posters/ops-academy.webp',
     desc: '寫給自己的中英雙語進修網站：從電晶體、邏輯閘、CPU 一路到網路、Linux、容器、Kubernetes、CI/CD、資料庫擴展、資安與千萬人架構，100 多課附可互動圖解與練習題，純靜態、零相依。 — Bilingual self-study site I wrote for myself: from transistors, logic gates and CPUs to networking, Linux, containers, Kubernetes, CI/CD, database scaling, security and ten-million-user architecture; 100+ lessons with interactive diagrams and quizzes, pure static with zero dependencies.',
     url: 'https://brucewaynelin.github.io/ops-academy/',
     tag: 'live',
@@ -365,6 +373,7 @@ const PORTFOLIO = [
     desc: '即時直播聊天室，高併發訊息同步、禮物動畫與主播互動功能 — Real-time live stream chat with high-concurrency message sync, gift animations & host interaction.',
     url: null,
     video: '/videos/chat.mov',
+    poster: '/img/projects/posters/chat.webp',
     tag: 'private',
   },
   {
@@ -376,6 +385,7 @@ const PORTFOLIO = [
     desc: '自己練習做的 Spine 2D 骨骼動畫作品「巨口獸」，透過網格變形（Mesh Deform）製作張口咀嚼動態，包含待機、咆哮、咬擊、受擊、死亡等狀態動畫。 — Personal Spine 2D skeletal-animation practice piece "Maw Beast": mesh-deform driven mouth/jaw motion with idle, roar, bite, hit & death state animations.',
     url: null,
     video: '/videos/spine-maw-beast.mp4',
+    poster: '/img/projects/posters/spine-maw-beast.webp',
     tag: 'demo',
   },
   // ── Private / Internal work ──────────────────
@@ -388,6 +398,7 @@ const PORTFOLIO = [
     desc: '高併發百家樂遊戲平台：Vue 3 版與 Cocos Creator 重製版，即時牌局同步、開牌動畫、直播主播房、打賞、路單與下注系統 — High-concurrency baccarat: a Vue 3 edition plus a Cocos Creator rebuild, with real-time card sync, reveal animation, live-streamer rooms, gifting, scoreboards and betting.',
     url: null,
     video: '/videos/baccarat.mp4',
+    poster: '/img/projects/posters/baccarat.webp',
     tag: 'private',
   },
   {
@@ -399,6 +410,7 @@ const PORTFOLIO = [
     desc: '以 Cocos 開發的新款手機遊戲，外觀沿用經典百家樂桌台，但玩法與傳統百家樂不同：多種下注區、即時開牌動畫、免佣切換、籌碼下注與大路 / 珠盤路路單，另有語音報牌與背景音樂、直播聊天室與打賞、開發用 GM 發牌工具 — New mobile game built with Cocos: classic Baccarat table look, but with its own distinct rules — multiple bet zones, live card-reveal animation, no-commission toggle, chip betting & bead / big-road scoreboards, plus voice call-outs and music, live-stream chat & gifting, and a dev-only GM dealing tool.',
     url: null,
     video: '/videos/classic-baccarat.mp4',
+    poster: '/img/projects/posters/classic-baccarat.webp',
     tag: 'private',
   },
   {
@@ -407,6 +419,8 @@ const PORTFOLIO = [
     nameEn: 'Bakery Storefront on LINE',
     icon: '🍪',
     tech: 'HTML / JS · AWS Lambda · DynamoDB · ECPay',
+    video: '/videos/ntcookie-store.mp4',
+    poster: '/img/projects/posters/ntcookie-store.webp',
     desc: '接案：幫甜點店做的 LINE 官方帳號網站。照設計稿等比還原的手機版面、購物車與下單、綠界金流、店家後台（開／關接單、訂單管理、冷凍運費級距），後端是 AWS Lambda + DynamoDB。 — Client project: storefront for a bakery\'s LINE official account. Pixel-matched mobile layout from the design, cart and checkout, ECPay payments, and an owner dashboard (open/close orders, order management, chilled-shipping tiers) on AWS Lambda + DynamoDB.',
     url: 'https://brucewaynelin.github.io/ntcookie/',
     tag: 'live',
@@ -458,6 +472,16 @@ const PORTFOLIO = [
     icon: '🂡',
     tech: 'Vue 3 · Electron · Vite',
     desc: '7PK 電子撲克遊戲客戶端（2022–2023），Vue 3 + Electron 桌面版，含牌局動畫、歷史紀錄與多語系 — 7PK video-poker client (2022–2023) built with Vue 3 and Electron, with hand animation, history panels and i18n.',
+    url: null,
+    tag: 'private',
+  },
+  {
+    name: '大老二管理後台',
+    group: 'work',
+    nameEn: 'Big Two Card Game Admin',
+    icon: '🂠',
+    tech: 'React · MUI · Java 17 · Spring Boot 3 · WebSocket (STOMP)',
+    desc: '大老二遊戲管理後台前端（2023–2024），串接 Java 17／Spring Boot 3 後台 API 與 Java Spring Boot WebSocket（STOMP）遊戲伺服器：區間與模式管理、測試工具（指定起手牌型）、注單與總局查詢、好友房設定、操作日誌，Docker 化並建置 CI/CD — Admin console for a Big Two card game (2023–2024), wired to a Java 17 / Spring Boot 3 admin API and a Java Spring Boot WebSocket (STOMP) game server: interval and mode management, test tools (preset starting hands), bet and round history, friend-room settings and an operation log; containerised with CI/CD.',
     url: null,
     tag: 'private',
   },
@@ -1227,16 +1251,21 @@ function VideoModal({ item, onClose }) {
           <span className="vm-title">{item.name}</span>
           <button className="vm-close" onClick={onClose}>✕</button>
         </div>
-        <video
-          className="vm-video"
-          src={item.video}
-          controls
-          autoPlay
-          playsInline
-          controlsList="nodownload noremoteplayback"
-          disablePictureInPicture
-          onContextMenu={e => e.preventDefault()}
-        />
+        {item.video ? (
+          <video
+            className="vm-video"
+            src={item.video}
+            poster={item.poster}
+            controls
+            autoPlay
+            playsInline
+            controlsList="nodownload noremoteplayback"
+            disablePictureInPicture
+            onContextMenu={e => e.preventDefault()}
+          />
+        ) : (
+          <img className="vm-video vm-image" src={item.image} alt={item.nameEn} />
+        )}
         <p className="vm-tech">{item.tech}</p>
       </div>
     </div>
@@ -1246,11 +1275,12 @@ function VideoModal({ item, onClose }) {
 function PortfolioCard({ item, index, onPlay }) {
   if (item === TK_CASINO) return <FeaturedProject />
 
+  const hasMedia = Boolean(item.video || item.image)
   return (
     <motion.div
-      className={`flip-card${item.video ? ' has-video' : ''}`}
+      className={`flip-card${hasMedia ? ' has-video' : ''}${item.poster ? ' has-poster' : ''}`}
       tabIndex={0}
-      onClick={item.video ? onPlay : undefined}
+      onClick={hasMedia ? onPlay : undefined}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
@@ -1258,6 +1288,7 @@ function PortfolioCard({ item, index, onPlay }) {
     >
       <div className="flip-inner">
         <div className="flip-front">
+          {item.poster && <img className="flip-poster" src={item.poster} alt="" loading="lazy" />}
           <div className="flip-corner-tl" /><div className="flip-corner-tr" />
           <div className="flip-corner-bl" /><div className="flip-corner-br" />
           {item.tag && (
@@ -1266,6 +1297,7 @@ function PortfolioCard({ item, index, onPlay }) {
             </span>
           )}
           {item.video && <span className="video-play-badge">▶</span>}
+          {!item.video && item.image && <span className="video-play-badge">🖼</span>}
           <span className="proj-icon">{item.icon}</span>
           <h4>{item.name}</h4>
           <p className="proj-name-en">{item.nameEn}</p>
@@ -1282,10 +1314,11 @@ function PortfolioCard({ item, index, onPlay }) {
               </>
             )
           })()}
-          {item.video || item.url
+          {hasMedia || item.url
             ? (
               <div className="flip-actions">
                 {item.video && <button className="visit-btn" onClick={onPlay}>▶ PLAY VIDEO</button>}
+                {!item.video && item.image && <button className="visit-btn" onClick={onPlay}>🖼 VIEW IMAGE</button>}
                 {item.url && (
                   <a
                     className="visit-btn"
