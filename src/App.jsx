@@ -1109,7 +1109,7 @@ function About() {
           <dt>林容為（Takio Lin）</dt>
           <dd>擁有 10 年以上前後端與 DevOps 開發經驗，專注於即時系統、高併發平台、雲端架構與遊戲平台開發。</dd>
           <dt>核心技術</dt>
-          <dd>Vue.js、React、Node.js、Golang、WebSocket、Docker、Kubernetes、AWS，具備系統架構設計、效能優化與團隊技術管理經驗。</dd>
+          <dd>Vue.js、React、TypeScript、Node.js、Golang、Java、C# / .NET、WebSocket、Cocos Creator、PixiJS、Unity、Swift、Solidity、Docker、Kubernetes、AWS，具備系統架構設計、效能優化與團隊技術管理經驗。</dd>
           <dt>現職 Sunny Software｜2018 – 至今</dt>
           <dd>資深軟體工程師 / 技術主管，主導即時遊戲平台、雲端架構與 CI/CD 流程建置；近年負責百家樂 Cocos 重製、直播房、注單回放與多款 Web3 遊戲前端。</dd>
           <dt>獨立作品｜2025 – 至今</dt>
@@ -1131,6 +1131,8 @@ function About() {
           <dd>Built TK Casino solo: an on-chain PvP arena on Arbitrum One, twelve original games and the browser MMORPG Apocalypse. Also an iOS Japanese-learning app, a macOS video editor and a bilingual DevOps course site.</dd>
           <dt>Previous Experience</dt>
           <dd>CareLine UK (Frontend Lead · Angular/Vue) → Nippon Sharyo USA (QA Inspector, Japan/USA/Canada) → Walton Computing (Software Engineer · PHP/MySQL)</dd>
+          <dt>Core Stack</dt>
+          <dd>TypeScript, Vue 3, React, Node.js, Go, Java, C# / .NET, Cocos Creator, PixiJS, Unity, Swift, Solidity, Docker, Kubernetes, AWS, MySQL, Redis.</dd>
           <dt>Links</dt>
           <dd>github.com/BruceWayneLin · jungwei.com.tw · tk-casino.com · stockchicken.tw</dd>
         </dl>
@@ -1149,7 +1151,7 @@ function About() {
           <dt>2014/11 – 2016/03</dt>
           <dd>日本車輌（JRグループ）にてシカゴ・バンクーバー・トロント・カリフォルニア・日本での鉄道車両品質検査に従事。</dd>
           <dt>スキルセット</dt>
-          <dd>Vue3・React・Angular・TypeScript・Node.js・Go・Laravel・Docker・K8s・AWS・MySQL・Redis</dd>
+          <dd>Vue3・React・Angular・TypeScript・Node.js・Go・Java・C# / .NET・Laravel・Cocos Creator・PixiJS・Unity・Swift / SwiftUI・Solidity・Python・Docker・K8s・AWS・MySQL・Redis・DynamoDB</dd>
         </dl>
       ),
     },
