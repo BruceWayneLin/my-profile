@@ -94,6 +94,7 @@ const SKILLS = [
   { name: 'C / C++',      cat: 'backend'  },
   { name: 'Swift',        cat: 'backend'  },
   { name: 'C# / .NET 8',  cat: 'backend'  },
+  { name: 'Java',         cat: 'backend'  },
   { name: 'Python',       cat: 'backend'  },
   { name: 'Solidity',     cat: 'web3'     },
   { name: 'Arbitrum One', cat: 'web3'     },
@@ -112,6 +113,8 @@ const SKILLS = [
   { name: 'Kustomize',    cat: 'devops'   },
   { name: 'KEDA',         cat: 'devops'   },
   { name: 'Caddy',        cat: 'devops'   },
+  { name: 'GitLab CI',    cat: 'devops'   },
+  { name: 'AWS Lambda',   cat: 'devops'   },
   { name: 'Prometheus',   cat: 'devops'   },
   { name: 'Grafana',      cat: 'devops'   },
   { name: 'MySQL',        cat: 'db'       },
@@ -119,6 +122,7 @@ const SKILLS = [
   { name: 'MongoDB',      cat: 'db'       },
   { name: 'Redis',        cat: 'db'       },
   { name: 'Redis Streams', cat: 'db'      },
+  { name: 'DynamoDB',     cat: 'db'       },
   { name: 'Vitest',       cat: 'testing'  },
   { name: 'k6',           cat: 'testing'  },
   { name: 'Playwright',   cat: 'testing'  },
@@ -1096,7 +1100,7 @@ function About() {
       content: (
         <dl>
           <dt>Takio Lin (林容為)</dt>
-          <dd>15+ years frontend, backend & DevOps experience. B.A. Literature, University of Oregon, 2010. Fluent in English, Chinese, Japanese, and Taiwanese.</dd>
+          <dd>15+ years frontend, backend & DevOps experience. B.A. Literature, University of Oregon, 2010. Fluent in English, Mandarin and Taiwanese; intermediate Japanese.</dd>
           <dt>Sunny Software · 2018–Present</dt>
           <dd>Senior Engineer & Tech Lead. Vue3, React, Node.js, Go, WebSocket, Docker, Kubernetes, AWS. Led real-time gaming platform development, CI/CD pipelines, and team technical decisions; recently the Cocos Creator baccarat rebuild, live-stream rooms, bet replay and Web3 game frontends.</dd>
           <dt>Independent · 2025–Present</dt>
